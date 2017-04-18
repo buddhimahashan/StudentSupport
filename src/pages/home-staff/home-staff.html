@@ -1,0 +1,79 @@
+<!--
+  Generated template for the HomeStaff page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar primary>
+    
+    <ion-title>Home</ion-title>
+    <ion-buttons end>
+       <button ion-button block (click)="Open()" >Add Notification</button>
+      <button ion-button icon-only (click)="openModal({charNum: 0})">
+        <ion-icon name="calendar"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+  <ion-list-header color="secondary">
+      <p ion-text style="color:#000000;">Add <strong>Weekly Plan :</strong></p>
+   </ion-list-header> 
+
+  
+    <ion-item color="light">
+    <ion-label style="color:#000000;">Day</ion-label>
+    <ion-select [(ngModel)]="day" placeholder="Monday">
+          <ion-option value="Monday">Monday</ion-option>
+          <ion-option value="Tuesday">Tuesday</ion-option>
+          <ion-option value="Wednesday">Wednesday</ion-option>
+          <ion-option value="Thursday">Thursday</ion-option>
+          <ion-option value="Friday">Friday</ion-option>
+    </ion-select>
+    </ion-item>
+    </ion-list>
+    
+    <ion-card>
+      <ion-list>
+  
+        <ion-item>
+            <ion-label>09.00 - 09.30</ion-label>
+            <ion-checkbox color="secondary" id="09.00-09.30"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+            <ion-label>09.00 - 10.00</ion-label>
+            <ion-checkbox color="secondary" id="09.00-10.00"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+            <ion-label>09.00 - 10.00</ion-label>
+            <ion-checkbox color="secondary" id="09.00-10.00"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+            <ion-label>09.00 - 10.00</ion-label>
+            <ion-checkbox color="secondary" id="09.00-10.00"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+            <ion-label>09.00 - 10.00</ion-label>
+            <ion-checkbox color="secondary" id="09.00-10.00"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+            <ion-label>09.00 - 10.00</ion-label>
+            <ion-checkbox color="secondary" id="09.00-10.00"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+            <ion-label>09.00 - 10.00</ion-label>
+            <ion-checkbox color="secondary" id="09.00-10.00"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+
+    <label>
+      <button ion-button block  >Save</button>
+    </label>
+  
+
+</ion-content>
