@@ -30,20 +30,20 @@
       </ion-item>
 
 </ion-list>
-    <ion-list radio-group>
+<ion-list radio-group [(ngModel)]="UserType">
     <ion-item>
-        <ion-label>Go</ion-label>
+        <ion-label>Staff</ion-label>
         <ion-radio checked="true" value="Staff"></ion-radio>
       </ion-item>
 
       <ion-item>
-        <ion-label>Rust</ion-label>
+        <ion-label>Student</ion-label>
         <ion-radio value="Student"></ion-radio>
       </ion-item>
-</ion-list>
+</ion-list> 
 
 <div padding>
-      <button ion-button color="primary" block>Sign In</button>
+      <button ion-button color="primary" block (click)="SetUserDetails()">Sign In</button>
     </div>
 
 </ion-content>

@@ -7,8 +7,23 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>notification_student</ion-title>
+    <ion-title>Notifications</ion-title>
   </ion-navbar>
+
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="notification">
+      
+      <ion-segment-button value="PublicNotifications">
+      Public
+      </ion-segment-button>
+      <ion-segment-button value="Responce">
+       Responces
+      </ion-segment-button>
+      <ion-segment-button value="SendAppointments">
+      Requests
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 
 </ion-header>
 
