@@ -26605,3 +26605,20 @@ ion-navbar.toolbar {
     padding-top: calc(16px + 20px);
   }
 }
+
+page-home-student .ion-md-share {
+  color: #ED4248;
+}
+
+page-home-student .ion-md-arrow-dropright-circle {
+  color: #508AE4;
+}
+
+page-home-student .ion-md-heart-outline {
+  color: #31D55F;
+}
+
+page-home-student .action-sheet-cancel ion-icon,
+page-home-student .action-sheet-destructive ion-icon {
+  color: #757575;
+}

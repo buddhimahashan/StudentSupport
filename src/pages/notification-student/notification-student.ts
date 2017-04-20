@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Platform } from 'ionic-angular';
 
 /**
  * Generated class for the NotificationStudent page.
@@ -13,8 +14,8 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'notification-student.html',
 })
 export class NotificationStudent {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+pet: string = "PublicNotifications";
+  constructor(public navCtrl: NavController, public navParams: NavParams,platform: Platform) {
   }
 
  
