@@ -41,20 +41,28 @@
 
   <ion-item>
     <ion-label>Time</ion-label>
-    <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.timeStarts"></ion-datetime>
-    <!--<ion-select [(ngModel)]="TimeSlots">
-      <ion-option value="nes">NES</ion-option>
-      <ion-option value="n64">Nintendo64</ion-option>
-      <ion-option value="ps">PlayStation</ion-option>
-      <ion-option value="genesis">Sega Genesis</ion-option>
-      <ion-option value="saturn">Sega Saturn</ion-option>
-      <ion-option value="snes">SNES</ion-option>
-    </ion-select>-->
+   <!-- <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.timeStarts"></ion-datetime>-->
+    <ion-select [(ngModel)]="TimeSlots">
+      <ion-option value="slot1">09.00 - 09.30</ion-option>
+      <ion-option value="slot2">09.30 - 10.00</ion-option>
+      <ion-option value="slot3">10.00 - 10.30</ion-option>
+      <ion-option value="slot4">10.30 - 11.00</ion-option>
+      <ion-option value="slot5">11.00 - 11.30</ion-option>
+      <ion-option value="slot6">11.30 - 12.00</ion-option>
+      <ion-option value="slot7">13.00 - 13.30</ion-option>
+      <ion-option value="slot8">13.30 - 14.00</ion-option>
+      <ion-option value="slot9">14.00 - 14.30</ion-option>
+      <ion-option value="slot10">14.30 - 15.00</ion-option>
+      <ion-option value="slot11">15.00 - 15.30</ion-option>
+      <ion-option value="slot12">15.30 - 16.00</ion-option>
+      <ion-option value="slot13">16.00 - 16.30</ion-option>
+    </ion-select>
   </ion-item>
 </ion-list>
   
 <ion-list>
-  <button ion-button full color="secondary">Check</button> 
+  <button ion-button block color="dark" (click)="doAlert()" ion-button full color="secondary">Check</button> 
+  <!--ion-button block (click)="presentLoading()"-->  
   <!--<h5 ion-text color="positive" style="text-align: center" >Lecturer Name</h5>-->
 </ion-list>
 <ion-list>
@@ -71,24 +79,22 @@
   <ion-item>
     <ion-label>Subject<span style="color:#ff0000;">  *</span></ion-label>
     <ion-select [(ngModel)]="Subjects">
-      <ion-option value="nes">NES</ion-option>
-      <ion-option value="n64">Nintendo64</ion-option>
-      <ion-option value="ps">PlayStation</ion-option>
-      <ion-option value="genesis">Sega Genesis</ion-option>
-      <ion-option value="saturn">Sega Saturn</ion-option>
-      <ion-option value="snes">SNES</ion-option>
+      <ion-option value="sub1">PDM</ion-option>
+      <ion-option value="sub2">SE-III</ion-option>
+      <ion-option value="sub3">PLDC</ion-option>
+      <ion-option value="sub4">EM</ion-option>
+      <ion-option value="sub5">OS</ion-option>
     </ion-select>
   </ion-item>
 
   <ion-item>
     <ion-label>Reason<span style="color:#ff0000;">  *</span></ion-label>
     <ion-select [(ngModel)]="Reasons">
-      <ion-option value="nes">NES</ion-option>
-      <ion-option value="n64">Nintendo64</ion-option>
-      <ion-option value="ps">PlayStation</ion-option>
-      <ion-option value="genesis">Sega Genesis</ion-option>
-      <ion-option value="saturn">Sega Saturn</ion-option>
-      <ion-option value="snes">SNES</ion-option>
+      <ion-option value="rs1">Supervisor Meeting</ion-option>
+      <ion-option value="rs2">Paper Discution</ion-option>
+      <ion-option value="rs3">Theory Issue</ion-option>
+      <ion-option value="rs4">Assignment Problem</ion-option>
+      <ion-option value="rs5">Others</ion-option>
     </ion-select>
     </ion-item>
 

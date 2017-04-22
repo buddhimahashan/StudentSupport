@@ -22409,8 +22409,8 @@ function dispatch(timeStamp, r, w) {
 /* unused harmony reexport VirtualScrollModule */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__components_action_sheet_action_sheet__ = __webpack_require__(52);
 /* unused harmony reexport ActionSheet */
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_4__components_action_sheet_action_sheet_controller__["a"]; });
-/* unused harmony reexport AlertController */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_4__components_action_sheet_action_sheet_controller__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_5__components_alert_alert_controller__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_80__components_alert_alert__ = __webpack_require__(54);
 /* unused harmony reexport Alert */
 /* unused harmony reexport App */
@@ -22489,7 +22489,7 @@ function dispatch(timeStamp, r, w) {
 /* unused harmony reexport ListHeader */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_117__components_loading_loading__ = __webpack_require__(159);
 /* unused harmony reexport Loading */
-/* unused harmony reexport LoadingController */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_16__components_loading_loading_controller__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_118__components_menu_menu__ = __webpack_require__(163);
 /* unused harmony reexport Menu */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_119__components_menu_menu_close__ = __webpack_require__(161);
@@ -57212,6 +57212,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 /**
  * Generated class for the HomeStudent page.
  *
@@ -57219,11 +57221,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * on Ionic pages and navigation.
  */
 var HomeStudent = (function () {
-    function HomeStudent(navCtrl, navParams, platform, actionsheetCtrl) {
+    function HomeStudent(navCtrl, alerCtrl, navParams, platform, actionsheetCtrl, loadingCtrl) {
         this.navCtrl = navCtrl;
+        this.alerCtrl = alerCtrl;
         this.navParams = navParams;
         this.platform = platform;
         this.actionsheetCtrl = actionsheetCtrl;
+        this.loadingCtrl = loadingCtrl;
         this.query = "";
         this.listitem = '';
         this.event = {
@@ -57233,6 +57237,21 @@ var HomeStudent = (function () {
         this.initializeItems();
         this.items = [];
     }
+    HomeStudent.prototype.presentLoading = function () {
+        this.loadingCtrl.create({
+            content: 'Please wait...',
+            duration: 3000,
+            dismissOnPageChange: true
+        }).present();
+    };
+    HomeStudent.prototype.doAlert = function () {
+        var alert = this.alerCtrl.create({
+            title: 'Available!',
+            message: 'Lecture is Available at that Time. You can make an appointment',
+            buttons: ['Ok']
+        });
+        alert.present();
+    };
     HomeStudent.prototype.initializeItems = function () {
         this.items = [
             'Harvey Burton',
@@ -57290,12 +57309,12 @@ var HomeStudent = (function () {
 }());
 HomeStudent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* Component */])({
-        selector: 'page-home-student',template:/*ion-inline-start:"C:\Users\Buddhima\Desktop\StudentSupport\src\pages\home-student\home-student.html"*/'<!--\n\n  Generated template for the HomeStudent page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Home</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content>\n\n    <!--<h5 ion-text color="black">Search Lecturer by name</h5>\n\n  <ion-searchbar [(ngModel)]="query" (change)="getItems($event)" ></ion-searchbar>-->\n\n   <ion-searchbar [(ngModel)]="query" (ionInput)="getItems($event)"></ion-searchbar>\n\n   <h5 ion-text color="positive" style="text-align: center" > {{ listitem }}</h5>\n\n  <ion-list>\n\n  <ion-item *ngFor="let item of items">\n\n    <div (click)=setitem(item) >  \n\n      {{ item }}\n\n    </div>\n\n  </ion-item>\n\n</ion-list> \n\n\n\n<!--<ion-list>\n\n      <ion-item *ngFor="let item of items" tappable   (click)="setitem(item)">\n\n        {{ item }}\n\n      </ion-item>\n\n</ion-list>\n\n-->\n\n\n\n<ion-list>\n\n    <ion-item>\n\n      <ion-label>Date</ion-label>\n\n     <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="event.month"></ion-datetime>\n\n    </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label>Time</ion-label>\n\n    <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.timeStarts"></ion-datetime>\n\n    <!--<ion-select [(ngModel)]="TimeSlots">\n\n      <ion-option value="nes">NES</ion-option>\n\n      <ion-option value="n64">Nintendo64</ion-option>\n\n      <ion-option value="ps">PlayStation</ion-option>\n\n      <ion-option value="genesis">Sega Genesis</ion-option>\n\n      <ion-option value="saturn">Sega Saturn</ion-option>\n\n      <ion-option value="snes">SNES</ion-option>\n\n    </ion-select>-->\n\n  </ion-item>\n\n</ion-list>\n\n  \n\n<ion-list>\n\n  <button ion-button full color="secondary">Check</button> \n\n  <!--<h5 ion-text color="positive" style="text-align: center" >Lecturer Name</h5>-->\n\n</ion-list>\n\n<ion-list>\n\n  <ion-item>\n\n    <ion-label>Year<span style="color:#ff0000;">  *</span></ion-label>\n\n    <ion-select [(ngModel)]="Years">\n\n      <ion-option value="1st">1st year</ion-option>\n\n      <ion-option value="2nd">2nd year</ion-option>\n\n      <ion-option value="3rd">3rd year</ion-option>\n\n      <ion-option value="4th">4th year</ion-option>\n\n    </ion-select>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label>Subject<span style="color:#ff0000;">  *</span></ion-label>\n\n    <ion-select [(ngModel)]="Subjects">\n\n      <ion-option value="nes">NES</ion-option>\n\n      <ion-option value="n64">Nintendo64</ion-option>\n\n      <ion-option value="ps">PlayStation</ion-option>\n\n      <ion-option value="genesis">Sega Genesis</ion-option>\n\n      <ion-option value="saturn">Sega Saturn</ion-option>\n\n      <ion-option value="snes">SNES</ion-option>\n\n    </ion-select>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label>Reason<span style="color:#ff0000;">  *</span></ion-label>\n\n    <ion-select [(ngModel)]="Reasons">\n\n      <ion-option value="nes">NES</ion-option>\n\n      <ion-option value="n64">Nintendo64</ion-option>\n\n      <ion-option value="ps">PlayStation</ion-option>\n\n      <ion-option value="genesis">Sega Genesis</ion-option>\n\n      <ion-option value="saturn">Sega Saturn</ion-option>\n\n      <ion-option value="snes">SNES</ion-option>\n\n    </ion-select>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n    <ion-textarea  placeholder="Enter a description"></ion-textarea>\n\n  </ion-item> \n\n</ion-list>    \n\n\n\n<ion-list>\n\n<!--<button ion-button block  >Request</button>-->\n\n<button ion-button block (click)="openMenu()">\n\n    Request\n\n  </button>\n\n</ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Buddhima\Desktop\StudentSupport\src\pages\home-student\home-student.html"*/,
+        selector: 'page-home-student',template:/*ion-inline-start:"C:\Users\Buddhima\Desktop\StudentSupport\src\pages\home-student\home-student.html"*/'<!--\n\n  Generated template for the HomeStudent page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Home</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content>\n\n    <!--<h5 ion-text color="black">Search Lecturer by name</h5>\n\n  <ion-searchbar [(ngModel)]="query" (change)="getItems($event)" ></ion-searchbar>-->\n\n   <ion-searchbar [(ngModel)]="query" (ionInput)="getItems($event)"></ion-searchbar>\n\n   <h5 ion-text color="positive" style="text-align: center" > {{ listitem }}</h5>\n\n  <ion-list>\n\n  <ion-item *ngFor="let item of items">\n\n    <div (click)=setitem(item) >  \n\n      {{ item }}\n\n    </div>\n\n  </ion-item>\n\n</ion-list> \n\n\n\n<!--<ion-list>\n\n      <ion-item *ngFor="let item of items" tappable   (click)="setitem(item)">\n\n        {{ item }}\n\n      </ion-item>\n\n</ion-list>\n\n-->\n\n\n\n<ion-list>\n\n    <ion-item>\n\n      <ion-label>Date</ion-label>\n\n     <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="event.month"></ion-datetime>\n\n    </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label>Time</ion-label>\n\n   <!-- <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.timeStarts"></ion-datetime>-->\n\n    <ion-select [(ngModel)]="TimeSlots">\n\n      <ion-option value="slot1">09.00 - 09.30</ion-option>\n\n      <ion-option value="slot2">09.30 - 10.00</ion-option>\n\n      <ion-option value="slot3">10.00 - 10.30</ion-option>\n\n      <ion-option value="slot4">10.30 - 11.00</ion-option>\n\n      <ion-option value="slot5">11.00 - 11.30</ion-option>\n\n      <ion-option value="slot6">11.30 - 12.00</ion-option>\n\n      <ion-option value="slot7">13.00 - 13.30</ion-option>\n\n      <ion-option value="slot8">13.30 - 14.00</ion-option>\n\n      <ion-option value="slot9">14.00 - 14.30</ion-option>\n\n      <ion-option value="slot10">14.30 - 15.00</ion-option>\n\n      <ion-option value="slot11">15.00 - 15.30</ion-option>\n\n      <ion-option value="slot12">15.30 - 16.00</ion-option>\n\n      <ion-option value="slot13">16.00 - 16.30</ion-option>\n\n    </ion-select>\n\n  </ion-item>\n\n</ion-list>\n\n  \n\n<ion-list>\n\n  <button ion-button block color="dark" (click)="doAlert()" ion-button full color="secondary">Check</button> \n\n  <!--ion-button block (click)="presentLoading()"-->  \n\n  <!--<h5 ion-text color="positive" style="text-align: center" >Lecturer Name</h5>-->\n\n</ion-list>\n\n<ion-list>\n\n  <ion-item>\n\n    <ion-label>Year<span style="color:#ff0000;">  *</span></ion-label>\n\n    <ion-select [(ngModel)]="Years">\n\n      <ion-option value="1st">1st year</ion-option>\n\n      <ion-option value="2nd">2nd year</ion-option>\n\n      <ion-option value="3rd">3rd year</ion-option>\n\n      <ion-option value="4th">4th year</ion-option>\n\n    </ion-select>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label>Subject<span style="color:#ff0000;">  *</span></ion-label>\n\n    <ion-select [(ngModel)]="Subjects">\n\n      <ion-option value="sub1">PDM</ion-option>\n\n      <ion-option value="sub2">SE-III</ion-option>\n\n      <ion-option value="sub3">PLDC</ion-option>\n\n      <ion-option value="sub4">EM</ion-option>\n\n      <ion-option value="sub5">OS</ion-option>\n\n    </ion-select>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label>Reason<span style="color:#ff0000;">  *</span></ion-label>\n\n    <ion-select [(ngModel)]="Reasons">\n\n      <ion-option value="rs1">Supervisor Meeting</ion-option>\n\n      <ion-option value="rs2">Paper Discution</ion-option>\n\n      <ion-option value="rs3">Theory Issue</ion-option>\n\n      <ion-option value="rs4">Assignment Problem</ion-option>\n\n      <ion-option value="rs5">Others</ion-option>\n\n    </ion-select>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n    <ion-textarea  placeholder="Enter a description"></ion-textarea>\n\n  </ion-item> \n\n</ion-list>    \n\n\n\n<ion-list>\n\n<!--<button ion-button block  >Request</button>-->\n\n<button ion-button block (click)="openMenu()">\n\n    Request\n\n  </button>\n\n</ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Buddhima\Desktop\StudentSupport\src\pages\home-student\home-student.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Platform */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ActionSheetController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* AlertController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Platform */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ActionSheetController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ActionSheetController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */]) === "function" && _f || Object])
 ], HomeStudent);
 
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=home-student.js.map
 
 /***/ }),
@@ -114716,5 +114735,3 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dyna
 /***/ })
 /******/ ]);
 //# sourceMappingURL=main.js.map
-
-(function(w){var i=w.Ionic=w.Ionic||{};i.version='3.0.1';i.angular='4.0.0';})(window);

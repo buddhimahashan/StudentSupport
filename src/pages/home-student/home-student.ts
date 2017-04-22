@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Platform, ActionSheetController } from 'ionic-angular';
-
+import { LoadingController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 /**
  * Generated class for the HomeStudent page.
  *
@@ -18,11 +19,29 @@ export class HomeStudent {
   private items: string[];
 
   query: string = "";
-  listitem:string= '' ;
+  listitem: string = '';
 
- constructor(public navCtrl: NavController, public navParams: NavParams,public platform: Platform,
-    public actionsheetCtrl: ActionSheetController) {this.initializeItems();
-      this.items=[];
+  constructor(public navCtrl: NavController,public alerCtrl: AlertController, public navParams: NavParams, public platform: Platform,
+    public actionsheetCtrl: ActionSheetController, public loadingCtrl: LoadingController) {
+      this.initializeItems();
+    this.items = [];
+  }
+
+  presentLoading() {
+    this.loadingCtrl.create({
+      content: 'Please wait...',
+      duration: 3000,
+      dismissOnPageChange: true
+    }).present();
+  }
+
+  doAlert() {
+    let alert = this.alerCtrl.create({
+      title: 'Available!',
+      message: 'Lecture is Available at that Time. You can make an appointment',
+      buttons: ['Ok']
+    });
+    alert.present()
   }
 
   initializeItems() {
@@ -40,7 +59,7 @@ export class HomeStudent {
   }
 
   getItems() {
-    
+
     console.log('The search button has been clicked...');
 
     this.initializeItems();
@@ -50,35 +69,35 @@ export class HomeStudent {
         return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
-    else{
-      this.items=[];
+    else {
+      this.items = [];
     }
   }
 
-  setitem(item){
-     this.listitem = item;
-     this.items=[];
+  setitem(item) {
+    this.listitem = item;
+    this.items = [];
   }
 
   public event = {
-    
+
     month: '2017-01-01',
     timeStarts: '08:30'
   }
-  
- openMenu() {
+
+  openMenu() {
     let actionSheet = this.actionsheetCtrl.create({
       title: 'Request Confirmation',
       cssClass: 'action-sheets-basic-page',
       buttons: [
         {
           text: 'Send Request',
-          icon:'send',
+          icon: 'send',
           handler: () => {
             console.log('Send Request clicked');
           }
         },
-        
+
         {
           text: 'Cancel',
           icon: 'close',
@@ -89,10 +108,10 @@ export class HomeStudent {
       ]
     });
     actionSheet.present();
-    
+
   }
 }
 
-  
+
 
 
