@@ -21,6 +21,17 @@ import { Profile } from '../pages/profile/profile';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { AngularFireModule } from 'angularfire2';
+
+export const firebaseConfig = {
+   apiKey: "AIzaSyCle6OXT0qMaWzaaG6z_it9KsZC-VNz6lI",
+   authDomain: "pdmstudentassistant-27eaa.firebaseapp.com",
+   databaseURL: "https://pdmstudentassistant-27eaa.firebaseio.com",
+   projectId: "pdmstudentassistant-27eaa",
+   storageBucket: "pdmstudentassistant-27eaa.appspot.com",
+   messagingSenderId: "704888872666"
+};
+
 @NgModule({
   declarations: [
     MyApp,
@@ -40,7 +51,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
