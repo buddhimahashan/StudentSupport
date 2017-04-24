@@ -22,7 +22,15 @@ export class HomeStaff {
   slot1(e): void {
     var isChecked = e.currentTarget.slot_1;
     console.log(e.currentTarget);//undefined
-    console.log(this.slot_1);//it is working !!!
+    console.log(this.slot_1);
+    if (this.slot_1 == true){
+      this.alertMessage("Warning", "Please Select the Lecture")
+    }
+  }
+  slot2(e): void {
+    var isChecked = e.currentTarget.slot_1;
+    console.log(e.currentTarget);//undefined
+    console.log(this.slot_1);
     if (this.slot_1 == true){
       this.alertMessage("Warning", "Please Select the Lecture")
     }
