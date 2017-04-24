@@ -44,7 +44,8 @@
   
         <ion-item>
             <ion-label>09.00 - 09.30</ion-label>
-            <ion-checkbox color="secondary" id="09.00-09.30"></ion-checkbox>
+            <!--<ion-checkbox color="secondary" id="09.00-09.30"></ion-checkbox>-->
+            <ion-checkbox color="secondary" (click)="slot1($event)" [(ngModel)]="slot_1"></ion-checkbox>
         </ion-item>
         <ion-item>
             <ion-label>09.00 - 10.00</ion-label>

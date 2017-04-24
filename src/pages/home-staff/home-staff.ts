@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import {Newnotification} from '../newnotification/newnotification';
 import { Logout } from '../logout/logout';
 /**
@@ -15,8 +15,28 @@ import { Logout } from '../logout/logout';
 })
 export class HomeStaff {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alerCtrl: AlertController) {
   }
+
+  slot_1 : boolean = true;
+  slot1(e): void {
+    var isChecked = e.currentTarget.slot_1;
+    console.log(e.currentTarget);//undefined
+    console.log(this.slot_1);//it is working !!!
+    if (this.slot_1 == true){
+      this.alertMessage("Warning", "Please Select the Lecture")
+    }
+  }
+
+  alertMessage(title, message) {
+    let alert = this.alerCtrl.create({
+      title: title,
+      message: message,
+      buttons: ['Ok']
+    });
+    alert.present()
+  }
+
 
   LogOut(){
        this.navCtrl.push(Logout);
