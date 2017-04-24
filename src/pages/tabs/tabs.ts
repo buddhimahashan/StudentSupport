@@ -7,6 +7,8 @@ import { HomeStudent } from '../home-student/home-student';
 import { NotificationStudent } from '../notification-student/notification-student';
 import { MessageStudent } from '../message-student/message-student'
 import { Profile } from '../profile/profile';
+import { NavController} from 'ionic-angular';
+import { Login } from '../login/login';
 
 
 @Component({
@@ -20,17 +22,19 @@ export class TabsPage {
   tab4Root ;
   
   SelectTabs(){
-    console.log(window.localStorage.getItem('session'));
-    if(window.localStorage.getItem('session')=="Staff"){
+    console.log(window.localStorage.getItem('SessionType'));
+    if(window.localStorage.getItem('SessionType')=="Staff"){
          this.tab1Root = HomeStaff;
          this.tab2Root = NotificationStaff;
          this.tab3Root = MessageStaff;
          this.tab4Root = Profile;
-    }else if(window.localStorage.getItem('session')=="Student"){
+    }else if(window.localStorage.getItem('SessionType')=="Student"){
          this.tab1Root = HomeStudent;
          this.tab2Root = NotificationStudent;
          this.tab3Root = MessageStudent;
          this.tab4Root = Profile;
+    }else{
+          this.navCtrl.push(Login);
     }
     
   }
@@ -39,7 +43,7 @@ export class TabsPage {
 
  
 
-  constructor() {
+  constructor(public navCtrl: NavController) {
       this.SelectTabs();
   }
 }
