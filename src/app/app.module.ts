@@ -17,6 +17,7 @@ import { NotificationStudent } from '../pages/notification-student/notification-
 import { MessageStaff } from '../pages/message-staff/message-staff';
 import { MessageStudent } from '../pages/message-student/message-student';
 import { Profile } from '../pages/profile/profile';
+import { Logout } from '../pages/logout/logout';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -39,6 +40,7 @@ export const firebaseConfig = {
     ContactPage,
     HomePage,
     Login,
+    Logout,
     HomeStaff,
     HomeStudent,
     NotificationStaff,
@@ -61,6 +63,7 @@ export const firebaseConfig = {
     ContactPage,
     HomePage,
     Login,
+    Logout,
     HomeStaff,
     HomeStudent,
     NotificationStaff,

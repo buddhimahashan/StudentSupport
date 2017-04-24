@@ -58,7 +58,7 @@ export class Login {
       console.log(this.UserType);
 
       window.localStorage.setItem('SessionName', this.uname);
-      window.localStorage.setItem('SessionType', this.uname);
+      window.localStorage.setItem('SessionType', this.utype);
 
       this.navCtrl.push(TabsPage);
       
