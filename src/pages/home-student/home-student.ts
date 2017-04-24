@@ -16,14 +16,20 @@ import { AlertController } from 'ionic-angular';
 
 })
 export class HomeStudent {
+
+
+  TimeSlots: any;
+
+  TSlots: string;
+  lName: string;
+
   private items: string[];
+  Lecture: string = "";
+  LectureName: string = '';
 
-  query: string = "";
-  listitem: string = '';
-
-  constructor(public navCtrl: NavController,public alerCtrl: AlertController, public navParams: NavParams, public platform: Platform,
+  constructor(public navCtrl: NavController, public alerCtrl: AlertController, public navParams: NavParams, public platform: Platform,
     public actionsheetCtrl: ActionSheetController, public loadingCtrl: LoadingController) {
-      this.initializeItems();
+    this.initializeItems();
     this.items = [];
   }
 
@@ -35,14 +41,16 @@ export class HomeStudent {
     }).present();
   }
 
-  doAlert() {
+  alertMessage(title, message) {
     let alert = this.alerCtrl.create({
-      title: 'Available!',
-      message: 'Lecture is Available at that Time. You can make an appointment',
+      title: title,
+      message: message,
       buttons: ['Ok']
     });
     alert.present()
   }
+
+
 
   initializeItems() {
     this.items = [
@@ -63,7 +71,7 @@ export class HomeStudent {
     console.log('The search button has been clicked...');
 
     this.initializeItems();
-    let val = this.query
+    let val = this.Lecture
     if (val && val.trim() != '') {
       this.items = this.items.filter((item) => {
         return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
@@ -75,7 +83,7 @@ export class HomeStudent {
   }
 
   setitem(item) {
-    this.listitem = item;
+    this.LectureName = item;
     this.items = [];
   }
 
@@ -83,6 +91,19 @@ export class HomeStudent {
 
     month: '2017-01-01',
     timeStarts: '08:30'
+  }
+
+  CheckAvailabilityDetails() {
+    this.TSlots = this.TimeSlots;
+
+    if (this.LectureName == undefined || this.LectureName == '') {
+      this.alertMessage("Warning", "Please Select the Lecture");
+    } else if (this.TSlots == undefined || this.TSlots == '') {
+      this.alertMessage("Warning", "Please Select the Time");
+    } else {
+      console.log(this.LectureName);
+      console.log(this.TSlots);
+    }
   }
 
   openMenu() {

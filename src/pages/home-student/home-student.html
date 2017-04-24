@@ -14,100 +14,93 @@
 
 
 <ion-content>
-    <!--<h5 ion-text color="black">Search Lecturer by name</h5>
+  <!--<h5 ion-text color="black">Search Lecturer by name</h5>
   <ion-searchbar [(ngModel)]="query" (change)="getItems($event)" ></ion-searchbar>-->
-   <ion-searchbar [(ngModel)]="query" (ionInput)="getItems($event)"></ion-searchbar>
-   <h5 ion-text color="positive" style="text-align: center" > {{ listitem }}</h5>
+  <ion-searchbar [(ngModel)]="Lecture" (ionInput)="getItems($event)"></ion-searchbar>
+  <h5 ion-text color="positive" style="text-align: center"> {{ LectureName }}</h5>
   <ion-list>
-  <ion-item *ngFor="let item of items">
-    <div (click)=setitem(item) >  
-      {{ item }}
-    </div>
-  </ion-item>
-</ion-list> 
-
-<!--<ion-list>
-      <ion-item *ngFor="let item of items" tappable   (click)="setitem(item)">
+    <ion-item *ngFor="let item of items">
+      <div (click)=setitem(item)>
         {{ item }}
-      </ion-item>
-</ion-list>
--->
+      </div>
+    </ion-item>
+  </ion-list>
 
-<ion-list>
+  <ion-list>
     <ion-item>
       <ion-label>Date</ion-label>
-     <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="event.month"></ion-datetime>
-    </ion-item>
-
-  <ion-item>
-    <ion-label>Time</ion-label>
-   <!-- <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.timeStarts"></ion-datetime>-->
-    <ion-select [(ngModel)]="TimeSlots">
-      <ion-option value="slot1">09.00 - 09.30</ion-option>
-      <ion-option value="slot2">09.30 - 10.00</ion-option>
-      <ion-option value="slot3">10.00 - 10.30</ion-option>
-      <ion-option value="slot4">10.30 - 11.00</ion-option>
-      <ion-option value="slot5">11.00 - 11.30</ion-option>
-      <ion-option value="slot6">11.30 - 12.00</ion-option>
-      <ion-option value="slot7">13.00 - 13.30</ion-option>
-      <ion-option value="slot8">13.30 - 14.00</ion-option>
-      <ion-option value="slot9">14.00 - 14.30</ion-option>
-      <ion-option value="slot10">14.30 - 15.00</ion-option>
-      <ion-option value="slot11">15.00 - 15.30</ion-option>
-      <ion-option value="slot12">15.30 - 16.00</ion-option>
-      <ion-option value="slot13">16.00 - 16.30</ion-option>
-    </ion-select>
-  </ion-item>
-</ion-list>
-  
-<ion-list>
-  <button ion-button block color="dark" (click)="doAlert()" ion-button full color="secondary">Check</button> 
-  <!--ion-button block (click)="presentLoading()"-->  
-  <!--<h5 ion-text color="positive" style="text-align: center" >Lecturer Name</h5>-->
-</ion-list>
-<ion-list>
-  <ion-item>
-    <ion-label>Year<span style="color:#ff0000;">  *</span></ion-label>
-    <ion-select [(ngModel)]="Years">
-      <ion-option value="1st">1st year</ion-option>
-      <ion-option value="2nd">2nd year</ion-option>
-      <ion-option value="3rd">3rd year</ion-option>
-      <ion-option value="4th">4th year</ion-option>
-    </ion-select>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Subject<span style="color:#ff0000;">  *</span></ion-label>
-    <ion-select [(ngModel)]="Subjects">
-      <ion-option value="sub1">PDM</ion-option>
-      <ion-option value="sub2">SE-III</ion-option>
-      <ion-option value="sub3">PLDC</ion-option>
-      <ion-option value="sub4">EM</ion-option>
-      <ion-option value="sub5">OS</ion-option>
-    </ion-select>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Reason<span style="color:#ff0000;">  *</span></ion-label>
-    <ion-select [(ngModel)]="Reasons">
-      <ion-option value="rs1">Supervisor Meeting</ion-option>
-      <ion-option value="rs2">Paper Discution</ion-option>
-      <ion-option value="rs3">Theory Issue</ion-option>
-      <ion-option value="rs4">Assignment Problem</ion-option>
-      <ion-option value="rs5">Others</ion-option>
-    </ion-select>
+      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="event.month"></ion-datetime>
     </ion-item>
 
     <ion-item>
-    <ion-textarea  placeholder="Enter a description"></ion-textarea>
-  </ion-item> 
-</ion-list>    
+      <ion-label>Time</ion-label>
+      <!-- <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.timeStarts"></ion-datetime>-->
+      <ion-select [(ngModel)]="TimeSlots">
+        <ion-option value="slot1">09.00 - 09.30</ion-option>
+        <ion-option value="slot2">09.30 - 10.00</ion-option>
+        <ion-option value="slot3">10.00 - 10.30</ion-option>
+        <ion-option value="slot4">10.30 - 11.00</ion-option>
+        <ion-option value="slot5">11.00 - 11.30</ion-option>
+        <ion-option value="slot6">11.30 - 12.00</ion-option>
+        <ion-option value="slot7">13.00 - 13.30</ion-option>
+        <ion-option value="slot8">13.30 - 14.00</ion-option>
+        <ion-option value="slot9">14.00 - 14.30</ion-option>
+        <ion-option value="slot10">14.30 - 15.00</ion-option>
+        <ion-option value="slot11">15.00 - 15.30</ion-option>
+        <ion-option value="slot12">15.30 - 16.00</ion-option>
+        <ion-option value="slot13">16.00 - 16.30</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
 
-<ion-list>
-<!--<button ion-button block  >Request</button>-->
-<button ion-button block (click)="openMenu()">
+  <ion-list>
+    <button ion-button block color="dark" block (click)="CheckAvailabilityDetails()" ion-button full color="secondary">Check</button>
+    <!--ion-button block (click)="presentLoading()"-->
+    <!--<h5 ion-text color="positive" style="text-align: center" >Lecturer Name</h5>-->
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-label>Year<span style="color:#ff0000;">  *</span></ion-label>
+      <ion-select [(ngModel)]="Years">
+        <ion-option value="1st">1st year</ion-option>
+        <ion-option value="2nd">2nd year</ion-option>
+        <ion-option value="3rd">3rd year</ion-option>
+        <ion-option value="4th">4th year</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Subject<span style="color:#ff0000;">  *</span></ion-label>
+      <ion-select [(ngModel)]="Subjects">
+        <ion-option value="sub1">PDM</ion-option>
+        <ion-option value="sub2">SE-III</ion-option>
+        <ion-option value="sub3">PLDC</ion-option>
+        <ion-option value="sub4">EM</ion-option>
+        <ion-option value="sub5">OS</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Reason<span style="color:#ff0000;">  *</span></ion-label>
+      <ion-select [(ngModel)]="Reasons">
+        <ion-option value="rs1">Supervisor Meeting</ion-option>
+        <ion-option value="rs2">Paper Discution</ion-option>
+        <ion-option value="rs3">Theory Issue</ion-option>
+        <ion-option value="rs4">Assignment Problem</ion-option>
+        <ion-option value="rs5">Others</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-textarea placeholder="Enter a description"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <!--<button ion-button block  >Request</button>-->
+    <button ion-button block (click)="openMenu()">
     Request
   </button>
-</ion-list>
+  </ion-list>
 
 </ion-content>
