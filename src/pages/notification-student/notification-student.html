@@ -10,22 +10,78 @@
     <ion-title>Notifications</ion-title>
   </ion-navbar>
 
-  <ion-toolbar no-border-top>
+<ion-toolbar no-border-top>
     <ion-segment [(ngModel)]="notification">
       
       <ion-segment-button value="PublicNotifications">
       Public Notices
       </ion-segment-button>
       <ion-segment-button value="Responce">
-       My Appointments
+      My Requests
       </ion-segment-button>
-      
+    
     </ion-segment>
   </ion-toolbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <div [ngSwitch]="notification">
+    <ion-list *ngSwitchCase="'Responce'">
+       <ion-item>
+      <ion-avatar item-left>
+        <img src="">
+      </ion-avatar>
+      <h2>Slinky</h2>
+      <p>I may not be a smart dog, but I know what roadkill is.</p>
+      <ion-note item-right>8:54 pm</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-avatar item-left>
+        <img src="">
+      </ion-avatar>
+      <h2>Rex</h2>
+      <p>Were you scared? Tell me honestly.</p>
+      <ion-note item-right>7:22 am</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-avatar item-left>
+        <img src="">
+      </ion-avatar>
+      <h2>Bullseye</h2>
+      <p>Neigh!</p>
+      <ion-note item-right>2:08 am</ion-note>
+    </ion-item>
+
+    </ion-list>
+  </div>
+
+  <div [ngSwitch]="notification">
+    <ion-list *ngSwitchCase="'PublicNotifications'">
+       <ion-item>
+      <h2>Raiders of the Lost Ark</h2>
+      <p>Steven Spielberg • 1981</p>
+      <button ion-button clear item-right>View</button>
+    </ion-item>
+
+    <ion-item>
+     
+      <h2>Ghostbusters</h2>
+      <p>Ivan Reitman • 1984</p>
+      <button ion-button clear item-right>View</button>
+    </ion-item>
+
+    <ion-item>
+     
+      <h2>Batman</h2>
+      <p>Tim Burton • 1988</p>
+      <button ion-button clear item-right>View</button>
+    </ion-item>
+
+    </ion-list>
+  </div>
 
 </ion-content>

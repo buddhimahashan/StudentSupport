@@ -14,7 +14,8 @@ import { Platform } from 'ionic-angular';
   templateUrl: 'notification-student.html',
 })
 export class NotificationStudent {
-pet: string = "PublicNotifications";
+
+notification : string = "PublicNotifications";
   constructor(public navCtrl: NavController, public navParams: NavParams,platform: Platform) {
   }
 

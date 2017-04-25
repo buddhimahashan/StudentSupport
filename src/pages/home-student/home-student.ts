@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Platform, ActionSheetController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-import { Logout } from '../logout/logout';
+
 /**
  * Generated class for the HomeStudent page.
  *
@@ -33,10 +33,7 @@ export class HomeStudent {
     this.initializeItems();
     this.items = [];
   }
-  LogOut(){
-       this.navCtrl.push(Logout);
-  }
-
+ 
   presentLoading() {
     this.loadingCtrl.create({
       content: 'Please wait...',
