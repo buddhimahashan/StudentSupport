@@ -56,14 +56,17 @@ export class HomeStaff {
   slot_15 : boolean;
   slot_16 : boolean;
   
-  daySelect : String;
+  public dayValue:String;
+  // onChange(dayValue) {
+  //    console.log(dayValue);
+  // }
 
   slot(e): void {
     var slotSet = firebase.database().ref("staffSlot/");
     if (this.slot_1 == true){
       // this.alertMessage("Warning", "check the slot")
           slotSet.set({
-            day: this.daySelect,
+            day: this.dayValue,
             slot: {
                 slotId: 'slot_1',
                 status: this.slot_1

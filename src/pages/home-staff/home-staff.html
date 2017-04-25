@@ -29,7 +29,7 @@
   
     <ion-item color="light">
     <ion-label style="color:#000000;">Day</ion-label>
-    <ion-select [(ngModel)]="daySelect" placeholder="Monday">
+    <ion-select #day (ionChange)="onChange(C.value)" placeholder="Monday">
           <ion-option value="Monday">Monday</ion-option>
           <ion-option value="Tuesday">Tuesday</ion-option>
           <ion-option value="Wednesday">Wednesday</ion-option>
