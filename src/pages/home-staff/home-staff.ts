@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import {Newnotification} from '../newnotification/newnotification';
+import { AngularFireModule } from 'angularfire2';
 
 /**
  * Generated class for the HomeStaff page.
@@ -15,7 +16,8 @@ import {Newnotification} from '../newnotification/newnotification';
 })
 export class HomeStaff {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alerCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+  public alerCtrl: AlertController,public loadingCtrl: LoadingController,angFire:AngularFireModule) {
 
   }
   
@@ -97,6 +99,13 @@ export class HomeStaff {
     });
     alert.present()
 
+  }
+  presentLoading() {
+    this.loadingCtrl.create({
+      content: 'Please wait...',
+      duration: 3000,
+      dismissOnPageChange: true
+    }).present();
   }
 
 
