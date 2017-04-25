@@ -12,9 +12,9 @@
        <button ion-button block (click)="Open()" >
          <ion-icon name="megaphone"></ion-icon>
        </button>
-      <button ion-button icon-only (click)="openModal({charNum: 0})">
+      <!--<button ion-button icon-only (click)="openModal({charNum: 0})">
         <ion-icon name="calendar"></ion-icon>
-      </button>
+      </button>-->
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -45,31 +45,67 @@
         <ion-item>
             <ion-label>09.00 - 09.30</ion-label>
             <!--<ion-checkbox color="secondary" id="09.00-09.30"></ion-checkbox>-->
-            <ion-checkbox color="secondary" (click)="slot1($event)" [(ngModel)]="slot_1"></ion-checkbox>
+            <ion-checkbox color="secondary" (click)="slot($event)" [(ngModel)]="slot_1"></ion-checkbox>
         </ion-item>
         <ion-item>
-            <ion-label>09.00 - 10.00</ion-label>
-            <ion-checkbox color="secondary" id="09.00-10.00"></ion-checkbox>
+            <ion-label>09.30 - 10.00</ion-label>
+           <ion-checkbox color="secondary" (click)="slot($event)" [(ngModel)]="slot_2"></ion-checkbox>
         </ion-item>
         <ion-item>
-            <ion-label>09.00 - 10.00</ion-label>
-            <ion-checkbox color="secondary" id="09.00-10.00"></ion-checkbox>
+            <ion-label>10.00 - 10.30</ion-label>
+           <ion-checkbox color="secondary" (click)="slot($event)" [(ngModel)]="slot_3"></ion-checkbox>
         </ion-item>
         <ion-item>
-            <ion-label>09.00 - 10.00</ion-label>
-            <ion-checkbox color="secondary" id="09.00-10.00"></ion-checkbox>
+            <ion-label>10.30 - 11.00</ion-label>
+           <ion-checkbox color="secondary" (click)="slot($event)" [(ngModel)]="slot_4"></ion-checkbox>
         </ion-item>
         <ion-item>
-            <ion-label>09.00 - 10.00</ion-label>
-            <ion-checkbox color="secondary" id="09.00-10.00"></ion-checkbox>
+            <ion-label>11.00 - 11.30</ion-label>
+           <ion-checkbox color="secondary" (click)="slot($event)" [(ngModel)]="slot_5"></ion-checkbox>
         </ion-item>
         <ion-item>
-            <ion-label>09.00 - 10.00</ion-label>
-            <ion-checkbox color="secondary" id="09.00-10.00"></ion-checkbox>
+            <ion-label>11.30 - 12.00</ion-label>
+           <ion-checkbox color="secondary" (click)="slot($event)" [(ngModel)]="slot_6"></ion-checkbox>
         </ion-item>
         <ion-item>
-            <ion-label>09.00 - 10.00</ion-label>
-            <ion-checkbox color="secondary" id="09.00-10.00"></ion-checkbox>
+            <ion-label>12.00 - 12.30</ion-label>
+           <ion-checkbox color="secondary" (click)="slot($event)" [(ngModel)]="slot_7"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+            <ion-label>12.30 - 13.00</ion-label>
+           <ion-checkbox color="secondary" (click)="slot($event)" [(ngModel)]="slot_8"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+            <ion-label>13.00 - 13.30</ion-label>
+           <ion-checkbox color="secondary" (click)="slot($event)" [(ngModel)]="slot_9"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+            <ion-label>13.30 - 14.00</ion-label>
+           <ion-checkbox color="secondary" (click)="slot($event)" [(ngModel)]="slot_10"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+            <ion-label>14.00 - 14.30</ion-label>
+           <ion-checkbox color="secondary" (click)="slot($event)" [(ngModel)]="slot_11"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+            <ion-label>14.30 - 15.00</ion-label>
+           <ion-checkbox color="secondary" (click)="slot($event)" [(ngModel)]="slot_12"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+            <ion-label>15.00 - 15.30</ion-label>
+           <ion-checkbox color="secondary" (click)="slot($event)" [(ngModel)]="slot_13"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+            <ion-label>15.30 - 16.00</ion-label>
+           <ion-checkbox color="secondary" (click)="slot($event)" [(ngModel)]="slot_14"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+            <ion-label>16.00 - 16.30</ion-label>
+           <ion-checkbox color="secondary" (click)="slot($event)" [(ngModel)]="slot_15"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+            <ion-label>16.30 - 17.00</ion-label>
+           <ion-checkbox color="secondary" (click)="slot($event)" [(ngModel)]="slot_16"></ion-checkbox>
         </ion-item>
       </ion-list>
     </ion-card>
