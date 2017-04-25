@@ -16,23 +16,22 @@ import { AngularFireModule,FirebaseListObservable} from 'angularfire2';
 })
 export class HomeStaff {
 
-  slot_1: FirebaseListObservable<boolean>;
-  slot_2: FirebaseListObservable<boolean>;
-  slot_3: FirebaseListObservable<boolean>;
-  slot_4: FirebaseListObservable<boolean>;
-  slot_5: FirebaseListObservable<boolean>;
-  slot_6: FirebaseListObservable<boolean>;
-  slot_7: FirebaseListObservable<boolean>;
-  slot_: FirebaseListObservable<boolean>;
-  slot_8: FirebaseListObservable<boolean>;
-  slot_9: FirebaseListObservable<boolean>;
-  slot_10: FirebaseListObservable<boolean>;
-  slot_11: FirebaseListObservable<boolean>;
-  slot_12: FirebaseListObservable<boolean>;
-  slot_13: FirebaseListObservable<boolean>;
-  slot_14: FirebaseListObservable<boolean>;
-  slot_15: FirebaseListObservable<boolean>;
-  slot_16: FirebaseListObservable<boolean>;
+  // slot_1: FirebaseListObservable<boolean>;
+  // slot_2: FirebaseListObservable<boolean>;
+  // slot_3: FirebaseListObservable<boolean>;
+  // slot_4: FirebaseListObservable<boolean>;
+  // slot_5: FirebaseListObservable<boolean>;
+  // slot_6: FirebaseListObservable<boolean>;
+  // slot_7: FirebaseListObservable<boolean>;
+  // slot_8: FirebaseListObservable<boolean>;
+  // slot_9: FirebaseListObservable<boolean>;
+  // slot_10: FirebaseListObservable<boolean>;
+  // slot_11: FirebaseListObservable<boolean>;
+  // slot_12: FirebaseListObservable<boolean>;
+  // slot_13: FirebaseListObservable<boolean>;
+  // slot_14: FirebaseListObservable<boolean>;
+  // slot_15: FirebaseListObservable<boolean>;
+  // slot_16: FirebaseListObservable<boolean>;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -40,72 +39,37 @@ export class HomeStaff {
 
   }
   
-  // slot_1 : boolean;
-  // slot_2 : boolean;
-  // slot_3 : boolean;
-  // slot_4 : boolean;
-  // slot_5 : boolean;
-  // slot_6 : boolean;
-  // slot_7 : boolean;
-  // slot_8 : boolean;
-  // slot_9 : boolean;
-  // slot_10 : boolean;
-  // slot_11 : boolean;
-  // slot_12 : boolean;
-  // slot_13 : boolean;
-  // slot_14 : boolean;
-  // slot_15 : boolean;
-  // slot_16 : boolean;
+  slot_1 : boolean;
+  slot_2 : boolean;
+  slot_3 : boolean;
+  slot_4 : boolean;
+  slot_5 : boolean;
+  slot_6 : boolean;
+  slot_7 : boolean;
+  slot_8 : boolean;
+  slot_9 : boolean;
+  slot_10 : boolean;
+  slot_11 : boolean;
+  slot_12 : boolean;
+  slot_13 : boolean;
+  slot_14 : boolean;
+  slot_15 : boolean;
+  slot_16 : boolean;
+  
+  daySelect : String;
 
   slot(e): void {
+    var slotSet = firebase.database().ref("staffSlot/");
     if (this.slot_1 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_2 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_3 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_4 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_5 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_6 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_7 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_8 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_9 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_10 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_11 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_12 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_13 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_14 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_15 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_16 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
+      // this.alertMessage("Warning", "check the slot")
+          slotSet.set({
+            day: this.daySelect,
+            slot: {
+                slotId: 'slot_1',
+                status: this.slot_1
+            }
+          });
+     }
   }
   
 
