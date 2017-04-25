@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import {Newnotification} from '../newnotification/newnotification';
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule,FirebaseListObservable} from 'angularfire2';
 
 /**
  * Generated class for the HomeStaff page.
@@ -16,27 +16,46 @@ import { AngularFireModule } from 'angularfire2';
 })
 export class HomeStaff {
 
+  slot_1: FirebaseListObservable<boolean>;
+  slot_2: FirebaseListObservable<boolean>;
+  slot_3: FirebaseListObservable<boolean>;
+  slot_4: FirebaseListObservable<boolean>;
+  slot_5: FirebaseListObservable<boolean>;
+  slot_6: FirebaseListObservable<boolean>;
+  slot_7: FirebaseListObservable<boolean>;
+  slot_: FirebaseListObservable<boolean>;
+  slot_8: FirebaseListObservable<boolean>;
+  slot_9: FirebaseListObservable<boolean>;
+  slot_10: FirebaseListObservable<boolean>;
+  slot_11: FirebaseListObservable<boolean>;
+  slot_12: FirebaseListObservable<boolean>;
+  slot_13: FirebaseListObservable<boolean>;
+  slot_14: FirebaseListObservable<boolean>;
+  slot_15: FirebaseListObservable<boolean>;
+  slot_16: FirebaseListObservable<boolean>;
+
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public alerCtrl: AlertController,public loadingCtrl: LoadingController,angFire:AngularFireModule) {
 
   }
   
-  slot_1 : boolean;
-  slot_2 : boolean;
-  slot_3 : boolean;
-  slot_4 : boolean;
-  slot_5 : boolean;
-  slot_6 : boolean;
-  slot_7 : boolean;
-  slot_8 : boolean;
-  slot_9 : boolean;
-  slot_10 : boolean;
-  slot_11 : boolean;
-  slot_12 : boolean;
-  slot_13 : boolean;
-  slot_14 : boolean;
-  slot_15 : boolean;
-  slot_16 : boolean;
+  // slot_1 : boolean;
+  // slot_2 : boolean;
+  // slot_3 : boolean;
+  // slot_4 : boolean;
+  // slot_5 : boolean;
+  // slot_6 : boolean;
+  // slot_7 : boolean;
+  // slot_8 : boolean;
+  // slot_9 : boolean;
+  // slot_10 : boolean;
+  // slot_11 : boolean;
+  // slot_12 : boolean;
+  // slot_13 : boolean;
+  // slot_14 : boolean;
+  // slot_15 : boolean;
+  // slot_16 : boolean;
 
   slot(e): void {
     if (this.slot_1 == true){
