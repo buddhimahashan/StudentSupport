@@ -16,9 +16,9 @@ import {Newnotification} from '../newnotification/newnotification';
 export class HomeStaff {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alerCtrl: AlertController) {
+
   }
-
-
+  
   slot_1 : boolean;
   slot_2 : boolean;
   slot_3 : boolean;
@@ -88,6 +88,7 @@ export class HomeStaff {
   }
   
 
+
   alertMessage(title, message) {
     let alert = this.alerCtrl.create({
       title: title,
@@ -95,11 +96,8 @@ export class HomeStaff {
       buttons: ['Ok']
     });
     alert.present()
+
   }
-
-
- 
-
 
 
   Open(){
