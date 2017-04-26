@@ -24,7 +24,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AngularFireModule } from 'angularfire2';
 
-export const firebaseConfig = {
+const config = {
    apiKey: "AIzaSyCle6OXT0qMaWzaaG6z_it9KsZC-VNz6lI",
    authDomain: "pdmstudentassistant-27eaa.firebaseapp.com",
    databaseURL: "https://pdmstudentassistant-27eaa.firebaseio.com",
@@ -54,7 +54,7 @@ export const firebaseConfig = {
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(config)
   ],
   bootstrap: [IonicApp],
   entryComponents: [

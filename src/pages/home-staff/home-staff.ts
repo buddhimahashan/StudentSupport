@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import {Newnotification} from '../newnotification/newnotification';
+//import { AngularFireModule,FirebaseListObservable} from 'angularfire2';
 
 /**
  * Generated class for the HomeStaff page.
@@ -15,7 +16,26 @@ import {Newnotification} from '../newnotification/newnotification';
 })
 export class HomeStaff {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alerCtrl: AlertController) {
+  // slot_1: FirebaseListObservable<boolean>;
+  // slot_2: FirebaseListObservable<boolean>;
+  // slot_3: FirebaseListObservable<boolean>;
+  // slot_4: FirebaseListObservable<boolean>;
+  // slot_5: FirebaseListObservable<boolean>;
+  // slot_6: FirebaseListObservable<boolean>;
+  // slot_7: FirebaseListObservable<boolean>;
+  // slot_8: FirebaseListObservable<boolean>;
+  // slot_9: FirebaseListObservable<boolean>;
+  // slot_10: FirebaseListObservable<boolean>;
+  // slot_11: FirebaseListObservable<boolean>;
+  // slot_12: FirebaseListObservable<boolean>;
+  // slot_13: FirebaseListObservable<boolean>;
+  // slot_14: FirebaseListObservable<boolean>;
+ // slot_15: FirebaseListObservable<boolean>;
+  //slot_16: FirebaseListObservable<boolean>;
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+  public alerCtrl: AlertController,public loadingCtrl: LoadingController,/*angFire:AngularFireModule*/) {
 
   }
   
@@ -35,56 +55,24 @@ export class HomeStaff {
   slot_14 : boolean;
   slot_15 : boolean;
   slot_16 : boolean;
+  
+  public dayValue:String;
+  // onChange(dayValue) {
+  //    console.log(dayValue);
+  // }
 
   slot(e): void {
+    var slotSet = firebase.database().ref("staffSlot/");
     if (this.slot_1 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_2 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_3 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_4 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_5 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_6 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_7 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_8 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_9 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_10 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_11 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_12 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_13 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_14 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_15 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
-    if (this.slot_16 == true){
-      this.alertMessage("Warning", "check the slot")
-    }
+      // this.alertMessage("Warning", "check the slot")
+          slotSet.set({
+            day: this.dayValue,
+            slot: {
+                slotId: 'slot_1',
+                status: this.slot_1
+            }
+          });
+     }
   }
   
 
@@ -97,6 +85,13 @@ export class HomeStaff {
     });
     alert.present()
 
+  }
+  presentLoading() {
+    this.loadingCtrl.create({
+      content: 'Please wait...',
+      duration: 3000,
+      dismissOnPageChange: true
+    }).present();
   }
 
 
