@@ -15,4 +15,33 @@
 
 <ion-content padding>
 
+
+  <ion-list>
+    <ion-item>
+       <ion-label class="LableMessagescss">Notification  </ion-label>
+      <ion-input [(ngModel)]="Notification" class="TextMessagescss" placeholder="Enter Notification"></ion-input>
+    </ion-item>
+    </ion-list>
+  
+  <ion-list>
+   <ion-item>
+      <ion-label>Year<span style="color:#ff0000;">  *</span></ion-label>
+      <ion-select [(ngModel)]="Years">
+        <ion-option value="1st">1st year</ion-option>
+        <ion-option value="2nd">2nd year</ion-option>
+        <ion-option value="3rd">3rd year</ion-option>
+        <ion-option value="4th">4th year</ion-option>
+      </ion-select>
+    </ion-item>
+    </ion-list>
+
+    <ion-list>
+    <ion-item>
+      <ion-label>End Date</ion-label>
+      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="Date"></ion-datetime>
+    </ion-item>
+    </ion-list>
+    
+    <button ion-button block (click)=" SubmitData()" >Submit</button>
+
 </ion-content>
