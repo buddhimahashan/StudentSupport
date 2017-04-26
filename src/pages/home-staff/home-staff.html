@@ -29,7 +29,8 @@
   
     <ion-item color="light">
     <ion-label style="color:#000000;">Day</ion-label>
-    <ion-select #day (ionChange)="onChange(C.value)" placeholder="Monday">
+     <!--<ion-select [(ngModel)]="day" (ionChange)="onChange(C.value)" placeholder="select day">-->
+    <ion-select [(ngModel)]="day"  placeholder="select day">
           <ion-option value="Monday">Monday</ion-option>
           <ion-option value="Tuesday">Tuesday</ion-option>
           <ion-option value="Wednesday">Wednesday</ion-option>
@@ -111,7 +112,7 @@
     </ion-card>
 
     <label>
-      <button ion-button block (click)="slot($event)">Save</button>
+      <button ion-button block (click)="setSlot($event)">Save</button>
     </label>
 
    

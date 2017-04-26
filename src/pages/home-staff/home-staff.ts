@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import {Newnotification} from '../newnotification/newnotification';
-//import { AngularFireModule,FirebaseListObservable} from 'angularfire2';
+import {FirebaseListObservable,AngularFire} from 'angularfire2'
 
 /**
  * Generated class for the HomeStaff page.
@@ -35,12 +35,12 @@ export class HomeStaff {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  public alerCtrl: AlertController,public loadingCtrl: LoadingController,/*angFire:AngularFireModule*/) {
+  public alerCtrl: AlertController,public loadingCtrl: LoadingController,public angfire: AngularFire) {
 
   }
   
   slot_1 : boolean;
-  slot_2 : boolean;
+  slot_2 : boolean=false;
   slot_3 : boolean;
   slot_4 : boolean;
   slot_5 : boolean;
@@ -55,28 +55,42 @@ export class HomeStaff {
   slot_14 : boolean;
   slot_15 : boolean;
   slot_16 : boolean;
-  
-  public dayValue:String;
+
+  firelist : FirebaseListObservable <any>;
+    day: any;
+    userId: any = "IT00000000";
+
+
+ // dayValue:String;
   // onChange(dayValue) {
   //    console.log(dayValue);
   // }
 
-  slot(e): void {
-    var slotSet = firebase.database().ref("staffSlot/");
-    if (this.slot_1 == true){
-      // this.alertMessage("Warning", "check the slot")
-          slotSet.set({
-            day: this.dayValue,
-            slot: {
-                slotId: 'slot_1',
-                status: this.slot_1
-            }
-          });
-     }
+
+// object set data to firebase
+  // this.angfire.database.object('/staffSlot').set({
+
+  setSlot(e): void {
+    this.angfire.database.object('staffSlot/'+this.userId+'/'+this.day +'/slot_1').set({
+                status: this.slot_1       
+    });
+    this.angfire.database.object('staffSlot/'+this.userId+'/'+this.day +'/slot_2').set({
+                status: this.slot_2       
+    });
+
+    // var slotSet = this.angfire.database().ref("staffSlot/");
+    // if (this.slot_1 == true){
+    //   // this.alertMessage("Warning", "check the slot")
+    //       slotSet.set({
+    //         day: this.dayValue,
+    //         slot: {
+    //             slotId: 'slot_1',
+    //             status: this.slot_1
+    //         }
+    //       });
+    //  }
   }
   
-
-
   alertMessage(title, message) {
     let alert = this.alerCtrl.create({
       title: title,
