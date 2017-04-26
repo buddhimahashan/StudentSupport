@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import {Newnotification} from '../newnotification/newnotification';
-import {FirebaseListObservable,AngularFire} from 'angularfire2'
+import {FirebaseListObservable,AngularFire} from 'angularfire2';
+import firebase from 'firebase';
+
 
 /**
  * Generated class for the HomeStaff page.
@@ -16,66 +18,99 @@ import {FirebaseListObservable,AngularFire} from 'angularfire2'
 })
 export class HomeStaff {
 
-  // slot_1: FirebaseListObservable<boolean>;
-  // slot_2: FirebaseListObservable<boolean>;
-  // slot_3: FirebaseListObservable<boolean>;
-  // slot_4: FirebaseListObservable<boolean>;
-  // slot_5: FirebaseListObservable<boolean>;
-  // slot_6: FirebaseListObservable<boolean>;
-  // slot_7: FirebaseListObservable<boolean>;
-  // slot_8: FirebaseListObservable<boolean>;
-  // slot_9: FirebaseListObservable<boolean>;
-  // slot_10: FirebaseListObservable<boolean>;
-  // slot_11: FirebaseListObservable<boolean>;
-  // slot_12: FirebaseListObservable<boolean>;
-  // slot_13: FirebaseListObservable<boolean>;
-  // slot_14: FirebaseListObservable<boolean>;
- // slot_15: FirebaseListObservable<boolean>;
-  //slot_16: FirebaseListObservable<boolean>;
-
-
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public alerCtrl: AlertController,public loadingCtrl: LoadingController,public angfire: AngularFire) {
-
   }
   
-  slot_1 : boolean;
+  slot_1 : boolean=true;
   slot_2 : boolean=false;
-  slot_3 : boolean;
-  slot_4 : boolean;
-  slot_5 : boolean;
-  slot_6 : boolean;
-  slot_7 : boolean;
-  slot_8 : boolean;
-  slot_9 : boolean;
-  slot_10 : boolean;
-  slot_11 : boolean;
-  slot_12 : boolean;
-  slot_13 : boolean;
-  slot_14 : boolean;
-  slot_15 : boolean;
-  slot_16 : boolean;
+  slot_3 : boolean=false;
+  slot_4 : boolean=false;
+  slot_5 : boolean=false;
+  slot_6 : boolean=false;
+  slot_7 : boolean=false;
+  slot_8 : boolean=false;
+  slot_9 : boolean=false;
+  slot_10 : boolean=true;
+  slot_11 : boolean=false;
+  slot_12 : boolean=false;
+  slot_13 : boolean=false;
+  slot_14 : boolean=false;
+  slot_15 : boolean=false;
+  slot_16 : boolean=false;
 
-  firelist : FirebaseListObservable <any>;
+  slot_1_check : boolean=true;
+
+  slotList : FirebaseListObservable <any>;
     day: any;
     userId: any = "IT00000000";
 
 
  // dayValue:String;
-  // onChange(dayValue) {
-  //    console.log(dayValue);
-  // }
+  onChange(value) {
+    this.alertMessage("Warning", this.day)
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_1').on('value', function(snapshot) {
+        //this.slot_1 = snapshot.val(); 
+        this.alertMessage("Warning","value "+snapshot.val());
+      });
+  }
 
 
 // object set data to firebase
-  // this.angfire.database.object('/staffSlot').set({
+  // firebase.database().ref('/staffSlot').set({
+
+// this.angfire.database.object('staffSlot/'+this.userId+'/'+this.day +'/slot_2').set({
+    //             status: this.slot_2       
+    // }); 
 
   setSlot(e): void {
-    this.angfire.database.object('staffSlot/'+this.userId+'/'+this.day +'/slot_1').set({
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_1').set({
                 status: this.slot_1       
     });
-    this.angfire.database.object('staffSlot/'+this.userId+'/'+this.day +'/slot_2').set({
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_2').set({
                 status: this.slot_2       
+    });
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_3').set({
+                status: this.slot_3       
+    });
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_4').set({
+                status: this.slot_4       
+    });
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_5').set({
+                status: this.slot_5       
+    });
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_6').set({
+                status: this.slot_6       
+    });
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_7').set({
+                status: this.slot_7       
+    });
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_8').set({
+                status: this.slot_8       
+    });
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_9').set({
+                status: this.slot_9       
+    });
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_10').set({
+                status: this.slot_10       
+    });
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_11').set({
+                status: this.slot_11       
+    });
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_12').set({
+                status: this.slot_12       
+    });
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_13').set({
+                status: this.slot_13       
+    });
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_14').set({
+                status: this.slot_14       
+    });
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_15').set({
+                status: this.slot_15       
+    });
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_16').set({
+                status: this.slot_16       
     });
 
     // var slotSet = this.angfire.database().ref("staffSlot/");
