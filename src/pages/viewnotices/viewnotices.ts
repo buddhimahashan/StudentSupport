@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {  NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 /**
  * Generated class for the Viewnotices page.
@@ -13,10 +13,20 @@ import {  NavController, NavParams } from 'ionic-angular';
   templateUrl: 'viewnotices.html',
 })
 export class Viewnotices {
-
+  year: string;
+  date: string;
+  title: string;
+  notice: string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+this.viewnotice();
   }
 
-  
 
+  viewnotice() {
+    this.year = window.localStorage.getItem('Noticeyear');
+    this.title = window.localStorage.getItem('Noticetitle');
+    this.date = window.localStorage.getItem('NoticeDate');
+    this.notice = window.localStorage.getItem('NoticeDescription');
+
+  }
 }

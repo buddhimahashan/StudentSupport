@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController} from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { AlertController } from 'ionic-angular';
 
@@ -16,21 +16,21 @@ import { AlertController } from 'ionic-angular';
 })
 
 export class Login {
-  
 
-  UserType:any;
-  UserName:any;
-  UserPassword:any;
 
-  uname : string;
-  password : string;
-  utype : string;
+  UserType: any;
+  UserName: any;
+  UserPassword: any;
 
-  constructor(public navCtrl: NavController,public alertCtrl: AlertController) {
+  uname: string;
+  password: string;
+  utype: string;
+
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
 
   }
 
-  alertMessage(message){
+  alertMessage(message) {
     let alert = this.alertCtrl.create({
       title: 'Login Error!',
       subTitle: message,
@@ -40,19 +40,19 @@ export class Login {
   }
 
 
-  SetUserDetails(){
+  SetUserDetails() {
 
     this.uname = this.UserName;
     this.password = this.UserPassword;
     this.utype = this.UserType;
 
-    if(this.uname == undefined || this.uname==''){
-          this.alertMessage("User Name cannot be empty");
-    }else if(this.password == undefined || this.password==''){
-          this.alertMessage("Password cannot be empty");
-    }else if(this.utype == undefined || this.utype==''){
-          this.alertMessage("Select User Type");
-    }else{
+    if (this.uname == undefined || this.uname == '') {
+      this.alertMessage("User Name cannot be empty");
+    } else if (this.password == undefined || this.password == '') {
+      this.alertMessage("Password cannot be empty");
+    } else if (this.utype == undefined || this.utype == '') {
+      this.alertMessage("Select User Type");
+    } else {
       console.log(this.UserName);
       console.log(this.UserPassword);
       console.log(this.UserType);
@@ -61,7 +61,7 @@ export class Login {
       window.localStorage.setItem('SessionType', this.utype);
 
       this.navCtrl.push(TabsPage);
-      
+
     }
   }
 }

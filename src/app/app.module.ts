@@ -18,7 +18,8 @@ import { MessageStaff } from '../pages/message-staff/message-staff';
 import { MessageStudent } from '../pages/message-student/message-student';
 import { Profile } from '../pages/profile/profile';
 import { Requests} from '../pages/requests/requests';
-
+import { Viewnotices } from '../pages/viewnotices/viewnotices';
+ 
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -51,7 +52,8 @@ const config = {
     Profile,
     TabsPage,
     Newnotification,
-    Requests
+    Requests,
+    Viewnotices
   ],
   imports: [
     BrowserModule,
@@ -75,7 +77,8 @@ const config = {
     Profile,
     TabsPage,
     Newnotification,
-    Requests
+    Requests,
+    Viewnotices
   ],
   providers: [
     StatusBar,

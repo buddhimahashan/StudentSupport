@@ -46,7 +46,7 @@
         <h2>{{ notices.years }}</h2>
         <p>{{ notices.date }}</p>
         <p>{{ notices.notification }}</p>
-        <button ion-button clear item-right>View</button>
+        <button ion-button clear item-right (click)="navigate2(notices.years,notices.notification,notices.date,notices.Description)">View</button>
       </ion-item>
 </ion-item>
   </div>
