@@ -21,6 +21,8 @@ export class Newnotification {
   Date:any;
   Description:any;
 
+ 
+
   
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public angfire : AngularFire) {
@@ -34,7 +36,7 @@ SubmitData(){
       date:this.Date,
       Description:this.Description,
     });
-
+    
    console.log(this.Notice);
    console.log(this.Years);
    console.log(this.Date);

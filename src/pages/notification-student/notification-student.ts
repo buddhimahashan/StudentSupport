@@ -25,13 +25,17 @@ export class NotificationStudent {
   noticedate: any;
   noticetitle: any;
   noticedescription: any;
+
+  Years:any;
+   year: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, platform: Platform, public angfire: AngularFire) {
     this.PublicNotices = angfire.database.list('/Public_Notices', {
       query: {
         orderByChild: 'timestamp'
       }
+      
     })
-
+this.year=this.Years;
   }
   navigate() {
     this.navCtrl.push(Requests);
