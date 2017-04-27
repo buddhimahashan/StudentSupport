@@ -7,17 +7,20 @@
 <ion-header>
 
   <ion-navbar hideBackButton="true" color="primary">
+      
     <ion-item color="primary">
       <ion-avatar item-centre>
         <h1 style="text-align: center">Notifications</h1>
       </ion-avatar>
     </ion-item>
+ 
     <ion-buttons end>
       <button clear icon-only outline ion-button icon-only ion-button icon-only color="royal" (click)="navigate()">
         <ion-icon name="people"></ion-icon>
-        
-      </button>
+      </button>  
     </ion-buttons>
+
+     
   </ion-navbar>
 
 
@@ -53,30 +56,7 @@
 
   <div [ngSwitch]="notification">
     <ion-list *ngSwitchCase="'Responce'">
-      <ion-item-sliding>
-      <ion-item>
-        <ion-avatar item-left>
-          <img src="assets/img/user_av2.png">
-        </ion-avatar>
-        <h2>Ms. Dinuka Wijendra</h2>
-        <p>You can meet me tommorrow at 9.00am.</p>
-        <ion-note item-right>3:43 pm</ion-note>
-      </ion-item>
-      <ion-item-options>
-        <button ion-button color="secondary" icon-left>
-          <ion-icon name="ios-more"></ion-icon>
-          More
-        </button>
-        <button ion-button color="secondary" icon-left>
-          <ion-icon name="text"></ion-icon>
-         Reply
-        </button>
-        <button ion-button color="danger" icon-left>
-          <ion-icon name="trash"></ion-icon>
-          Delete
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
+      
     </ion-list>
   </div>
 
