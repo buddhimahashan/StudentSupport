@@ -51,6 +51,7 @@ export class HomeStaff {
 
 
   onChange(value) {
+    this.presentLoading();
     this.btnDisable=false;
  
     firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_1'+'/status').on('value', data => {
@@ -235,7 +236,7 @@ export class HomeStaff {
   presentLoading() {
     this.loadingCtrl.create({
       content: 'Please wait...',
-      duration: 3000,
+      duration: 1000,
       dismissOnPageChange: true
     }).present();
   }
