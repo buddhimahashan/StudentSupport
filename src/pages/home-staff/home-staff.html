@@ -28,7 +28,7 @@
 
   
     <ion-item color="light">
-    <ion-label style="color:#000000;">Day</ion-label>
+    <ion-label style="color:#000000;">Select a day : </ion-label>
     <ion-select [(ngModel)]="day" (ionChange)="onChange(value)">
     <!--<ion-select [(ngModel)]="day"  placeholder="select day">-->
           <ion-option value="Monday">Monday</ion-option>
@@ -40,9 +40,12 @@
     </ion-item>
     </ion-list>
     
-    <ion-card>
-      <ion-list>
-  
+    <ion-card >
+        <ion-list>
+            <ion-list-header color="color2">
+            <p ion-text style="color:#000000;">Select <strong>time slots :</strong></p>
+        </ion-list-header> 
+
         <ion-item>
             <ion-label>09.00 - 09.30</ion-label>
             <!--<ion-checkbox color="secondary" id="09.00-09.30"></ion-checkbox>-->
@@ -112,7 +115,7 @@
     </ion-card>
 
     <label>
-      <button ion-button block (click)="setSlot($event)">Save</button>
+      <button ion-button block [disabled]="btnDisable" (click)="setSlot($event)">Save</button>
     </label>
 
    

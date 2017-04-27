@@ -42,12 +42,16 @@ export class HomeStaff {
   slot_1_check : boolean=true;
 
   slotList : FirebaseListObservable <any>;
-    day: any;
-    userId: any = "IT00000000";
-    testval : string ="hello";
+  day: any;
+  userId: any = "IT00000000";
+  testval : string ="hello";
+
+  btnDisable: boolean=true;
+
 
 
   onChange(value) {
+    this.btnDisable=false;
  
     firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_1'+'/status').on('value', data => {
       if(data.val()==true)
