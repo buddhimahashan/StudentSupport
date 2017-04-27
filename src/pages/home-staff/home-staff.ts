@@ -22,7 +22,7 @@ export class HomeStaff {
   public alerCtrl: AlertController,public loadingCtrl: LoadingController,public angfire: AngularFire) {
   }
   
-  slot_1 : boolean=true;
+  slot_1 : boolean=false;
   slot_2 : boolean=false;
   slot_3 : boolean=false;
   slot_4 : boolean=false;
@@ -31,7 +31,7 @@ export class HomeStaff {
   slot_7 : boolean=false;
   slot_8 : boolean=false;
   slot_9 : boolean=false;
-  slot_10 : boolean=true;
+  slot_10 : boolean=false;
   slot_11 : boolean=false;
   slot_12 : boolean=false;
   slot_13 : boolean=false;
@@ -44,15 +44,108 @@ export class HomeStaff {
   slotList : FirebaseListObservable <any>;
     day: any;
     userId: any = "IT00000000";
+    testval : string ="hello";
 
 
- // dayValue:String;
   onChange(value) {
-    this.alertMessage("Warning", this.day)
-    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_1').on('value', function(snapshot) {
-        //this.slot_1 = snapshot.val(); 
-        this.alertMessage("Warning","value "+snapshot.val());
+ 
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_1'+'/status').on('value', data => {
+      if(data.val()==true)
+        this.slot_1 = data.val();
+      else
+        this.slot_1=false; 
       });
+      firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_2'+'/status').on('value', data => {
+      if(data.val()==true)
+        this.slot_2 = data.val();
+      else
+        this.slot_2=false; 
+      });
+      firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_3'+'/status').on('value', data => {
+      if(data.val()==true)
+        this.slot_3 = data.val();
+      else
+        this.slot_3=false; 
+      });
+      firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_4'+'/status').on('value', data => {
+      if(data.val()==true)
+        this.slot_4 = data.val();
+      else
+        this.slot_4=false; 
+      });
+      firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_5'+'/status').on('value', data => {
+      if(data.val()==true)
+        this.slot_5 = data.val();
+      else
+        this.slot_5=false; 
+      });
+      firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_6'+'/status').on('value', data => {
+      if(data.val()==true)
+        this.slot_6 = data.val();
+      else
+        this.slot_6=false; 
+      });
+      firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_7'+'/status').on('value', data => {
+      if(data.val()==true)
+        this.slot_7 = data.val();
+      else
+        this.slot_7=false; 
+      });
+      firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_8'+'/status').on('value', data => {
+      if(data.val()==true)
+        this.slot_8 = data.val();
+      else
+        this.slot_8=false; 
+      });
+      firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_9'+'/status').on('value', data => {
+      if(data.val()==true)
+        this.slot_9 = data.val();
+      else
+        this.slot_9=false; 
+      });
+      firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_10'+'/status').on('value', data => {
+      if(data.val()==true)
+        this.slot_10 = data.val();
+      else
+        this.slot_10=false; 
+      });
+      firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_11'+'/status').on('value', data => {
+      if(data.val()==true)
+        this.slot_11 = data.val();
+      else
+        this.slot_11=false; 
+      });
+      firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_12'+'/status').on('value', data => {
+      if(data.val()==true)
+        this.slot_12 = data.val();
+      else
+        this.slot_12=false; 
+      });
+      firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_13'+'/status').on('value', data => {
+      if(data.val()==true)
+        this.slot_13 = data.val();
+      else
+        this.slot_13=false; 
+      });
+      firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_14'+'/status').on('value', data => {
+      if(data.val()==true)
+        this.slot_14 = data.val();
+      else
+        this.slot_14=false; 
+      });
+      firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_15'+'/status').on('value', data => {
+      if(data.val()==true)
+        this.slot_15 = data.val();
+      else
+        this.slot_15=false; 
+      });
+      firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_16'+'/status').on('value', data => {
+      if(data.val()==true)
+        this.slot_16 = data.val();
+      else
+        this.slot_16=false; 
+      });
+
   }
 
 
