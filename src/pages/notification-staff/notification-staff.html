@@ -6,8 +6,13 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Notification</ion-title>
+  <ion-navbar hideBackButton="true" color="primary">
+    
+          <ion-item color="primary">
+     <ion-avatar item-centre>
+      <h1 style="text-align: center">Notifications</h1>
+    </ion-avatar>
+  </ion-item>
     <ion-buttons end>
       <button ion-button icon-only (click)="openModal({charNum: 0})">
         <ion-icon name="clipboard"></ion-icon>

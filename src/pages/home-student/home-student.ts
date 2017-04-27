@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Platform, ActionSheetController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import {FirebaseListObservable,AngularFire} from 'angularfire2'
+
 
 /**
  * Generated class for the HomeStudent page.
@@ -20,20 +22,60 @@ export class HomeStudent {
 
 
   TimeSlots: any;
+  Years: any;
+  Semester: any;
+  Subjects: any;
+  Reasons: any;
+  Description: any;
 
   TSlots: string;
   lName: string;
-
+  Responce: string = 'Pending';
   private items: string[];
   Lecture: string = "";
   LectureName: string = '';
+  
 
   constructor(public navCtrl: NavController, public alerCtrl: AlertController, public navParams: NavParams, public platform: Platform,
-    public actionsheetCtrl: ActionSheetController, public loadingCtrl: LoadingController) {
+    public actionsheetCtrl: ActionSheetController, public loadingCtrl: LoadingController,public angfire : AngularFire) {
     this.initializeItems();
     this.items = [];
   }
- 
+
+  checkdescription(){
+   if (this.Description == undefined || this.Description == '') {
+      this.Description='';
+    }
+}
+
+  insertRequest(){
+
+    this.checkdescription();
+
+    this.angfire.database.list('/StudentAppointment').push({
+      lecture:this.LectureName,
+      date:this.event.month,
+      time:this.TimeSlots,
+      year:this.Years,
+      semester:this.Semester,
+      subject:this.Subjects,
+      reason:this.Reasons,
+      description:this.Description,
+      responce:this.Responce,
+    });
+  }
+  clear(){
+      
+      this.items=[];
+      this.TimeSlots=[];
+      this.Years=[];
+      this.Semester=[];
+      this.Subjects=[];
+      this.Reasons=[];
+      this.Description=[];
+     
+  }
+
   presentLoading() {
     this.loadingCtrl.create({
       content: 'Please wait...',
@@ -55,15 +97,15 @@ export class HomeStudent {
 
   initializeItems() {
     this.items = [
-      'Harvey Burton',
-      'Barnett Crosby',
-      'Peck Brock',
-      'Rachel Robinson',
-      'Suzette Frazier',
-      'Bettie Maddox',
-      'Haley Bates',
-      'Tania Chandler',
-      'Woods Nicholson'
+      'Dr.(Mrs) Pradeepa Samarasinghe',
+      'Ms. Dinuka Wijendra',
+      'Ms. Yashodhya Wijesinghe',
+      'Ms. Dakshi Tharanga',
+      'Dr. Kosala Yapa Bandara',
+      'Ms. Dulani Perera',
+      'Ms. Namalie  Walgampaya',
+      'Mr. Jagath Wickramarathne',
+      'Mr. Isuru Kumarasiri '
     ]
   }
 
@@ -94,19 +136,44 @@ export class HomeStudent {
     timeStarts: '08:30'
   }
 
-  CheckAvailabilityDetails() {
+
+  CheckAppointmentDetails() {
     this.TSlots = this.TimeSlots;
 
     if (this.LectureName == undefined || this.LectureName == '') {
-      this.alertMessage("Warning", "Please Select the Lecture");
+      this.alertMessage("Warning!", "Please Select the Lecture");
     } else if (this.TSlots == undefined || this.TSlots == '') {
-      this.alertMessage("Warning", "Please Select the Time");
+      this.alertMessage("Warning!", "Please Select the Time");
     } else {
       console.log(this.LectureName);
       console.log(this.TSlots);
     }
   }
 
+  CheckAvailabilityDetails() {
+    this.TSlots = this.TimeSlots;
+
+    if (this.Years == undefined || this.Years == '') {
+      this.alertMessage("Warning!", "Please Select Appointment Details");
+    } else if (this.Semester == undefined || this.Semester == '') {
+      this.alertMessage("Warning!", "Please Select Appointment Details");
+    } else if (this.Subjects == undefined || this.Subjects == '') {
+      this.alertMessage("Warning!", "Please Select Appointment Details");
+    } else if (this.Reasons == undefined || this.Reasons == '') {
+      this.alertMessage("Warning!", "Please Select Appointment Details");
+    } else {
+      this.alertMessage("Succesful!", "Your Appointment Succesfully Send to the Lecture");
+      console.log(this.LectureName);
+      console.log(this.event.month);
+      console.log(this.TimeSlots);
+      console.log(this.Years);
+      console.log(this.Semester);
+      console.log(this.Subjects);
+      console.log(this.Reasons);
+      console.log(this.Description);
+      console.log(this.Responce);
+    }
+  }
   openMenu() {
     let actionSheet = this.actionsheetCtrl.create({
       title: 'Request Confirmation',
@@ -116,6 +183,10 @@ export class HomeStudent {
           text: 'Send Request',
           icon: 'send',
           handler: () => {
+            this.CheckAvailabilityDetails();
+            this.insertRequest();''
+          //  this.clear();
+            this.navCtrl.push(HomeStudent);
             console.log('Send Request clicked');
           }
         },
@@ -124,6 +195,8 @@ export class HomeStudent {
           text: 'Cancel',
           icon: 'close',
           handler: () => {
+            //  this.clear();
+            this.navCtrl.push(HomeStudent);
             console.log('Cancel clicked');
           }
         }
@@ -132,6 +205,9 @@ export class HomeStudent {
     actionSheet.present();
 
   }
+
+
+
 }
 
 

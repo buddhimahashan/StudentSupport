@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
+import { Requests } from '../requests/requests';
+import {AngularFire,FirebaseListObservable} from 'angularfire2';
 
 /**
  * Generated class for the NotificationStudent page.
@@ -15,10 +17,20 @@ import { Platform } from 'ionic-angular';
 })
 export class NotificationStudent {
 
-notification : string = "PublicNotifications";
-  constructor(public navCtrl: NavController, public navParams: NavParams,platform: Platform) {
-  }
+  PublicNotices:FirebaseListObservable<any>;
 
+notification : string = "Responce";
+  constructor(public navCtrl: NavController, public navParams: NavParams,platform: Platform,public angfire : AngularFire) {
+this.PublicNotices = angfire.database.list('/Public_Notices',{
+  query: {
+    orderByChild: 'timestamp'
+  }
+})
+   
+  }
+ navigate(){
+      this.navCtrl.push(Requests);
+    }
  
 
 }

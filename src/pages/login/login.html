@@ -6,8 +6,12 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Login</ion-title>
+  <ion-navbar hideBackButton="true" color="primary">
+        <ion-item color="primary">
+     <ion-avatar item-centre>
+      <h1 style="text-align: center">Login</h1>
+    </ion-avatar>
+           </ion-item>
   </ion-navbar>
 
 </ion-header>
@@ -16,7 +20,7 @@
 <ion-content>
  
   <ion-list>
-        <ion-item>
+        <ion-item >
           <img src="assets/img/G2i4YebRZmFFlZSrJd5g_SLIIT_Logo_Crest.png" style="display: block; width: 50%; height: auto; margin-left: auto; margin-right: auto;"> 
         </ion-item>
       <ion-item>
@@ -32,12 +36,12 @@
 </ion-list>
 <ion-list radio-group [(ngModel)]="UserType">
     <ion-item>
-        <ion-label>Staff</ion-label>
+        <ion-label color="primary">Staff</ion-label>
         <ion-radio checked="true" value="Staff"></ion-radio>
       </ion-item>
 
       <ion-item>
-        <ion-label>Student</ion-label>
+        <ion-label color="primary">Student</ion-label>
         <ion-radio value="Student"></ion-radio>
       </ion-item>
 </ion-list> 

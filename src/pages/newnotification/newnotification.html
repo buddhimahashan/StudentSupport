@@ -6,8 +6,13 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Add New Notification</ion-title>
+  <ion-navbar color="primary">
+   
+           <ion-item color="primary">
+     <ion-avatar item-centre>
+      <h1 style="text-align: center">Add Notices</h1>
+    </ion-avatar>
+           </ion-item>
   </ion-navbar>
 
 </ion-header>
@@ -18,8 +23,8 @@
 
   <ion-list>
     <ion-item>
-       <ion-label class="LableMessagescss">Notification  </ion-label>
-      <ion-input [(ngModel)]="Notification" class="TextMessagescss" placeholder="Enter Notification"></ion-input>
+       <ion-label class="LableMessagescss">Notice</ion-label>
+      <ion-input [(ngModel)]="Notice" class="TextMessagescss" placeholder="Enter Title"></ion-input>
     </ion-item>
     </ion-list>
   
@@ -27,18 +32,24 @@
    <ion-item>
       <ion-label>Year<span style="color:#ff0000;">  *</span></ion-label>
       <ion-select [(ngModel)]="Years">
-        <ion-option value="1st">1st year</ion-option>
-        <ion-option value="2nd">2nd year</ion-option>
-        <ion-option value="3rd">3rd year</ion-option>
-        <ion-option value="4th">4th year</ion-option>
+        <ion-option value="1st year">1st year</ion-option>
+        <ion-option value="2nd year">2nd year</ion-option>
+        <ion-option value="3rd year">3rd year</ion-option>
+        <ion-option value="4th year">4th year</ion-option>
+        <ion-option value="All Students">All Students</ion-option>
+
       </ion-select>
     </ion-item>
     </ion-list>
 
     <ion-list>
     <ion-item>
-      <ion-label>End Date</ion-label>
+      <ion-label>Date</ion-label>
       <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="Date"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-textarea [(ngModel)]="Description" placeholder="Enter your Notice"></ion-textarea>
     </ion-item>
     </ion-list>
     

@@ -17,6 +17,7 @@ import { NotificationStudent } from '../pages/notification-student/notification-
 import { MessageStaff } from '../pages/message-staff/message-staff';
 import { MessageStudent } from '../pages/message-student/message-student';
 import { Profile } from '../pages/profile/profile';
+import { Requests} from '../pages/requests/requests';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -40,7 +41,7 @@ const config = {
     ContactPage,
     HomePage,
     Login,
-   
+
     HomeStaff,
     HomeStudent,
     NotificationStaff,
@@ -49,7 +50,8 @@ const config = {
     MessageStudent,
     Profile,
     TabsPage,
-    Newnotification
+    Newnotification,
+    Requests
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,8 @@ const config = {
     MessageStudent,
     Profile,
     TabsPage,
-    Newnotification
+    Newnotification,
+    Requests
   ],
   providers: [
     StatusBar,

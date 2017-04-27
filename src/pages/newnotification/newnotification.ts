@@ -16,21 +16,29 @@ import {FirebaseListObservable,AngularFire} from 'angularfire2'
 export class Newnotification {
 
   firelist : FirebaseListObservable <any>; 
-  Notification:any;
+  Notice:any;
   Years:any;
   Date:any;
+  Description:any;
 
-  SubmitData(){
+  
 
-    this.angfire.database.list('/Public_Notification').push({
-      notification: this.Notification,
+  constructor(public navCtrl: NavController, public navParams: NavParams,public angfire : AngularFire) {
+  }
+
+SubmitData(){
+
+      this.angfire.database.list('/Public_Notices').push({
+      notification: this.Notice,
       years:this.Years,
       date:this.Date,
+      Description:this.Description,
     });
 
-   console.log(this.Notification);
+   console.log(this.Notice);
    console.log(this.Years);
    console.log(this.Date);
+   console.log(this.Description);
    this.navCtrl.push(Newnotification);
   }
 
@@ -40,8 +48,4 @@ export class Newnotification {
     month: '2017-01-01',
     timeStarts: '08:30'
   }
-
-  constructor(public navCtrl: NavController, public navParams: NavParams,public angfire : AngularFire) {
-  }
-
 }

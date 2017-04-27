@@ -6,9 +6,13 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Profile</ion-title>
-    <ion-buttons end>
+  <ion-navbar hideBackButton="true" color="primary" >
+         <ion-item color="primary">
+     <ion-avatar item-centre>
+      <h1 style="text-align: center">Profile</h1>
+    </ion-avatar>
+           </ion-item>
+    <ion-buttons end  >
       <button  clear icon-only outline ion-button icon-only (click)="openMenu()" >
       <ion-icon name='more'></ion-icon>    
     </button>
@@ -19,8 +23,8 @@
 
 <ion-content>
   <ion-list>
-  <ion-list-header color="secondary">
-      <p ion-text style="color:#000000;">Edit your <strong>Profile :</strong></p>
+  <ion-list-header color="light">
+      <p>Edit your <strong>Profile :</strong></p>
    </ion-list-header> 
    <label>
    <h4 ion-text color="positive" style="text-align: center" >IT14000000</h4>

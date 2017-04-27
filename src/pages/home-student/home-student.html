@@ -4,18 +4,24 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<ion-header >
 
-  <ion-navbar>
-    <ion-title>Home</ion-title>
+  <ion-navbar hideBackButton="true" color="primary">
+      <ion-item color="primary">
+     <ion-avatar item-centre>
+      <h1 style="text-align: center">Make Your Appointment</h1>
+    </ion-avatar>
+  </ion-item>
+    
   </ion-navbar>
+  <!--<ion-title>Home</ion-title>-->
 
 </ion-header>
 
 
 <ion-content>
-  <!--<h5 ion-text color="black">Search Lecturer by name</h5>
-  <ion-searchbar [(ngModel)]="query" (change)="getItems($event)" ></ion-searchbar>-->
+    
+  
   <ion-searchbar [(ngModel)]="Lecture" (ionInput)="getItems($event)"></ion-searchbar>
   <h5 ion-text color="positive" style="text-align: center"> {{ LectureName }}</h5>
   <ion-list>
@@ -36,25 +42,25 @@
       <ion-label>Time</ion-label>
       <!-- <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.timeStarts"></ion-datetime>-->
       <ion-select [(ngModel)]="TimeSlots">
-        <ion-option value="slot1">09.00 - 09.30</ion-option>
-        <ion-option value="slot2">09.30 - 10.00</ion-option>
-        <ion-option value="slot3">10.00 - 10.30</ion-option>
-        <ion-option value="slot4">10.30 - 11.00</ion-option>
-        <ion-option value="slot5">11.00 - 11.30</ion-option>
-        <ion-option value="slot6">11.30 - 12.00</ion-option>
-        <ion-option value="slot7">13.00 - 13.30</ion-option>
-        <ion-option value="slot8">13.30 - 14.00</ion-option>
-        <ion-option value="slot9">14.00 - 14.30</ion-option>
-        <ion-option value="slot10">14.30 - 15.00</ion-option>
-        <ion-option value="slot11">15.00 - 15.30</ion-option>
-        <ion-option value="slot12">15.30 - 16.00</ion-option>
-        <ion-option value="slot13">16.00 - 16.30</ion-option>
+        <ion-option value="09.00 - 09.30">09.00 - 09.30</ion-option>
+        <ion-option value="09.30 - 10.00">09.30 - 10.00</ion-option>
+        <ion-option value="10.00 - 10.30">10.00 - 10.30</ion-option>
+        <ion-option value="10.30 - 11.00">10.30 - 11.00</ion-option>
+        <ion-option value="11.00 - 11.30">11.00 - 11.30</ion-option>
+        <ion-option value="11.30 - 12.00">11.30 - 12.00</ion-option>
+        <ion-option value="13.00 - 13.30">13.00 - 13.30</ion-option>
+        <ion-option value="13.30 - 14.00">13.30 - 14.00</ion-option>
+        <ion-option value="14.00 - 14.30">14.00 - 14.30</ion-option>
+        <ion-option value="14.30 - 15.00">14.30 - 15.00</ion-option>
+        <ion-option value="15.00 - 15.30">15.00 - 15.30</ion-option>
+        <ion-option value="15.30 - 16.00">15.30 - 16.00</ion-option>
+        <ion-option value="16.00 - 16.30">16.00 - 16.30</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
 
   <ion-list>
-    <button ion-button block color="dark" block (click)="CheckAvailabilityDetails()" ion-button full color="secondary">Check</button>
+    <button ion-button block (click)="CheckAvailabilityDetails()" >Check</button>
     <!--ion-button block (click)="presentLoading()"-->
     <!--<h5 ion-text color="positive" style="text-align: center" >Lecturer Name</h5>-->
   </ion-list>
@@ -62,71 +68,71 @@
     <ion-item>
       <ion-label>Year<span style="color:#ff0000;">  *</span></ion-label>
       <ion-select [(ngModel)]="Years">
-        <ion-option value="1st">1st year</ion-option>
-        <ion-option value="2nd">2nd year</ion-option>
-        <ion-option value="3rd">3rd year</ion-option>
-        <ion-option value="4th">4th year</ion-option>
+        <ion-option value="1st year">1st year</ion-option>
+        <ion-option value="2nd year">2nd year</ion-option>
+        <ion-option value="3rd year">3rd year</ion-option>
+        <ion-option value="4th year">4th year</ion-option>
       </ion-select>
     </ion-item>
 
         <ion-item>
       <ion-label>Semester<span style="color:#ff0000;">  *</span></ion-label>
       <ion-select [(ngModel)]="Semester">
-        <ion-option value="1sem">1st Semester</ion-option>
-        <ion-option value="2sem">2nd Semester</ion-option>
+        <ion-option value="1st Semester">1st Semester</ion-option>
+        <ion-option value="2nd Semester">2nd Semester</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item [(ngSwitch)]="Years" >
       <ion-label>Subject<span style="color:#ff0000;">  *</span></ion-label>
-      <ion-select [(ngModel)]="Subjects" *ngSwitchCase="'1st'">
-        <ion-option value="sub1">Computer Fundementals</ion-option>
-        <ion-option value="sub2">DCCN-I</ion-option>
-        <ion-option value="sub3">Introduction to Programming</ion-option>
-        <ion-option value="sub4">Information System</ion-option>
-        <ion-option value="sub5">Programming Fundamentals</ion-option>
-        <ion-option value="sub4">ST-I</ion-option>
-        <ion-option value="sub5">DBMS-I</ion-option>
+      <ion-select [(ngModel)]="Subjects" *ngSwitchCase="'1st year'">
+        <ion-option value="Computer Fundementals">Computer Fundementals</ion-option>
+        <ion-option value="DCCN-I">DCCN-I</ion-option>
+        <ion-option value="Introduction to Programming">Introduction to Programming</ion-option>
+        <ion-option value="Information System">Information System</ion-option>
+        <ion-option value="Programming Fundamentals">Programming Fundamentals</ion-option>
+        <ion-option value="ST-I">ST-I</ion-option>
+        <ion-option value="DBMS-I">DBMS-I</ion-option>
       </ion-select>
 
-      <ion-select [(ngModel)]="Subjects" *ngSwitchCase="'2nd'">
-        <ion-option value="sub1">DCCN-II</ion-option>
-        <ion-option value="sub2">Java Programming</ion-option>
-        <ion-option value="sub3">SE-I</ion-option>
-        <ion-option value="sub4">ST-II</ion-option>
-        <ion-option value="sub5">DBMS-II</ion-option>
+      <ion-select [(ngModel)]="Subjects" *ngSwitchCase="'2nd year'">
+        <ion-option value="DCCN-II">DCCN-II</ion-option>
+        <ion-option value="Java Programming">Java Programming</ion-option>
+        <ion-option value="SE-I">SE-I</ion-option>
+        <ion-option value="ST-II">ST-II</ion-option>
+        <ion-option value="DBMS-II">DBMS-II</ion-option>
       </ion-select>
 
-      <ion-select [(ngModel)]="Subjects" *ngSwitchCase="'3rd'">
-        <ion-option value="sub1">PDM</ion-option>
-        <ion-option value="sub2">SE-III</ion-option>
-        <ion-option value="sub3">PLDC</ion-option>
-        <ion-option value="sub4">EM</ion-option>
-        <ion-option value="sub5">OS</ion-option>
+      <ion-select [(ngModel)]="Subjects" *ngSwitchCase="'3rd year'">
+        <ion-option value="PDM">PDM</ion-option>
+        <ion-option value="SE-III">SE-III</ion-option>
+        <ion-option value="PLDC">PLDC</ion-option>
+        <ion-option value="EM">EM</ion-option>
+        <ion-option value="OS">OS</ion-option>
       </ion-select>
 
-      <ion-select [(ngModel)]="Subjects" *ngSwitchCase="'4th'">
-        <ion-option value="sub1">Research Project</ion-option>
-        <ion-option value="sub2">Business Process Re-Engineering</ion-option>
-        <ion-option value="sub3">Enterprisse Network Security</ion-option>
-        <ion-option value="sub4">HR Information Systems</ion-option>
-        <ion-option value="sub5">E-Commerce</ion-option>
+      <ion-select [(ngModel)]="Subjects" *ngSwitchCase="'4th year'">
+        <ion-option value="Research Project">Research Project</ion-option>
+        <ion-option value="Business Process Re-Engineering">Business Process Re-Engineering</ion-option>
+        <ion-option value="Enterprisse Network Security">Enterprisse Network Security</ion-option>
+        <ion-option value="HR Information Systems">HR Information Systems</ion-option>
+        <ion-option value="E-Commerce">E-Commerce</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label>Reason<span style="color:#ff0000;">  *</span></ion-label>
       <ion-select [(ngModel)]="Reasons">
-        <ion-option value="rs1">Supervisor Meeting</ion-option>
-        <ion-option value="rs2">Paper Discussion</ion-option>
-        <ion-option value="rs3">Theory Issue</ion-option>
-        <ion-option value="rs4">Assignment Problem</ion-option>
-        <ion-option value="rs5">Others</ion-option>
+        <ion-option value="Supervisor Meeting">Supervisor Meeting</ion-option>
+        <ion-option value="Paper Discussion">Paper Discussion</ion-option>
+        <ion-option value="Theory Issue">Theory Issue</ion-option>
+        <ion-option value="Assignment Problem">Assignment Problem</ion-option>
+        <ion-option value="Others">Others</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
-      <ion-textarea placeholder="Enter a description"></ion-textarea>
+      <ion-textarea [(ngModel)]="Description" placeholder="Enter a description"></ion-textarea>
     </ion-item>
   </ion-list>
 

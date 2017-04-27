@@ -70,7 +70,7 @@ export class Profile {
           handler: () => {
           console.log('OK clicked');
           window.localStorage.removeItem('SessionType');
-		  window.localStorage.removeItem('SessionUser');
+		      window.localStorage.removeItem('SessionUser');
           window.location.reload();
           }
         }
