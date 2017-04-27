@@ -25,114 +25,68 @@
 
 <ion-content>
 <!--create a card for each notification-->
-  <ion-card>
+  <ion-card *ngFor="let Appointment of StudentAppointment | async">
 
   <ion-item color="color2">
     <ion-avatar item-left>
       <img src="assets/img/user_av2.png">
     </ion-avatar>
+    <!--<h2>{{Appointment.name}}</h2>
+    <p>{{Appointment.id}}</p>-->
     <h2>ABC Perera</h2>
-    <p>IT15000000</p>
+    <p>IT00000000</p>
   </ion-item>
 
   <ion-card-content>
     <ion-row >
-      <ion-col>
-          <p> </p>
-      </ion-col>
+        <ion-col>
+            <p> </p>
+        </ion-col>
     </ion-row >
     <ion-row >    
-      <ion-col>
-          <p><strong>Year : </strong></p>
-      </ion-col>
-      <ion-col>
-           <p>3rd Year</p>   
-      </ion-col>
+        <ion-col>
+            <p><strong>Date : </strong></p>
+        </ion-col>
+        <ion-col>
+            <p>{{Appointment.date}}</p>   
+        </ion-col>
      </ion-row>
-     <ion-row > 
-      <ion-col>
-          <p><strong>Subject : </strong></p>
-      </ion-col>
-      <ion-col>
-           <p>PDM</p>   
-      </ion-col>
+     <ion-row >    
+        <ion-col>
+            <p><strong>Time slot : </strong></p>
+        </ion-col>
+        <ion-col>
+            <p>{{Appointment.time}}</p>   
+        </ion-col>
      </ion-row>
-     <ion-row> 
-      <ion-col>
-          <p><strong>Reason : </strong></p>
-      </ion-col>
-      <ion-col>
-           <p>supervisor meeting</p>   
-      </ion-col>
-     </ion-row>
-     <ion-row> 
-      <ion-col>
-           <p>re-check project proposal</p>   
-      </ion-col>
-    </ion-row>      
-  </ion-card-content>
-
-  <ion-row color="light" center text-center >
-    <ion-col>
-      <button ion-button icon-left color="secondary">
-        <ion-icon name="thumbs-up"></ion-icon>
-        <div>Accept</div>
-      </button>
-    </ion-col>
-    <ion-col>
-      <button ion-button icon-left  color="danger">
-        <ion-icon name="thumbs-down"></ion-icon>
-        <div>Reject</div>
-      </button>
-    </ion-col>
-  </ion-row>
-
-</ion-card>
-
-<ion-card>
-
-  <ion-item color="color2">
-    <ion-avatar item-left>
-      <img src="assets/img/user_av2.png">
-    </ion-avatar>
-    <h2>ABC Perera</h2>
-    <p>IT15000000</p>
-  </ion-item>
-
-  <ion-card-content>
-    <ion-row >
-      <ion-col>
-          <p> </p>
-      </ion-col>
-    </ion-row >
     <ion-row >    
-      <ion-col>
-          <p><strong>Year : </strong></p>
-      </ion-col>
-      <ion-col>
-           <p>3rd Year</p>   
-      </ion-col>
+        <ion-col>
+            <p><strong>Year : </strong></p>
+        </ion-col>
+        <ion-col>
+            <p>{{Appointment.year}}</p>   
+        </ion-col>
      </ion-row>
      <ion-row > 
-      <ion-col>
-          <p><strong>Subject : </strong></p>
-      </ion-col>
-      <ion-col>
-           <p>PDM</p>   
-      </ion-col>
+        <ion-col>
+            <p><strong>Subject : </strong></p>
+        </ion-col>
+        <ion-col>
+            <p>{{Appointment.subject}}</p>   
+        </ion-col>
      </ion-row>
      <ion-row> 
-      <ion-col>
-          <p><strong>Reason : </strong></p>
-      </ion-col>
-      <ion-col>
-           <p>supervisor meeting</p>   
-      </ion-col>
+        <ion-col>
+            <p><strong>Reason : </strong></p>
+        </ion-col>
+        <ion-col>
+            <p>{{Appointment.reason}}</p>   
+        </ion-col>
      </ion-row>
      <ion-row> 
-      <ion-col>
-           <p>re-check project proposal</p>   
-      </ion-col>
+        <ion-col>
+            <p>{{Appointment.description}}</p>   
+        </ion-col>
     </ion-row>      
   </ion-card-content>
 

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {NavController, NavParams } from 'ionic-angular';
+import {AngularFire,FirebaseListObservable} from 'angularfire2';
+import firebase from 'firebase';
 
 /**
  * Generated class for the NotificationStaff page.
@@ -13,8 +15,10 @@ import {NavController, NavParams } from 'ionic-angular';
   templateUrl: 'notification-staff.html',
 })
 export class NotificationStaff {
+  StudentAppointment: FirebaseListObservable<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public angfire: AngularFire) {
+      this.StudentAppointment = angfire.database.list('/StudentAppointment');
   }
 
  
