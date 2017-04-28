@@ -20,9 +20,17 @@ export class Requests {
   RequestDetails:FirebaseListObservable<any>;
   Requests : any;
   angfires:AngularFire;
+  username:string;
   constructor(public navCtrl: NavController, public navParams: NavParams,public angfire : AngularFire,public alertCtrl: AlertController) {
     this.angfires = angfire;
-  this.RequestDetails = angfire.database.list('/StudentAppointment')
+    this.username=window.localStorage.getItem('SessionName');
+  this.RequestDetails = angfire.database.list('/StudentAppointment', {
+      query: {
+        orderByChild: 'user',
+        equalTo: this.username
+      }
+      
+    })
   }
 
   ionViewDidLoad() {

@@ -34,10 +34,12 @@ export class HomeStudent {
   private items: string[];
   Lecture: string = "";
   LectureName: string = '';
+  username: string;
 
 
   constructor(public navCtrl: NavController, public alerCtrl: AlertController, public navParams: NavParams, public platform: Platform,
     public actionsheetCtrl: ActionSheetController, public loadingCtrl: LoadingController, public angfire: AngularFire) {
+    this.username=window.localStorage.getItem('SessionName');
     this.initializeItems();
     this.items = [];
   }
@@ -75,6 +77,8 @@ export class HomeStudent {
   insertRequest() {
 
     this.checkdescription();
+    
+    console.log(this.username);
 
     this.angfire.database.list('/StudentAppointment').push({
       lecture: this.LectureName,
@@ -86,6 +90,7 @@ export class HomeStudent {
       reason: this.Reasons,
       description: this.Description,
       responce: this.Responce,
+      user: this.username,
     });
   }
 
@@ -193,6 +198,8 @@ export class HomeStudent {
       console.log(this.Reasons);
       console.log(this.Description);
       console.log(this.Responce);
+      this.username=window.localStorage.getItem('SessionName');
+      console.log(this.username);
     }
   }
 

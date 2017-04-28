@@ -37,8 +37,9 @@ RequestDetails:FirebaseListObservable<any>;
 
   Years:any;
    year: string;
+   username: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, platform: Platform, public angfire: AngularFire) {
-    
+    this.username=window.localStorage.getItem('SessionName');
     this.PublicNotices = angfire.database.list('/Public_Notices', {
       query: {
         orderByChild: 'date',
@@ -49,8 +50,14 @@ RequestDetails:FirebaseListObservable<any>;
     console.log(this.Today());
 
     this.angfires = angfire;
-    this.RequestDetails = angfire.database.list('/StudentAppointment')
-    //this.year=this.Years;
+    this.RequestDetails = angfire.database.list('/StudentAppointment', {
+      query: {
+        orderByChild: 'user',
+        equalTo: this.username
+      }
+      
+    })
+    console.log(this.username);
   }
   navigate() {
     this.navCtrl.push(Requests);
