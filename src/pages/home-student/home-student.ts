@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Platform, ActionSheetController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-import {FirebaseListObservable,AngularFire} from 'angularfire2'
+import { FirebaseListObservable, AngularFire } from 'angularfire2'
 
 
 /**
@@ -34,46 +34,69 @@ export class HomeStudent {
   private items: string[];
   Lecture: string = "";
   LectureName: string = '';
-  
+
 
   constructor(public navCtrl: NavController, public alerCtrl: AlertController, public navParams: NavParams, public platform: Platform,
-    public actionsheetCtrl: ActionSheetController, public loadingCtrl: LoadingController,public angfire : AngularFire) {
+    public actionsheetCtrl: ActionSheetController, public loadingCtrl: LoadingController, public angfire: AngularFire) {
     this.initializeItems();
     this.items = [];
   }
 
-  checkdescription(){
-   if (this.Description == undefined || this.Description == '') {
-      this.Description='';
+  checkdescription() {
+    if (this.Description == undefined || this.Description == '') {
+      this.Description = '';
     }
-}
+  }
 
-  insertRequest(){
+  SendAppointment() {
+    let confirm = this.alerCtrl.create({
+      title: 'Send Appointment?',
+      message: 'Are you sure you want to send this appointment?',
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'OK',
+          handler: () => {
+            this.insertRequest();
+            this.alertMessage("Succesful!", "Your Appointment Succesfully Send to the Lecture");
+            console.log('OK clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  insertRequest() {
 
     this.checkdescription();
 
     this.angfire.database.list('/StudentAppointment').push({
-      lecture:this.LectureName,
-      date:this.event.month,
-      time:this.TimeSlots,
-      year:this.Years,
-      semester:this.Semester,
-      subject:this.Subjects,
-      reason:this.Reasons,
-      description:this.Description,
-      responce:this.Responce,
+      lecture: this.LectureName,
+      date: this.event.month,
+      time: this.TimeSlots,
+      year: this.Years,
+      semester: this.Semester,
+      subject: this.Subjects,
+      reason: this.Reasons,
+      description: this.Description,
+      responce: this.Responce,
     });
   }
-  clear(){
-      
-      this.items=[];
-      this.TimeSlots=[];
-      this.Years=[];
-      this.Semester=[];
-      this.Subjects=[];
-      this.Reasons=[];
-      this.Description=[];
-     
+
+  clear() {
+    this.items = [];
+    this.TimeSlots = [];
+    this.Years = [];
+    this.Semester = [];
+    this.Subjects = [];
+    this.Reasons = [];
+    this.Description = [];
   }
 
   presentLoading() {
@@ -92,8 +115,6 @@ export class HomeStudent {
     });
     alert.present()
   }
-
-
 
   initializeItems() {
     this.items = [
@@ -162,7 +183,7 @@ export class HomeStudent {
     } else if (this.Reasons == undefined || this.Reasons == '') {
       this.alertMessage("Warning!", "Please Select Appointment Details");
     } else {
-      this.alertMessage("Succesful!", "Your Appointment Succesfully Send to the Lecture");
+      
       console.log(this.LectureName);
       console.log(this.event.month);
       console.log(this.TimeSlots);
@@ -174,6 +195,7 @@ export class HomeStudent {
       console.log(this.Responce);
     }
   }
+
   openMenu() {
     let actionSheet = this.actionsheetCtrl.create({
       title: 'Request Confirmation',
@@ -184,8 +206,10 @@ export class HomeStudent {
           icon: 'send',
           handler: () => {
             this.CheckAvailabilityDetails();
-            this.insertRequest();''
-          //  this.clear();
+            this.SendAppointment();
+            
+            //this.insertRequest();''
+            //  this.clear();
             this.navCtrl.push(HomeStudent);
             console.log('Send Request clicked');
           }
@@ -205,8 +229,6 @@ export class HomeStudent {
     actionSheet.present();
 
   }
-
-
 
 }
 

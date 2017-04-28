@@ -7,20 +7,20 @@
 <ion-header>
 
   <ion-navbar hideBackButton="true" color="primary">
-      
+
     <ion-item color="primary">
       <ion-avatar item-centre>
         <h1 style="text-align: center">Notifications</h1>
       </ion-avatar>
     </ion-item>
- 
+
     <ion-buttons end>
       <button clear icon-only outline ion-button icon-only ion-button icon-only color="royal" (click)="navigate()">
         <ion-icon name="people"></ion-icon>
-      </button>  
+      </button>
     </ion-buttons>
 
-     
+
   </ion-navbar>
 
 
@@ -45,18 +45,127 @@
 
   <div [ngSwitch]="notification">
     <ion-item *ngSwitchCase="'PublicNotifications'">
-        <ion-item *ngFor="let notices of PublicNotices | async ">
+      <ion-item *ngFor="let notices of PublicNotices | async ">
         <h2>{{ notices.years }}</h2>
         <p>{{ notices.date }}</p>
         <p>{{ notices.notification }}</p>
         <button ion-button clear item-right (click)="navigate2(notices.years,notices.notification,notices.date,notices.Description)">View</button>
       </ion-item>
-</ion-item>
+    </ion-item>
   </div>
 
   <div [ngSwitch]="notification">
     <ion-list *ngSwitchCase="'Responce'">
-      
+
+      <ion-card *ngFor="let requests of RequestDetails | async ">
+
+        <ion-item color="light" *ngIf="requests.responce=='Accept'">
+          <ion-avatar item-right>
+            <h2>{{ requests.responce }}</h2>
+          </ion-avatar>
+          <h1>{{ requests.lecture }}</h1>
+        </ion-item>
+
+        <ion-card-content *ngIf="requests.responce=='Accept'">
+          <ion-row>
+            <ion-col>
+              <p><strong>Date : </strong></p>
+            </ion-col>
+            <ion-col>
+              <p>{{ requests.date }}</p>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <p><strong>Time : </strong></p>
+            </ion-col>
+            <ion-col>
+              <p>{{ requests.time }}</p>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <p><strong>Subject : </strong></p>
+            </ion-col>
+            <ion-col>
+              <p>{{ requests.subject }}</p>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <p><strong>Reason : </strong></p>
+            </ion-col>
+            <ion-col>
+              <p>{{ requests.reason }}</p>
+            </ion-col>
+          </ion-row>
+
+
+        </ion-card-content>
+
+     <!-- </ion-card>
+
+      <ion-card *ngFor="let requests of RequestDetails | async ">-->
+
+        <ion-item color="danger" *ngIf="requests.responce=='Reject'">
+          <ion-avatar item-right>
+            <h2>{{ requests.responce }}</h2>
+          </ion-avatar>
+          <h1>{{ requests.lecture }}</h1>
+        </ion-item>
+
+        <ion-card-content *ngIf="requests.responce=='Reject'">
+          <ion-row>
+            <ion-col>
+              <p><strong>Date : </strong></p>
+            </ion-col>
+            <ion-col>
+              <p>{{ requests.date }}</p>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <p><strong>Time : </strong></p>
+            </ion-col>
+            <ion-col>
+              <p>{{ requests.time }}</p>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <p><strong>Subject : </strong></p>
+            </ion-col>
+            <ion-col>
+              <p>{{ requests.subject }}</p>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <p><strong>Reason : </strong></p>
+            </ion-col>
+            <ion-col>
+              <p>{{ requests.reason }}</p>
+            </ion-col>
+          </ion-row>
+
+
+        </ion-card-content>
+        <ion-row color="light" center text-center *ngIf="requests.responce=='Reject'" >
+    <ion-col>
+      <button ion-button icon-left  color="danger" (click)='NewApointment()'>
+        <div>Make New Appointment</div>
+      </button>
+    </ion-col>
+  </ion-row>
+
+      </ion-card>
+
     </ion-list>
   </div>
 

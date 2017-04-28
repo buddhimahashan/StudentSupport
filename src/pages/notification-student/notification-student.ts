@@ -4,6 +4,7 @@ import { Platform } from 'ionic-angular';
 import { Requests } from '../requests/requests';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { Viewnotices } from '../viewnotices/viewnotices';
+import { HomeStudent } from '../home-student/home-student';
 
 /**
  * Generated class for the NotificationStudent page.
@@ -18,6 +19,9 @@ import { Viewnotices } from '../viewnotices/viewnotices';
 })
 export class NotificationStudent {
 
+RequestDetails:FirebaseListObservable<any>;
+ // Requests : any;
+  angfires:AngularFire;
   PublicNotices: FirebaseListObservable<any>;
 
   notification: string = "Responce";
@@ -35,7 +39,10 @@ export class NotificationStudent {
       }
       
     })
-this.year=this.Years;
+
+    this.angfires = angfire;
+    this.RequestDetails = angfire.database.list('/StudentAppointment')
+    //this.year=this.Years;
   }
   navigate() {
     this.navCtrl.push(Requests);
@@ -54,6 +61,8 @@ this.year=this.Years;
 
 
   }
-
+NewApointment(){
+  this.navCtrl.push(HomeStudent);
+}
 
 }
