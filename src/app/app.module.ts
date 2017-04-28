@@ -19,8 +19,11 @@ import { MessageStudent } from '../pages/message-student/message-student';
 import { Profile } from '../pages/profile/profile';
 import { Requests} from '../pages/requests/requests';
 import { Viewnotices } from '../pages/viewnotices/viewnotices';
+
 import { AcceptedNotification } from '../pages/accepted-notification/accepted-notification';
- 
+
+import { EditPublicNotification } from '../pages/edit-public-notification/edit-public-notification';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -55,7 +58,11 @@ const config = {
     Newnotification,
     Requests,
     Viewnotices,
-    AcceptedNotification
+
+    AcceptedNotification,
+
+    EditPublicNotification
+
   ],
   imports: [
     BrowserModule,
@@ -81,7 +88,11 @@ const config = {
     Newnotification,
     Requests,
     Viewnotices,
-    AcceptedNotification
+
+    AcceptedNotification,
+
+    EditPublicNotification
+
   ],
   providers: [
     StatusBar,
