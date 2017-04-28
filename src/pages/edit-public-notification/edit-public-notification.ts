@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { FirebaseListObservable, AngularFire } from 'angularfire2'
 import { AlertController } from 'ionic-angular';
 

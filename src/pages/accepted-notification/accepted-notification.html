@@ -22,17 +22,17 @@
 <!--create a card for each notification-->
   <ion-card *ngFor="let Appointment of StudentAppointment | async">
 
-  <ion-item color="color2">
+  <ion-item color="secondary" *ngIf="Appointment.responce=='Accept'">
     <ion-avatar item-left>
       <img src="assets/img/user_av2.png">
     </ion-avatar>
     <!--<h2>{{Appointment.name}}</h2>
     <p>{{Appointment.id}}</p>-->
-    <h2>ABC Perera</h2>
-    <p>IT00000000</p>
+   
+    <p><strong>{{Appointment.user}}</strong></p>
   </ion-item>
 
-  <ion-card-content>
+  <ion-card-content *ngIf="Appointment.responce=='Accept'">
     <ion-row >
         <ion-col>
             <p> </p>
@@ -85,7 +85,7 @@
     </ion-row>      
   </ion-card-content>
 
-  <ion-row color="light" center text-center >
+  <ion-row color="light" center text-center *ngIf="Appointment.responce=='Accept'">
     <ion-col>
       <button ion-button icon-left  color="danger">
         <ion-icon name="thumbs-down"></ion-icon>
