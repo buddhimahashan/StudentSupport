@@ -222,6 +222,7 @@ export class HomeStaff {
     //         }
     //       });
     //  }
+    this.alertMessage("success", "updated slot changes")
   }
   
   alertMessage(title, message) {

@@ -188,7 +188,8 @@ export class HomeStudent {
     } else if (this.Reasons == undefined || this.Reasons == '') {
       this.alertMessage("Warning!", "Please Select Appointment Details");
     } else {
-      
+       this.SendAppointment();
+     // this.openMenu();
       console.log(this.LectureName);
       console.log(this.event.month);
       console.log(this.TimeSlots);
@@ -212,8 +213,8 @@ export class HomeStudent {
           text: 'Send Request',
           icon: 'send',
           handler: () => {
-            this.CheckAvailabilityDetails();
-            this.SendAppointment();
+           this.CheckAvailabilityDetails();
+           
             
             //this.insertRequest();''
             //  this.clear();
