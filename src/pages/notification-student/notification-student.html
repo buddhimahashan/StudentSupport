@@ -34,7 +34,6 @@
       <ion-segment-button value="PublicNotifications">
         Public Notices
       </ion-segment-button>
-
     </ion-segment>
   </ion-toolbar>
 
@@ -44,6 +43,7 @@
 <ion-content>
 
   <div [ngSwitch]="notification">
+
     <ion-item *ngSwitchCase="'PublicNotifications'">
       <ion-item *ngFor="let notices of PublicNotices | async ">
         <h2>{{ notices.years }}</h2>
@@ -52,6 +52,7 @@
         <button ion-button clear item-right (click)="navigate2(notices.years,notices.notification,notices.date,notices.Description)">View</button>
       </ion-item>
     </ion-item>
+      
   </div>
 
   <div [ngSwitch]="notification">
