@@ -4,6 +4,7 @@ import { Platform } from 'ionic-angular';
 import { Requests } from '../requests/requests';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { Viewnotices } from '../viewnotices/viewnotices';
+import { HomeStudent } from '../home-student/home-student';
 
 /**
  * Generated class for the NotificationStudent page.
@@ -18,6 +19,9 @@ import { Viewnotices } from '../viewnotices/viewnotices';
 })
 export class NotificationStudent {
 
+RequestDetails:FirebaseListObservable<any>;
+ // Requests : any;
+  angfires:AngularFire;
   PublicNotices: FirebaseListObservable<any>;
 
   notification: string = "Responce";
@@ -26,16 +30,27 @@ export class NotificationStudent {
   noticetitle: any;
   noticedescription: any;
 
+  today:any;
+  dd:any;
+  mm:any;
+  yyyy:any;
+
   Years:any;
    year: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, platform: Platform, public angfire: AngularFire) {
+    
     this.PublicNotices = angfire.database.list('/Public_Notices', {
       query: {
-        orderByChild: 'timestamp'
+        orderByChild: 'date',
+        equalTo: this.Today()
       }
       
     })
-this.year=this.Years;
+    console.log(this.Today());
+
+    this.angfires = angfire;
+    this.RequestDetails = angfire.database.list('/StudentAppointment')
+    //this.year=this.Years;
   }
   navigate() {
     this.navCtrl.push(Requests);
@@ -54,6 +69,27 @@ this.year=this.Years;
 
 
   }
+NewApointment(){
+  this.navCtrl.push(HomeStudent);
+}
+
+Today() {
+    this.today = new Date();
+    this.dd = this.today.getDate();
+    this.mm = this.today.getMonth()+1; 
+    this.yyyy = this.today.getFullYear();
+
+    if(this.dd<10) {
+      this.dd='0'+this.dd
+    } 
+
+    if(this.mm<10) {
+      this.mm='0'+this.mm
+    } 
+
+    this.today = this.yyyy+'-'+this.mm+'-'+this.dd;
+      return this.today;
+}
 
 
 }
