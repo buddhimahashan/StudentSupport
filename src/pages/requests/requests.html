@@ -6,79 +6,79 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary" >
-      
-      <ion-item color="primary">
-     <ion-avatar item-centre>
-      <h1 style="text-align: center">My Appointments</h1>
-    </ion-avatar>
-  </ion-item>
+  <ion-navbar color="primary">
+
+    <ion-item color="primary">
+      <ion-avatar item-centre>
+        <h1 style="text-align: center">My Appointments</h1>
+      </ion-avatar>
+    </ion-item>
     <!--<ion-title>Home</ion-title>-->
   </ion-navbar>
-    
+
 
 </ion-header>
 
 
 <ion-content>
 
-  <ion-card *ngFor="let requests of RequestDetails | async " >
+  <ion-card *ngFor="let requests of RequestDetails | async ">
 
-  <ion-item color="color2" *ngIf="requests.responce=='Pending'">
-     <ion-avatar item-right>
-      <h2>{{ requests.responce }}</h2>
-    </ion-avatar>
-    <h3>{{ requests.lecture }}</h3>
-  </ion-item>
+    <ion-item color="color2" *ngIf="requests.responce=='Pending'">
+      <ion-avatar item-right>
+        <h2>{{ requests.responce }}</h2>
+      </ion-avatar>
+      <h3>{{ requests.lecture }}</h3>
+    </ion-item>
 
-  <ion-card-content *ngIf="requests.responce=='Pending'">
-    <ion-row >    
-      <ion-col>
+    <ion-card-content *ngIf="requests.responce=='Pending'">
+      <ion-row>
+        <ion-col>
           <p><strong>Date : </strong></p>
-      </ion-col>
-      <ion-col>
-           <p>{{ requests.date }}</p>   
-      </ion-col>
-     </ion-row>
+        </ion-col>
+        <ion-col>
+          <p>{{ requests.date }}</p>
+        </ion-col>
+      </ion-row>
 
-     <ion-row > 
-      <ion-col>
+      <ion-row>
+        <ion-col>
           <p><strong>Time : </strong></p>
-      </ion-col>
-      <ion-col>
-           <p>{{ requests.time }}</p>   
-      </ion-col>
-     </ion-row>
+        </ion-col>
+        <ion-col>
+          <p>{{ requests.time }}</p>
+        </ion-col>
+      </ion-row>
 
-     <ion-row > 
-      <ion-col>
+      <ion-row>
+        <ion-col>
           <p><strong>Subject : </strong></p>
-      </ion-col>
-      <ion-col>
-           <p>{{ requests.subject }}</p>   
-      </ion-col>
-     </ion-row>
+        </ion-col>
+        <ion-col>
+          <p>{{ requests.subject }}</p>
+        </ion-col>
+      </ion-row>
 
-     <ion-row> 
-      <ion-col>
+      <ion-row>
+        <ion-col>
           <p><strong>Reason : </strong></p>
-      </ion-col>
+        </ion-col>
+        <ion-col>
+          <p>{{ requests.reason }}</p>
+        </ion-col>
+      </ion-row>
+
+
+    </ion-card-content>
+
+    <ion-row color="light" center text-center *ngIf="requests.responce=='Pending'">
       <ion-col>
-           <p>{{ requests.reason }}</p>   
-      </ion-col>
-     </ion-row>
-
-      
-  </ion-card-content>
-
-  <ion-row color="light" center text-center *ngIf="requests.responce=='Pending'" >
-    <ion-col>
-      <button ion-button icon-left  color="danger" (click)='CancelRequest(requests.$key)'>
+        <button ion-button icon-left color="danger" (click)='CancelRequest(requests.$key)'>
         <div>Cancel Appointment</div>
       </button>
-    </ion-col>
-  </ion-row>
+      </ion-col>
+    </ion-row>
 
-</ion-card>
+  </ion-card>
 
 </ion-content>
