@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import {AngularFire,FirebaseListObservable} from 'angularfire2';
-import firebase from 'firebase';
+//import firebase from 'firebase';
 
 /**
  * Generated class for the AcceptedNotification page.

@@ -62,9 +62,9 @@
 
         <ion-item color="light" *ngIf="requests.responce=='Accept'">
           <ion-avatar item-right>
-            <h2>{{ requests.responce }}</h2>
+            <h4>{{ requests.responce }}</h4>
           </ion-avatar>
-          <h1>{{ requests.lecture }}</h1>
+          <h3>{{ requests.lecture }}</h3>
         </ion-item>
 
         <ion-card-content *ngIf="requests.responce=='Accept'">
@@ -113,9 +113,9 @@
 
         <ion-item color="danger" *ngIf="requests.responce=='Reject'">
           <ion-avatar item-right>
-            <h2>{{ requests.responce }}</h2>
+            <h4>{{ requests.responce }}</h4>
           </ion-avatar>
-          <h1>{{ requests.lecture }}</h1>
+          <h3>{{ requests.lecture }}</h3>
         </ion-item>
 
         <ion-card-content *ngIf="requests.responce=='Reject'">
