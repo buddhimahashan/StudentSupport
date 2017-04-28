@@ -19,6 +19,7 @@ import { MessageStudent } from '../pages/message-student/message-student';
 import { Profile } from '../pages/profile/profile';
 import { Requests} from '../pages/requests/requests';
 import { Viewnotices } from '../pages/viewnotices/viewnotices';
+import { EditPublicNotification } from '../pages/edit-public-notification/edit-public-notification';
  
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -53,7 +54,8 @@ const config = {
     TabsPage,
     Newnotification,
     Requests,
-    Viewnotices
+    Viewnotices,
+    EditPublicNotification
   ],
   imports: [
     BrowserModule,
@@ -78,7 +80,8 @@ const config = {
     TabsPage,
     Newnotification,
     Requests,
-    Viewnotices
+    Viewnotices,
+    EditPublicNotification
   ],
   providers: [
     StatusBar,

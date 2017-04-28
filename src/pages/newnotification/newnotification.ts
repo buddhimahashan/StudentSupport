@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { FirebaseListObservable, AngularFire } from 'angularfire2'
 import { AlertController } from 'ionic-angular';
+import { EditPublicNotification } from '../edit-public-notification/edit-public-notification';
 
 
 /**
@@ -21,10 +22,6 @@ export class Newnotification {
   Years: any;
   Date: any;
   Description: any;
-
-
-
-
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public angfire: AngularFire,
     public alertCtrl: AlertController) {
@@ -68,7 +65,7 @@ export class Newnotification {
   MakeAppointment() {
     let confirm = this.alertCtrl.create({
       title: 'Add Notice?',
-      message: 'Are you sure you want to add this Notice?',
+      message: 'Are you sure you want to publish this Notice?',
       buttons: [
         {
           text: 'Cancel',
@@ -84,6 +81,7 @@ export class Newnotification {
               years: this.Years,
               date: this.Date,
               Description: this.Description,
+              User :  window.localStorage.getItem('SessionName'),
             });
             console.log('OK clicked');
           }
@@ -91,6 +89,11 @@ export class Newnotification {
       ]
     });
     confirm.present();
+  }
+
+  EditPage(){
+    this.navCtrl.push(EditPublicNotification);
+
   }
 
 
