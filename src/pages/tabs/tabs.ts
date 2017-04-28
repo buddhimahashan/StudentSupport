@@ -23,12 +23,12 @@ export class TabsPage {
   
   SelectTabs(){
     console.log(window.localStorage.getItem('SessionType'));
-    if(window.localStorage.getItem('SessionType')=="Staff"){
+    if(window.localStorage.getItem('SessionType')=="Staff" && window.localStorage.getItem('SessionType')!=""){
          this.tab1Root = HomeStaff;
          this.tab2Root = NotificationStaff;
          this.tab3Root = MessageStaff;
          this.tab4Root = Profile;
-    }else if(window.localStorage.getItem('SessionType')=="Student"){
+    }else if(window.localStorage.getItem('SessionType')=="Student" && window.localStorage.getItem('SessionType')!=""){
          this.tab1Root = HomeStudent;
          this.tab2Root = NotificationStudent;
          this.tab3Root = MessageStudent;
