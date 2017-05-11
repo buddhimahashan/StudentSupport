@@ -27,7 +27,7 @@
       <p>Edit your <strong>Profile :</strong></p>
    </ion-list-header> 
    <label>
-   <h4 ion-text color="positive" style="text-align: center" >IT14000000</h4>
+   <h4 ion-text color="positive" style="text-align: center" >{{UserProfileName}}</h4>
    </label>
    <ion-item no-lines >
     <ion-avatar item-left>
@@ -37,36 +37,28 @@
     <button ion-button color="dark" outline >Upload an image</button>
   </ion-item>
    <ion-item>
-     <ion-label floating>First name</ion-label>
-     <ion-input type="text" value=""></ion-input>
+     <ion-label floating>First name : {{fnameView}}</ion-label>
+     <ion-input [(ngModel)]="fname" type="text" value=""></ion-input>
    </ion-item> 
    <ion-item>
-     <ion-label floating>Last name</ion-label>
-     <ion-input type="text" value=""></ion-input>
+     <ion-label floating>Last name : {{lnameView}}</ion-label>
+     <ion-input [(ngModel)]="lname" type="text" value=""></ion-input>
    </ion-item>
    <ion-item>
-     <ion-label floating>Birth date</ion-label>
-     <<ion-datetime displayFormat="MMM DD YYYY" ></ion-datetime>
+     <ion-label floating>Birth date : {{bdateView}}</ion-label>
+     <<ion-datetime [(ngModel)]="bdate" displayFormat="MMM DD YYYY" ></ion-datetime>
    </ion-item>
    <ion-item>
-     <ion-label floating>Email</ion-label>
-     <ion-input type="email" value=""></ion-input>
+     <ion-label floating>Email : {{emailView}}</ion-label>
+     <ion-input [(ngModel)]="email" type="email" value=""></ion-input>
    </ion-item>
    <ion-item>
-     <ion-label floating>Contact no</ion-label>
-     <ion-input type="tel" value=""></ion-input>
+     <ion-label floating>Contact no : {{contactView}}</ion-label>
+     <ion-input [(ngModel)]="contact" type="tel" value=""></ion-input>
    </ion-item>
-   <ion-item>
-     <ion-label floating>Password</ion-label>
-     <ion-input type="Password" value=""></ion-input>
-   </ion-item> 
-   <ion-item>
-     <ion-label floating>Re-enter Password</ion-label>
-     <ion-input type="Password" value=""></ion-input>
-   </ion-item>    
-  </ion-list>
+   </ion-list>
 
-   <button ion-button full >Update</button>  
+   <button ion-button full (click)="AddDetails()">Update</button>  
 
  
 </ion-content>
