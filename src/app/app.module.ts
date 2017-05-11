@@ -12,8 +12,6 @@ import { HomeStaff } from '../pages/home-staff/home-staff';
 import { HomeStudent } from '../pages/home-student/home-student';
 import { NotificationStaff } from '../pages/notification-staff/notification-staff';
 import { NotificationStudent } from '../pages/notification-student/notification-student';
-import { MessageStaff } from '../pages/message-staff/message-staff';
-import { MessageStudent } from '../pages/message-student/message-student';
 import { Profile } from '../pages/profile/profile';
 import { Requests} from '../pages/requests/requests';
 import { Viewnotices } from '../pages/viewnotices/viewnotices';
@@ -47,8 +45,6 @@ const config = {
     HomeStudent,
     NotificationStaff,
     NotificationStudent,
-    MessageStaff,
-    MessageStudent,
     Profile,
     TabsPage,
     Newnotification,
@@ -79,8 +75,6 @@ const config = {
     HomeStudent,
     NotificationStaff,
     NotificationStudent,
-    MessageStaff,
-    MessageStudent,
     Profile,
     TabsPage,
     Newnotification,
