@@ -36,12 +36,33 @@ export class HomeStudent {
   LectureName: string = '';
   username: string;
 
+  UserDataList = [];
+  UserData: any;
 
   constructor(public navCtrl: NavController, public alerCtrl: AlertController, public navParams: NavParams, public platform: Platform,
     public actionsheetCtrl: ActionSheetController, public loadingCtrl: LoadingController, public angfire: AngularFire) {
     this.username=window.localStorage.getItem('SessionName');
     this.initializeItems();
     this.items = [];
+
+    this.UserData = this.angfire.database.list('/login', {
+      query: {
+        orderByChild: 'type',
+        equalTo: 'Staff'
+      },
+      preserveSnapshot: true
+    }).subscribe(snapshots => {
+      let UserDataArray = [];
+      snapshots.forEach(snapshot => {
+        UserDataArray.push(snapshot.val());
+      });
+
+      UserDataArray.forEach(element => {
+        this.UserDataList.push(element.uname);
+      });
+    })
+
+
   }
 
   checkdescription() {
@@ -122,7 +143,7 @@ export class HomeStudent {
   }
 
   initializeItems() {
-    this.items = [
+  /*  this.items = [
       'Dr.(Mrs) Pradeepa Samarasinghe',
       'Ms. Dinuka Wijendra',
       'Ms. Yashodhya Wijesinghe',
@@ -132,7 +153,9 @@ export class HomeStudent {
       'Ms. Namalie  Walgampaya',
       'Mr. Jagath Wickramarathne',
       'Mr. Isuru Kumarasiri '
-    ]
+    ] */
+
+     this.items = this.UserDataList
   }
 
   getItems() {
