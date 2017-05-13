@@ -54,16 +54,10 @@ export class HomeStudent {
     this.username = window.localStorage.getItem('SessionName');
     this.initializeItems();
     this.items = [];
-<<<<<<< HEAD
+
     this.TodayDate = new Date().toISOString();
     this.staffSlots = angfire.database.list('staffSlot/' + this.userId)
-    /* , {
-      query: {
-        orderByChild: 'status',
-        equalTo: 'true'
-      },
-    preserveSnapshot: true
-=======
+
 
     this.UserData = this.angfire.database.list('/login', {
       query: {
@@ -71,31 +65,21 @@ export class HomeStudent {
         equalTo: 'Staff'
       },
       preserveSnapshot: true
->>>>>>> 6afb874b61175120561713949f18addabed533f5
+
     }).subscribe(snapshots => {
       let UserDataArray = [];
       snapshots.forEach(snapshot => {
         UserDataArray.push(snapshot.val());
       });
 
-<<<<<<< HEAD
-      if (UserDataArray.length > 0) {
-        this.status = UserDataArray[0].status;
-        
-      } else {
-        this.status = "";
-        
 
-      }
-    })*/
-=======
       UserDataArray.forEach(element => {
         this.UserDataList.push(element.uname);
       });
     })
 
 
->>>>>>> 6afb874b61175120561713949f18addabed533f5
+
   }
 
   checkdescription() {
@@ -178,19 +162,7 @@ export class HomeStudent {
   }
 
   initializeItems() {
-<<<<<<< HEAD
-    this.items = [
-      'Pradeepa Samarasinghe',
-      'Dinuka Wijendra',
-      'Yashodhya Wijesinghe',
-      'Dakshi Tharanga',
-      'Kosala Yapa Bandara',
-      'Dulani Perera',
-      'Namalie  Walgampaya',
-      'Jagath Wickramarathne',
-      'Isuru Kumarasiri '
-    ]
-=======
+
   /*  this.items = [
       'Dr.(Mrs) Pradeepa Samarasinghe',
       'Ms. Dinuka Wijendra',
@@ -204,7 +176,7 @@ export class HomeStudent {
     ] */
 
      this.items = this.UserDataList
->>>>>>> 6afb874b61175120561713949f18addabed533f5
+
   }
 
   getItems() {
