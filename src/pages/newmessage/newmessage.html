@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title >Create New Message</ion-title>
+    <ion-title>Create New Message</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,31 +15,33 @@
 
 <ion-content padding>
 
-  <ion-searchbar></ion-searchbar>
-
-   <ion-list>
-    <ion-label>User</ion-label>
-   <ion-item>
-      <ion-textarea [(ngModel)]="User" placeholder="User"></ion-textarea>
+  <ion-label><b>To : </b></ion-label>
+  <ion-searchbar [(ngModel)]="MessageUser" (ionInput)="getItems($event)"></ion-searchbar>
+  <h5 ion-text color="positive" style="text-align: center"> {{ UserName }}</h5>
+  <ion-list>
+    <ion-item *ngFor="let item of items">
+      <div (click)=setitem(item)>
+        {{ item }}
+      </div>
     </ion-item>
-   </ion-list>
+  </ion-list>
 
-<ion-list>
-   <ion-label>Title</ion-label>
-   <ion-item>
+  <ion-list>
+    <ion-label><b>Title : </b></ion-label>
+    <ion-item>
       <ion-textarea [(ngModel)]="Title" placeholder="Title"></ion-textarea>
     </ion-item>
-   </ion-list>
+  </ion-list>
 
 
-   <ion-list>
-    <ion-label>Message</ion-label>
-   <ion-item>
+  <ion-list>
+    <ion-label><b>Message : </b></ion-label>
+    <ion-item>
       <ion-textarea [(ngModel)]="Message" placeholder="Message"></ion-textarea>
     </ion-item>
-   </ion-list>
-    
-    <button ion-button block (click)="SendMessage()" >Send</button>
+  </ion-list>
+
+  <button ion-button block (click)="SendMessage()">Send</button>
 
 
 </ion-content>

@@ -53,7 +53,7 @@
       <ion-item *ngFor="let Inbox of InboxMessageData | async ">
         <h2>{{ Inbox.From }}</h2>
         <p>{{ Inbox.Title }}</p>
-        <button ion-button clear item-right (click)="SetMessageDetails(Inbox.From,Inbox.Title,Inbox.Message)">View</button>
+        <button ion-button clear item-right (click)="SetMessageDetails(Inbox.From,Inbox.Title,Inbox.Message,Inbox.$key)">View</button>
       </ion-item>
     </ion-item>
       
@@ -65,7 +65,7 @@
       <ion-item *ngFor="let SendItems of SentMessageData | async ">
         <h2>{{ SendItems.To }}</h2>
         <p>{{ SendItems.Title }}</p>
-        <button ion-button clear item-right (click)="SetMessageDetails(SendItems.To,SendItems.Title,SendItems.Message)">View</button>
+        <button ion-button clear item-right (click)="SetMessageDetails(SendItems.To,SendItems.Title,SendItems.Message,SendItems.$key)">View</button>
       </ion-item>
     </ion-item>
       

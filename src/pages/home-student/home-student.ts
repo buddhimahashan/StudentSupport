@@ -46,12 +46,15 @@ export class HomeStudent {
   status: any;
 
 
+  UserDataList = [];
+  UserData: any;
 
   constructor(public navCtrl: NavController, public alerCtrl: AlertController, public navParams: NavParams, public platform: Platform,
     public actionsheetCtrl: ActionSheetController, public loadingCtrl: LoadingController, public angfire: AngularFire) {
     this.username = window.localStorage.getItem('SessionName');
     this.initializeItems();
     this.items = [];
+<<<<<<< HEAD
     this.TodayDate = new Date().toISOString();
     this.staffSlots = angfire.database.list('staffSlot/' + this.userId)
     /* , {
@@ -60,12 +63,22 @@ export class HomeStudent {
         equalTo: 'true'
       },
     preserveSnapshot: true
+=======
+
+    this.UserData = this.angfire.database.list('/login', {
+      query: {
+        orderByChild: 'type',
+        equalTo: 'Staff'
+      },
+      preserveSnapshot: true
+>>>>>>> 6afb874b61175120561713949f18addabed533f5
     }).subscribe(snapshots => {
       let UserDataArray = [];
       snapshots.forEach(snapshot => {
         UserDataArray.push(snapshot.val());
       });
 
+<<<<<<< HEAD
       if (UserDataArray.length > 0) {
         this.status = UserDataArray[0].status;
         
@@ -75,6 +88,14 @@ export class HomeStudent {
 
       }
     })*/
+=======
+      UserDataArray.forEach(element => {
+        this.UserDataList.push(element.uname);
+      });
+    })
+
+
+>>>>>>> 6afb874b61175120561713949f18addabed533f5
   }
 
   checkdescription() {
@@ -157,6 +178,7 @@ export class HomeStudent {
   }
 
   initializeItems() {
+<<<<<<< HEAD
     this.items = [
       'Pradeepa Samarasinghe',
       'Dinuka Wijendra',
@@ -168,6 +190,21 @@ export class HomeStudent {
       'Jagath Wickramarathne',
       'Isuru Kumarasiri '
     ]
+=======
+  /*  this.items = [
+      'Dr.(Mrs) Pradeepa Samarasinghe',
+      'Ms. Dinuka Wijendra',
+      'Ms. Yashodhya Wijesinghe',
+      'Ms. Dakshi Tharanga',
+      'Dr. Kosala Yapa Bandara',
+      'Ms. Dulani Perera',
+      'Ms. Namalie  Walgampaya',
+      'Mr. Jagath Wickramarathne',
+      'Mr. Isuru Kumarasiri '
+    ] */
+
+     this.items = this.UserDataList
+>>>>>>> 6afb874b61175120561713949f18addabed533f5
   }
 
   getItems() {

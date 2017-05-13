@@ -20,14 +20,51 @@ export class Newmessage {
   MessageUserType: string;
   UserDataList = [];
 
+  private items: string[];
+  MessageUser: string = "";
+  UserName: string = '';
+
   Message: any;
   Title: any;
   User: any;
+ 
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public angfire: AngularFire, public alertCtrl: AlertController) {
+   
+   this.items = [];
+   this.initializeItems();
+   
+   
+    console.log(window.localStorage.getItem('SessionType'));
 
-     
+    if (window.localStorage.getItem('SessionType') == "Student") {
+      this.MessageUserType = "Staff";
+    } else if (window.localStorage.getItem('SessionType') == "Staff") {
+      this.MessageUserType = "Student";
+    }
+    this.UserData = this.angfire.database.list('/login', {
+      query: {
+        orderByChild: 'type',
+        equalTo: this.MessageUserType
+      },
+      preserveSnapshot: true
+    }).subscribe(snapshots => {
+      let UserDataArray = [];
+      snapshots.forEach(snapshot => {
+        UserDataArray.push(snapshot.val());
+      });
+
+      UserDataArray.forEach(element => {
+        this.UserDataList.push(element.uname);
+        
+         
+      });
+    })
+
+    console.log(this.UserDataList)
+
+
   }
 
   alertMessage(title, message) {
@@ -41,25 +78,54 @@ export class Newmessage {
 
 
 
-  SendMessage(){
-    
-     if (this.Message == undefined || this.Message == '') {
+  SendMessage() {
+
+    if (this.Message == undefined || this.Message == '') {
       this.alertMessage("Warning!", "Check Message details");
-    } else if (this.User == undefined || this.User == '') {
+    } else if (this.UserName == undefined || this.UserName == '') {
       this.alertMessage("Warning!", "Check User details");
-    }else if (this.Title == undefined || this.Title == '') {
+    } else if (this.Title == undefined || this.Title == '') {
       this.alertMessage("Warning!", "Check User details");
-    }else{
+    } else {
 
       this.angfire.database.list('/Messages').push({
-              To: this.User,
-              From :  window.localStorage.getItem('SessionName'),
-              Title : this.Title,
-              Message : this.Message
-            });
+        To: this.UserName,
+        From: window.localStorage.getItem('SessionName'),
+        Title: this.Title,
+        Message: this.Message
+      });
     }
+ 
+     window.location.reload();
 
   }
+
+  initializeItems() {
+    this.items = this.UserDataList;
+  }
+
+  getItems() {
+
+    console.log('The search button has been clicked...');
+
+    this.initializeItems();
+    let val = this.MessageUser
+    if (val && val.trim() != '') {
+      this.items = this.items.filter((item) => {
+        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+    else {
+      this.items = [];
+    }
+  }
+
+  setitem(item) {
+    this.UserName = item;
+    this.items = [];
+    this.MessageUser = "";
+  }
+
 
 
 }

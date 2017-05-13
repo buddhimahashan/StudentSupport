@@ -34,7 +34,7 @@ export class Message {
        this.SentMessageData = this.angfire.database.list('/Messages', {
       query: {
         orderByChild: 'From',
-        equalTo: window.localStorage.getItem('SessionName')
+        equalTo: window.localStorage.getItem('SessionName'),
       },})
 
 
@@ -45,7 +45,7 @@ export class Message {
     this.navCtrl.push(Newmessage);
   }
 
-  SetMessageDetails(fromData, titleData, messageData) {
+  SetMessageDetails(fromData, titleData, messageData, messageKey) {
     this.navCtrl.push(Viewmessage);
     this.from = fromData;
     this.Title = titleData;
@@ -53,6 +53,8 @@ export class Message {
     window.localStorage.setItem('From', this.from);
     window.localStorage.setItem('Title', this.Title);
     window.localStorage.setItem('Message', this.Message);
+    window.localStorage.setItem('MessageKey', messageKey);
+    
 }
  
 }
