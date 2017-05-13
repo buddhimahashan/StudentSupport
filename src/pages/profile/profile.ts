@@ -31,11 +31,12 @@ export class Profile {
   contactView: string;
 
   UserData: any;
+  UserProfileType: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,
     public actionsheetCtrl: ActionSheetController, public alertCtrl: AlertController, public angfire: AngularFire) {
     this.UserProfileName = (window.localStorage.getItem('SessionName'));
-
+    this.UserProfileType = window.localStorage.getItem('SessionType');
     this.UserData = this.angfire.database.list('/UserProfiles', {
       query: {
         orderByChild: 'user',
@@ -168,6 +169,7 @@ export class Profile {
 
           this.firelist.update(data[0].$key, {
             user: window.localStorage.getItem('SessionName'),
+            usertype:window.localStorage.getItem('SessionType'),
             fname: this.fname,
             lname: this.lname,
             bdate: this.bdate,
@@ -182,6 +184,7 @@ export class Profile {
 
           this.angfire.database.list('/UserProfiles').push({
             user: window.localStorage.getItem('SessionName'),
+            usertype:window.localStorage.getItem('SessionType'), 
             fname: this.fname,
             lname: this.lname,
             bdate: this.bdate,
@@ -192,11 +195,7 @@ export class Profile {
         }
 
 
-
-
       })
-
-
 
 
     }

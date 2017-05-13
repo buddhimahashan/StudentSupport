@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Platform, ActionSheetController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-import { AngularFire } from 'angularfire2'
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 
 /**
@@ -27,6 +27,8 @@ export class HomeStudent {
   Subjects: any;
   Reasons: any;
   Description: any;
+  SelectedValue: any;
+  Date: String = new Date().toISOString();
 
   TSlots: string;
   lName: string;
@@ -35,13 +37,44 @@ export class HomeStudent {
   Lecture: string = "";
   LectureName: string = '';
   username: string;
+  TodayDate: string;
+  btnDisable: boolean = true;
+  staffSlots: any;
+  userId: any = "IT00000000";
+  day: any = "monday";
+  slot: any = "slot_1";
+  status: any;
+
 
 
   constructor(public navCtrl: NavController, public alerCtrl: AlertController, public navParams: NavParams, public platform: Platform,
     public actionsheetCtrl: ActionSheetController, public loadingCtrl: LoadingController, public angfire: AngularFire) {
-    this.username=window.localStorage.getItem('SessionName');
+    this.username = window.localStorage.getItem('SessionName');
     this.initializeItems();
     this.items = [];
+    this.TodayDate = new Date().toISOString();
+    this.staffSlots = angfire.database.list('staffSlot/' + this.userId)
+    /* , {
+      query: {
+        orderByChild: 'status',
+        equalTo: 'true'
+      },
+    preserveSnapshot: true
+    }).subscribe(snapshots => {
+      let UserDataArray = [];
+      snapshots.forEach(snapshot => {
+        UserDataArray.push(snapshot.val());
+      });
+
+      if (UserDataArray.length > 0) {
+        this.status = UserDataArray[0].status;
+        
+      } else {
+        this.status = "";
+        
+
+      }
+    })*/
   }
 
   checkdescription() {
@@ -65,7 +98,9 @@ export class HomeStudent {
           text: 'OK',
           handler: () => {
             this.insertRequest();
+            this.presentLoading();
             this.alertMessage("Succesful!", "Your Appointment Succesfully Send to the Lecture");
+            this.navCtrl.push(HomeStudent);
             console.log('OK clicked');
           }
         }
@@ -77,12 +112,12 @@ export class HomeStudent {
   insertRequest() {
 
     this.checkdescription();
-    
+
     console.log(this.username);
 
     this.angfire.database.list('/StudentAppointment').push({
       lecture: this.LectureName,
-      date: this.event.month,
+     date: this.event.month,
       time: this.TimeSlots,
       year: this.Years,
       semester: this.Semester,
@@ -123,15 +158,15 @@ export class HomeStudent {
 
   initializeItems() {
     this.items = [
-      'Dr.(Mrs) Pradeepa Samarasinghe',
-      'Ms. Dinuka Wijendra',
-      'Ms. Yashodhya Wijesinghe',
-      'Ms. Dakshi Tharanga',
-      'Dr. Kosala Yapa Bandara',
-      'Ms. Dulani Perera',
-      'Ms. Namalie  Walgampaya',
-      'Mr. Jagath Wickramarathne',
-      'Mr. Isuru Kumarasiri '
+      'Pradeepa Samarasinghe',
+      'Dinuka Wijendra',
+      'Yashodhya Wijesinghe',
+      'Dakshi Tharanga',
+      'Kosala Yapa Bandara',
+      'Dulani Perera',
+      'Namalie  Walgampaya',
+      'Jagath Wickramarathne',
+      'Isuru Kumarasiri '
     ]
   }
 
@@ -158,10 +193,13 @@ export class HomeStudent {
 
   public event = {
 
-    month: '2017-01-01',
+    month: new Date().toISOString(),
     timeStarts: '08:30'
   }
-
+  onChange(selectedValue) {
+    console.log("Selected:", selectedValue);
+    this.SelectedValue = selectedValue;
+  }
 
   CheckAppointmentDetails() {
     this.TSlots = this.TimeSlots;
@@ -170,11 +208,26 @@ export class HomeStudent {
       this.alertMessage("Warning!", "Please Select the Lecture");
     } else if (this.TSlots == undefined || this.TSlots == '') {
       this.alertMessage("Warning!", "Please Select the Time");
-    } else {
+    }/* else if (this.event.month < this.TodayDate) {
+       console.log(this.event.month);
+      console.log(this.TodayDate);
+      console.log(new Date());
+      this.alertMessage("Warning!", "You can't make appointment for past dates");
+    }*/
+    else {
+
+      this.presentLoading();
+      this.btnDisable = false;
       console.log(this.LectureName);
-      console.log(this.TSlots);
+      console.log(this.TimeSlots);
+    //  console.log(this.event.month);
+    console.log(this.Date);
+      console.log(this.TodayDate);
+      console.log(this.SelectedValue);
+      console.log(this.staffSlots);
     }
   }
+
 
   CheckAvailabilityDetails() {
     this.TSlots = this.TimeSlots;
@@ -188,10 +241,9 @@ export class HomeStudent {
     } else if (this.Reasons == undefined || this.Reasons == '') {
       this.alertMessage("Warning!", "Please Select Appointment Details");
     } else {
-       this.SendAppointment();
-     // this.openMenu();
+      this.SendAppointment();
       console.log(this.LectureName);
-      console.log(this.event.month);
+     console.log(this.event.month);
       console.log(this.TimeSlots);
       console.log(this.Years);
       console.log(this.Semester);
@@ -199,7 +251,7 @@ export class HomeStudent {
       console.log(this.Reasons);
       console.log(this.Description);
       console.log(this.Responce);
-      this.username=window.localStorage.getItem('SessionName');
+      this.username = window.localStorage.getItem('SessionName');
       console.log(this.username);
     }
   }
@@ -213,12 +265,12 @@ export class HomeStudent {
           text: 'Send Request',
           icon: 'send',
           handler: () => {
-           this.CheckAvailabilityDetails();
-           
-            
+            this.CheckAvailabilityDetails();
+
+
             //this.insertRequest();''
             //  this.clear();
-            this.navCtrl.push(HomeStudent);
+
             console.log('Send Request clicked');
           }
         },

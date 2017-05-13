@@ -35,14 +35,14 @@
   <ion-list>
     <ion-item>
       <ion-label>Date</ion-label>
-      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="event.month"></ion-datetime>
+      <ion-datetime displayFormat="DDDD MMM DD,YYYY" pickerFormat="DDDD MMM DD,YYYY"  [(ngModel)]="Date"></ion-datetime>
     </ion-item>
 
     <ion-item>
       <ion-label>Time</ion-label>
       <!-- <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.timeStarts"></ion-datetime>-->
-      <ion-select [(ngModel)]="TimeSlots">
-        <ion-option value="09.00 - 09.30">09.00 - 09.30</ion-option>
+      <ion-select #newSelect [(ngModel)]="TimeSlots" (change)="onChange(TimeSlots)">
+        <ion-option value="09.00 - 09.30" checked="true">09.00 - 09.30</ion-option>
         <ion-option value="09.30 - 10.00">09.30 - 10.00</ion-option>
         <ion-option value="10.00 - 10.30">10.00 - 10.30</ion-option>
         <ion-option value="10.30 - 11.00">10.30 - 11.00</ion-option>
@@ -60,7 +60,7 @@
   </ion-list>
 
   <ion-list>
-    <button ion-button block (click)="CheckAvailabilityDetails()" >Check</button>
+    <button ion-button block (click)="CheckAppointmentDetails()" >Check</button>
     <!--ion-button block (click)="presentLoading()"-->
     <!--<h5 ion-text color="positive" style="text-align: center" >Lecturer Name</h5>-->
   </ion-list>
@@ -138,7 +138,7 @@
 
   <ion-list>
     <!--<button ion-button block  >Request</button>-->
-    <button ion-button block (click)="openMenu()">
+    <button ion-button block [disabled]="btnDisable" (click)="openMenu()">
     Request
   </button>
 
