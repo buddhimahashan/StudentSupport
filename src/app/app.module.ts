@@ -24,6 +24,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireModule } from 'angularfire2';
 import { Message } from '../pages/message/message';
 import { Viewmessage } from '../pages/viewmessage/viewmessage';
+import { Changepassword } from '../pages/changepassword/changepassword';
 
 const config = {
    apiKey: "AIzaSyCle6OXT0qMaWzaaG6z_it9KsZC-VNz6lI",
@@ -55,7 +56,8 @@ const config = {
     EditPublicNotification,
     Newmessage,
     Message,
-    Viewmessage
+    Viewmessage,
+    Changepassword
 
 
   ],
@@ -85,7 +87,8 @@ const config = {
     EditPublicNotification,
     Newmessage,
     Message,
-    Viewmessage
+    Viewmessage,
+    Changepassword
 
 
   ],
