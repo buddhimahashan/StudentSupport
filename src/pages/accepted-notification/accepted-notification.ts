@@ -16,9 +16,23 @@ import {AngularFire,FirebaseListObservable} from 'angularfire2';
 export class AcceptedNotification {
 
    StudentAppointment: FirebaseListObservable<any>;
+   // add session user here
+  user : any = "IT15123456";
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public angfire: AngularFire) {
-    this.StudentAppointment = angfire.database.list('/StudentAppointment');
+    this.StudentAppointment = angfire.database.list('/StudentAppointment',{
+        query: {
+          orderByChild: 'user',  
+          equalTo: this.user
+      },
+      });
+  }
+
+  RejectEvent(Appointment){
+
+    this.StudentAppointment.update(Appointment.$key,{
+      responce : "Reject"
+    })
   }
 
   

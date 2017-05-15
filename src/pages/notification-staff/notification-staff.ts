@@ -18,11 +18,51 @@ import { AcceptedNotification } from "../accepted-notification/accepted-notifica
 export class NotificationStaff {
   StudentAppointment: FirebaseListObservable<any>;
 
+  // add session user here
+  user : any = "IT17123456";
+  CompareData : any;
+  AssignData : FirebaseListObservable<any>;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public angfire: AngularFire) {
-      this.StudentAppointment = angfire.database.list('/StudentAppointment');
+      this.StudentAppointment = angfire.database.list('/StudentAppointment',{
+        query: {
+          orderByChild: 'user',  
+          equalTo: this.user
+      },
+      });
   }
 
- Open2(){
+  AcceptEvent(Appointment){
+
+    this.StudentAppointment.update(Appointment.$key,{
+      responce : "Accept"
+    })
+  }
+
+  RejectEvent(Appointment){
+
+    this.StudentAppointment.update(Appointment.$key,{
+      responce : "Reject"
+    })
+  }
+
+  //   this.CompareData = this.angfire.database.list('/StudentAppointment', {
+  //       query: {
+  //         orderByChild: 'user',  
+  //         equalTo: this.user
+  //       },
+  //       preserveSnapshot: true
+  //        }).subscribe(snapshots => {
+  //            let CompareDataArray = [];
+  //            snapshots.forEach(snapshot => {
+  //                CompareDataArray.push(snapshot.val());
+  //             });
+
+  //        CompareDataArray[0].responce="Accept";
+  //       })
+  // }
+   
+  Open2(){
     this.navCtrl.push(AcceptedNotification);
   }
 
