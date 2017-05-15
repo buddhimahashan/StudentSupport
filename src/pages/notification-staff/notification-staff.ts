@@ -16,6 +16,7 @@ import { AcceptedNotification } from "../accepted-notification/accepted-notifica
   templateUrl: 'notification-staff.html',
 })
 export class NotificationStaff {
+  RemoveData: any;
   StudentAppointment: FirebaseListObservable<any>;
 
   // add session user here
@@ -37,6 +38,15 @@ export class NotificationStaff {
     this.StudentAppointment.update(Appointment.$key,{
       responce : "Accept"
     })
+
+    this.angfire.database.list('/ReservedSlots').push({
+      tokenID: Appointment.$key,
+      lectureID: Appointment.lecture,
+      studentId: Appointment.user,
+      date: Appointment.date,
+      time: Appointment.time
+      
+    });    
   }
 
   RejectEvent(Appointment){
@@ -44,23 +54,30 @@ export class NotificationStaff {
     this.StudentAppointment.update(Appointment.$key,{
       responce : "Reject"
     })
+
+    this.RemoveData =this.angfire.database.('/ReservedSlots',{
+      query: {
+          orderByChild: 'tokenID',  
+          equalTo: Appointment.$key
+        },
+      });
+    this.RemoveData.remove();
+
+    // this.CompareData = this.angfire.database.list('/ReservedSlots', {
+    //     query: {
+    //       orderByChild: 'user',  
+    //       equalTo: this.user
+    //     },
+    //     preserveSnapshot: true
+    //      }).subscribe(snapshots => {
+    //          let CompareDataArray = [];
+    //          snapshots.forEach(snapshot => {
+    //              CompareDataArray.push(snapshot.val());
+    //           });
+
+    //      CompareDataArray[0].responce="Accept";
+    //     })
   }
-
-  //   this.CompareData = this.angfire.database.list('/StudentAppointment', {
-  //       query: {
-  //         orderByChild: 'user',  
-  //         equalTo: this.user
-  //       },
-  //       preserveSnapshot: true
-  //        }).subscribe(snapshots => {
-  //            let CompareDataArray = [];
-  //            snapshots.forEach(snapshot => {
-  //                CompareDataArray.push(snapshot.val());
-  //             });
-
-  //        CompareDataArray[0].responce="Accept";
-  //       })
-  // }
    
   Open2(){
     this.navCtrl.push(AcceptedNotification);

@@ -17,7 +17,7 @@ export class AcceptedNotification {
 
    StudentAppointment: FirebaseListObservable<any>;
    // add session user here
-  user : any = "IT15123456";
+  user : any = "IT17123456";
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public angfire: AngularFire) {
     this.StudentAppointment = angfire.database.list('/StudentAppointment',{
