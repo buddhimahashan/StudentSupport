@@ -38,12 +38,16 @@ export class HomeStaff {
   slot_14 : boolean=false;
   slot_15 : boolean=false;
   slot_16 : boolean=false;
+  slot_17 : boolean=false;
+  slot_18 : boolean=false;
+  slot_19 : boolean=false;
+  slot_20 : boolean=false;
 
   slot_1_check : boolean=true;
 
   slotList : FirebaseListObservable <any>;
   day: any;
-  userId: any = "IT00000000";
+  userId: any = window.localStorage.getItem('SessionName');
   testval : string ="hello";
 
   btnDisable: boolean=true;
@@ -150,6 +154,30 @@ export class HomeStaff {
       else
         this.slot_16=false; 
       });
+      firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_17'+'/status').on('value', data => {
+      if(data.val()==true)
+        this.slot_17 = data.val();
+      else
+        this.slot_17=false; 
+      });
+      firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_18'+'/status').on('value', data => {
+      if(data.val()==true)
+        this.slot_18 = data.val();
+      else
+        this.slot_18=false; 
+      });
+      firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_19'+'/status').on('value', data => {
+      if(data.val()==true)
+        this.slot_19 = data.val();
+      else
+        this.slot_19=false; 
+      });
+      firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_20'+'/status').on('value', data => {
+      if(data.val()==true)
+        this.slot_20 = data.val();
+      else
+        this.slot_20=false; 
+      });
 
   }
 
@@ -209,6 +237,18 @@ export class HomeStaff {
     });
     firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_16').set({
                 status: this.slot_16       
+    });
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_17').set({
+                status: this.slot_17       
+    });
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_18').set({
+                status: this.slot_18       
+    });
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_19').set({
+                status: this.slot_19       
+    });
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_20').set({
+                status: this.slot_20       
     });
 
     // var slotSet = this.angfire.database().ref("staffSlot/");
