@@ -55,7 +55,7 @@ export class NotificationStaff {
       responce : "Reject"
     })
 
-    this.RemoveData =this.angfire.database.('/ReservedSlots',{
+    this.RemoveData =this.angfire.database.list('/ReservedSlots',{
       query: {
           orderByChild: 'tokenID',  
           equalTo: Appointment.$key

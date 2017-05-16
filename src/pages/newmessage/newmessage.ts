@@ -27,6 +27,9 @@ export class Newmessage {
   Message: any;
   Title: any;
   User: any;
+
+  MessageTable : string;
+
  
 
 
@@ -88,7 +91,10 @@ export class Newmessage {
       this.alertMessage("Warning!", "Check User details");
     } else {
 
-      this.angfire.database.list('/Messages').push({
+      this.MessageTable = "Messages"+window.localStorage.getItem('SessionName');
+
+
+      this.angfire.database.list('/'+this.MessageTable).push({
         To: this.UserName,
         From: window.localStorage.getItem('SessionName'),
         Title: this.Title,
