@@ -98,13 +98,13 @@
   <ion-row color="light" center text-center *ngIf="Appointment.responce=='Pending'" >
 
     <ion-col>
-      <button ion-button icon-left color="secondary">
+      <button ion-button icon-left color="secondary" (click)="AcceptEvent(Appointment)">
         <ion-icon name="thumbs-up"></ion-icon>
         <div>Accept</div>
       </button>
     </ion-col>
     <ion-col>
-      <button ion-button icon-left  color="danger">
+      <button ion-button icon-left  color="danger" (click)="RejectEvent(Appointment)">
         <ion-icon name="thumbs-down"></ion-icon>
         <div>Reject</div>
       </button>

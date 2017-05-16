@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Platform, ActionSheetController } from 'ionic-angular';
 import { FirebaseListObservable, AngularFire } from 'angularfire2'
 import { AlertController } from 'ionic-angular';
+import { Changepassword } from '../changepassword/changepassword';
 
 /**
  * Generated class for the Profile page.
@@ -18,6 +19,9 @@ export class Profile {
 
   UserProfileName: string;
   firelist: FirebaseListObservable<any>;
+  firelistMapping: FirebaseListObservable<any>;
+
+
   fname: string;
   lname: string;
   bdate: string;
@@ -86,10 +90,11 @@ export class Profile {
       cssClass: 'action-sheets-basic-page',
       buttons: [
         {
-          text: 'Settings',
+          text: 'Change Password',
           icon: 'settings',
           handler: () => {
-            console.log('Settings Clicked');
+            console.log('Change Password');
+            this.navCtrl.push(Changepassword);
           }
         },
 
@@ -177,10 +182,48 @@ export class Profile {
             contact: this.contact,
           });
 
+          this.firelistMapping = this.angfire.database.list('/UserNameMaping', {
+        query: {
+          orderByChild: 'user',
+          equalTo: window.localStorage.getItem('SessionName'),
+        }
+      })
+
+
+
+      this.firelistMapping.subscribe(data => {
+
+        console.log(data.length)
+
+        if (data.length > 0) {
+
+          this.firelistMapping.update(data[0].$key, {
+            user: window.localStorage.getItem('SessionName'),
+            name: this.fname+" "+ this.lname,
+            
+          });
+          console.log(this.fname+" "+ this.lname)
           window.location.reload();
 
 
         } else {
+
+          this.angfire.database.list('/UserNameMaping').push({
+            user: window.localStorage.getItem('SessionName'),
+            name: this.fname+" "+this.lname
+          })
+
+          
+          console.log(this.fname+" "+ this.lname)
+          window.location.reload();
+        }
+
+
+
+
+      })
+
+      } else {
 
           this.angfire.database.list('/UserProfiles').push({
             user: window.localStorage.getItem('SessionName'),
@@ -190,15 +233,57 @@ export class Profile {
             bdate: this.bdate,
             email: this.email,
             contact: this.contact,
+            
           })
+          this.firelistMapping = this.angfire.database.list('/UserNameMaping', {
+        query: {
+          orderByChild: 'user',
+          equalTo: window.localStorage.getItem('SessionName'),
+        }
+      })
+
+
+
+      this.firelistMapping.subscribe(data => {
+
+        console.log(data.length)
+
+        if (data.length > 0) {
+
+          this.firelistMapping.update(data[0].$key, {
+            user: window.localStorage.getItem('SessionName'),
+            name: this.fname+" "+ this.lname,
+            
+          });
+          console.log(this.fname+" "+ this.lname)
+
+          window.location.reload();
+
+
+        } else {
+
+          this.angfire.database.list('/UserNameMaping').push({
+            user: window.localStorage.getItem('SessionName'),
+            name: this.fname+" "+this.lname
+          })
+
+
+          
           window.location.reload();
         }
+
+      })
+        }
+
+
 
 
       })
 
 
-    }
+       
+
+   }
   }
 
 

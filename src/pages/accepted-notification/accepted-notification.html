@@ -87,7 +87,9 @@
 
   <ion-row color="light" center text-center *ngIf="Appointment.responce=='Accept'">
     <ion-col>
-      <button ion-button icon-left  color="danger">
+    </ion-col>  
+    <ion-col>
+      <button ion-button icon-left  color="danger" (click)="RejectEvent(Appointment)">
         <ion-icon name="thumbs-down"></ion-icon>
         <div>Reject</div>
       </button>

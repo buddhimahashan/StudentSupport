@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {NavController, NavParams } from 'ionic-angular';
 import {AngularFire,FirebaseListObservable} from 'angularfire2';
-//import firebase from 'firebase';
+import firebase from 'firebase';
 import { AcceptedNotification } from "../accepted-notification/accepted-notification";
 
 /**
@@ -16,13 +16,48 @@ import { AcceptedNotification } from "../accepted-notification/accepted-notifica
   templateUrl: 'notification-staff.html',
 })
 export class NotificationStaff {
+  RemoveData: any;
   StudentAppointment: FirebaseListObservable<any>;
 
+  // add session user here
+  user : any = "IT17123456";
+  CompareData : any;
+  AssignData : FirebaseListObservable<any>;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public angfire: AngularFire) {
-      this.StudentAppointment = angfire.database.list('/StudentAppointment');
+      this.StudentAppointment = angfire.database.list('/StudentAppointment',{
+        query: {
+          orderByChild: 'user',  
+          equalTo: this.user
+      },
+      });
   }
 
- Open2(){
+  AcceptEvent(Appointment){
+
+    this.StudentAppointment.update(Appointment.$key,{
+      responce : "Accept"
+    })
+
+    this.angfire.database.list('/ReservedSlots').push({
+      tokenID: Appointment.$key,
+      lectureID: Appointment.lecture,
+      studentId: Appointment.user,
+      date: Appointment.date,
+      time: Appointment.time
+      
+    });    
+  }
+
+  RejectEvent(Appointment){
+
+    this.StudentAppointment.update(Appointment.$key,{
+      responce : "Reject"
+    })
+
+  }
+   
+  Open2(){
     this.navCtrl.push(AcceptedNotification);
   }
 

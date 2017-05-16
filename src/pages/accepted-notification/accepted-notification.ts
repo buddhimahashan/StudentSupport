@@ -14,11 +14,34 @@ import {AngularFire,FirebaseListObservable} from 'angularfire2';
   templateUrl: 'accepted-notification.html',
 })
 export class AcceptedNotification {
+  RemoveData: FirebaseListObservable<any[]>;
 
    StudentAppointment: FirebaseListObservable<any>;
+   // add session user here
+  user : any = "IT17123456";
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public angfire: AngularFire) {
-    this.StudentAppointment = angfire.database.list('/StudentAppointment');
+    this.StudentAppointment = angfire.database.list('/StudentAppointment',{
+        query: {
+          orderByChild: 'user',  
+          equalTo: this.user
+      },
+      });
+  }
+
+  RejectEvent(Appointment){
+
+    this.StudentAppointment.update(Appointment.$key,{
+      responce : "Reject"
+    });
+
+    this.RemoveData =this.angfire.database.list('/ReservedSlots',{
+    query: {
+          orderByChild: 'tokenID',  
+          equalTo: Appointment.$key
+        },
+      });
+    this.RemoveData.remove();
   }
 
   

@@ -23,15 +23,20 @@ export class Message {
   Title:string;
   Message:string;
 
+  MessageTable : string;
+
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public angfire: AngularFire) {
 
-    this.InboxMessageData = this.angfire.database.list('/Messages', {
+    this.MessageTable = "Messages"+window.localStorage.getItem('SessionName');
+
+    this.InboxMessageData = this.angfire.database.list('/'+this.MessageTable, {
       query: {
         orderByChild: 'To',
         equalTo: window.localStorage.getItem('SessionName')
       },})
 
-       this.SentMessageData = this.angfire.database.list('/Messages', {
+       this.SentMessageData = this.angfire.database.list('/'+this.MessageTable, {
       query: {
         orderByChild: 'From',
         equalTo: window.localStorage.getItem('SessionName'),

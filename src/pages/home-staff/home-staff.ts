@@ -38,12 +38,16 @@ export class HomeStaff {
   slot_14 : boolean=false;
   slot_15 : boolean=false;
   slot_16 : boolean=false;
+  slot_17 : boolean=false;
+  slot_18 : boolean=false;
+  slot_19 : boolean=false;
+  slot_20 : boolean=false;
 
   slot_1_check : boolean=true;
 
   slotList : FirebaseListObservable <any>;
   day: any;
-  userId: any = "IT00000000";
+  userId: any = window.localStorage.getItem('SessionName');
   testval : string ="hello";
 
   btnDisable: boolean=true;
@@ -150,6 +154,30 @@ export class HomeStaff {
       else
         this.slot_16=false; 
       });
+      firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_17'+'/status').on('value', data => {
+      if(data.val()==true)
+        this.slot_17 = data.val();
+      else
+        this.slot_17=false; 
+      });
+      firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_18'+'/status').on('value', data => {
+      if(data.val()==true)
+        this.slot_18 = data.val();
+      else
+        this.slot_18=false; 
+      });
+      firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_19'+'/status').on('value', data => {
+      if(data.val()==true)
+        this.slot_19 = data.val();
+      else
+        this.slot_19=false; 
+      });
+      firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_20'+'/status').on('value', data => {
+      if(data.val()==true)
+        this.slot_20 = data.val();
+      else
+        this.slot_20=false; 
+      });
 
   }
 
@@ -163,52 +191,84 @@ export class HomeStaff {
 
   setSlot(e): void {
     firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_1').set({
-                status: this.slot_1       
+                status: this.slot_1,
+                slotName: "09.00 - 09.30"       
     });
     firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_2').set({
-                status: this.slot_2       
+                status: this.slot_2,
+                slotName: "09.30 - 10.00"       
     });
     firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_3').set({
-                status: this.slot_3       
+                status: this.slot_3,
+                slotName: "10.00 - 10.30"       
     });
     firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_4').set({
-                status: this.slot_4       
+                status: this.slot_4,
+                slotName: "10.30 - 11.00"       
     });
     firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_5').set({
-                status: this.slot_5       
+                status: this.slot_5,
+                slotName: "11.00 - 11.30"       
     });
     firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_6').set({
-                status: this.slot_6       
+                status: this.slot_6,
+                slotName: "11.30 - 12.00"       
     });
     firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_7').set({
-                status: this.slot_7       
+                status: this.slot_7,
+                slotName: "12.00 - 12.30"       
     });
     firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_8').set({
-                status: this.slot_8       
+                status: this.slot_8,
+                slotName: "12.30 - 13.00"       
     });
     firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_9').set({
-                status: this.slot_9       
+                status: this.slot_9,
+                slotName: "13.00 - 13.30"       
     });
     firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_10').set({
-                status: this.slot_10       
+                status: this.slot_10,
+                slotName: "13.30 - 14.00"       
     });
     firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_11').set({
-                status: this.slot_11       
+                status: this.slot_11,
+                slotName: "14.00 - 14.30"       
     });
     firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_12').set({
-                status: this.slot_12       
+                status: this.slot_12,
+                slotName: "14.30 - 15.00"       
     });
     firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_13').set({
-                status: this.slot_13       
+                status: this.slot_13,
+                slotName: "15.00 - 15.30"       
     });
     firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_14').set({
-                status: this.slot_14       
+                status: this.slot_14,
+                slotName: "15.30 - 16.00"       
     });
     firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_15').set({
-                status: this.slot_15       
+                status: this.slot_15,
+                slotName: "16.00 - 16.30"       
     });
     firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_16').set({
-                status: this.slot_16       
+                status: this.slot_16,
+                slotName: "16.30 - 17.00"       
+    });
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_17').set({
+                status: this.slot_17,
+                slotName: "17.00 - 17.30"       
+    });
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_18').set({
+                status: this.slot_18,
+                slotName: "17.30 - 18.00"       
+    });
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_19').set({
+                status: this.slot_19,
+                slotName: "18.00 - 18.30"       
+    });
+    firebase.database().ref('staffSlot/'+this.userId+'/'+this.day +'/slot_20').set({
+                status: this.slot_20,
+                slotName: "18.30 - 19.00"       
     });
 
     // var slotSet = this.angfire.database().ref("staffSlot/");

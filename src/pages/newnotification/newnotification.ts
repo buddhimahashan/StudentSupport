@@ -20,7 +20,8 @@ export class Newnotification {
   firelist: FirebaseListObservable<any>;
   Notice: any;
   Years: any;
-  Date: any;
+  Date: String = new Date().toISOString();
+ //ionic  Date: any;
   Description: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public angfire: AngularFire,
