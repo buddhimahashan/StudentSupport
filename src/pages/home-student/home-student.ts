@@ -4,6 +4,7 @@ import { Platform, ActionSheetController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { FindLecture } from '../find-lecture/find-lecture';
 
 
 /**
@@ -27,8 +28,7 @@ export class HomeStudent {
   Subjects: any;
   Reasons: any;
   Description: any;
-  SelectedValue: any;
-  Date: String = new Date().toISOString();
+
 
   TSlots: string;
   lName: string;
@@ -39,14 +39,16 @@ export class HomeStudent {
   username: string;
   TodayDate: string;
   btnDisable: boolean = true;
-  staffSlots: any;
+  staffSlots: FirebaseListObservable<any>;
   userId: any = "IT00000000";
-  day: any = "monday";
+  day: any;
   slot: any = "slot_1";
   status: any;
+  id: any;
 
 
   UserDataList = [];
+  StaffSlotsList=[];
   UserData: any;
 
   constructor(public navCtrl: NavController, public alerCtrl: AlertController, public navParams: NavParams, public platform: Platform,
@@ -56,7 +58,7 @@ export class HomeStudent {
     this.items = [];
 
     this.TodayDate = new Date().toISOString();
-    this.staffSlots = angfire.database.list('staffSlot/' + this.userId)
+    this.staffSlots = angfire.database.list('staffSlot/')
 
 
     this.UserData = this.angfire.database.list('/login', {
@@ -81,7 +83,22 @@ export class HomeStudent {
 
 
   }
-
+  FindLecture(){
+    this.navCtrl.push(FindLecture);
+  }
+  getday(date) {
+    var d = new Date(date);
+    var weekday = new Array(7);
+    weekday[0] = "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thursday";
+    weekday[5] = "Friday";
+    weekday[5] = "Saturday";
+    var n = weekday[d.getDay()];
+    this.day = n;
+  }
   checkdescription() {
     if (this.Description == undefined || this.Description == '') {
       this.Description = '';
@@ -122,7 +139,7 @@ export class HomeStudent {
 
     this.angfire.database.list('/StudentAppointment').push({
       lecture: this.LectureName,
-     date: this.event.month,
+      date: this.event.month.split("T")[0],
       time: this.TimeSlots,
       year: this.Years,
       semester: this.Semester,
@@ -163,19 +180,19 @@ export class HomeStudent {
 
   initializeItems() {
 
-  /*  this.items = [
-      'Dr.(Mrs) Pradeepa Samarasinghe',
-      'Ms. Dinuka Wijendra',
-      'Ms. Yashodhya Wijesinghe',
-      'Ms. Dakshi Tharanga',
-      'Dr. Kosala Yapa Bandara',
-      'Ms. Dulani Perera',
-      'Ms. Namalie  Walgampaya',
-      'Mr. Jagath Wickramarathne',
-      'Mr. Isuru Kumarasiri '
-    ] */
+    /*  this.items = [
+        'Dr.(Mrs) Pradeepa Samarasinghe',
+        'Ms. Dinuka Wijendra',
+        'Ms. Yashodhya Wijesinghe',
+        'Ms. Dakshi Tharanga',
+        'Dr. Kosala Yapa Bandara',
+        'Ms. Dulani Perera',
+        'Ms. Namalie  Walgampaya',
+        'Mr. Jagath Wickramarathne',
+        'Mr. Isuru Kumarasiri '
+      ] */
 
-     this.items = this.UserDataList
+    this.items = this.UserDataList
 
   }
 
@@ -205,10 +222,7 @@ export class HomeStudent {
     month: new Date().toISOString(),
     timeStarts: '08:30'
   }
-  onChange(selectedValue) {
-    console.log("Selected:", selectedValue);
-    this.SelectedValue = selectedValue;
-  }
+
 
   CheckAppointmentDetails() {
     this.TSlots = this.TimeSlots;
@@ -217,23 +231,24 @@ export class HomeStudent {
       this.alertMessage("Warning!", "Please Select the Lecture");
     } else if (this.TSlots == undefined || this.TSlots == '') {
       this.alertMessage("Warning!", "Please Select the Time");
-    }/* else if (this.event.month < this.TodayDate) {
-       console.log(this.event.month);
+    } else if (this.event.month < this.TodayDate) {
+      console.log(this.event.month);
       console.log(this.TodayDate);
       console.log(new Date());
       this.alertMessage("Warning!", "You can't make appointment for past dates");
-    }*/
+    }
     else {
 
       this.presentLoading();
       this.btnDisable = false;
       console.log(this.LectureName);
       console.log(this.TimeSlots);
-    //  console.log(this.event.month);
-    console.log(this.Date);
-      console.log(this.TodayDate);
-      console.log(this.SelectedValue);
+      console.log(this.event.month.split("T")[0]);
+      this.getday(this.event.month);
+      console.log(this.day);
+      console.log('staffSlot/' + this.userId + '/' + this.day + '/' + this.slot);
       console.log(this.staffSlots);
+      //console.log(this.staffSlots);
     }
   }
 
@@ -252,7 +267,7 @@ export class HomeStudent {
     } else {
       this.SendAppointment();
       console.log(this.LectureName);
-     console.log(this.event.month);
+      console.log(this.event.month);
       console.log(this.TimeSlots);
       console.log(this.Years);
       console.log(this.Semester);

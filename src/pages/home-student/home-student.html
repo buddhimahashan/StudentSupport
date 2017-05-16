@@ -12,6 +12,12 @@
       <h1 style="text-align: center">Make Your Appointment</h1>
     </ion-avatar>
   </ion-item>
+
+   <ion-buttons end>
+      <button clear icon-only outline ion-button icon-only ion-button icon-only color="royal" (click)="FindLecture()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
     
   </ion-navbar>
   <!--<ion-title>Home</ion-title>-->
@@ -35,7 +41,7 @@
   <ion-list>
     <ion-item>
       <ion-label>Date</ion-label>
-      <ion-datetime displayFormat="DDDD MMM DD,YYYY" pickerFormat="DDDD MMM DD,YYYY"  [(ngModel)]="Date"></ion-datetime>
+      <ion-datetime displayFormat="DDDD MMM DD,YYYY" pickerFormat="DDDD MMM DD,YYYY"  [(ngModel)]="event.month"></ion-datetime>
     </ion-item>
 
     <ion-item>
