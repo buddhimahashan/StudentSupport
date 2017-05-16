@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {NavController, NavParams } from 'ionic-angular';
 import {AngularFire,FirebaseListObservable} from 'angularfire2';
-//import firebase from 'firebase';
+import firebase from 'firebase';
 import { AcceptedNotification } from "../accepted-notification/accepted-notification";
 
 /**
@@ -55,28 +55,6 @@ export class NotificationStaff {
       responce : "Reject"
     })
 
-    this.RemoveData =this.angfire.database.list('/ReservedSlots',{
-      query: {
-          orderByChild: 'tokenID',  
-          equalTo: Appointment.$key
-        },
-      });
-    this.RemoveData.remove();
-
-    // this.CompareData = this.angfire.database.list('/ReservedSlots', {
-    //     query: {
-    //       orderByChild: 'user',  
-    //       equalTo: this.user
-    //     },
-    //     preserveSnapshot: true
-    //      }).subscribe(snapshots => {
-    //          let CompareDataArray = [];
-    //          snapshots.forEach(snapshot => {
-    //              CompareDataArray.push(snapshot.val());
-    //           });
-
-    //      CompareDataArray[0].responce="Accept";
-    //     })
   }
    
   Open2(){
