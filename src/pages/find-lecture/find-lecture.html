@@ -7,91 +7,93 @@
 <ion-header>
 
   <ion-navbar color="primary">
-   
-           <ion-item color="primary">
-     <ion-avatar item-centre>
-      <h1 style="text-align: center">Find Your Lecture</h1>
-    </ion-avatar>
-           </ion-item>
+
+    <ion-item color="primary">
+      <ion-avatar item-centre>
+        <h1 style="text-align: center">Find Your Lecture</h1>
+      </ion-avatar>
+    </ion-item>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content center text-center>
+<ion-content>
 
-  <ion-card>
-
-  <ion-card-content>
-    You can find your Lecture Name & User Name by using Year and the Subject....... 
-  </ion-card-content>
-
-</ion-card>
-
- 
   <ion-list>
-   <ion-item>
+    <ion-list-header color="light">
+      <p>You can Find your <strong>Lecture in here :</strong></p>
+    </ion-list-header>
+  </ion-list>
+
+
+  <ion-list>
+    <ion-item>
       <ion-label>Year<span style="color:#ff0000;">  *</span></ion-label>
       <ion-select [(ngModel)]="Years">
         <ion-option value="1st year">1st year</ion-option>
         <ion-option value="2nd year">2nd year</ion-option>
         <ion-option value="3rd year">3rd year</ion-option>
         <ion-option value="4th year">4th year</ion-option>
-        <ion-option value="All Students">All Students</ion-option>
+
 
       </ion-select>
     </ion-item>
-    </ion-list>
+  </ion-list>
 
-       <ion-item [(ngSwitch)]="Years" >
-      <ion-label>Subject<span style="color:#ff0000;">  *</span></ion-label>
-      <ion-select [(ngModel)]="Subjects" *ngSwitchCase="'1st year'">
-        <ion-option value="Computer Fundementals">Computer Fundementals</ion-option>
-        <ion-option value="DCCN-I">DCCN-I</ion-option>
-        <ion-option value="Introduction to Programming">Introduction to Programming</ion-option>
-        <ion-option value="Information System">Information System</ion-option>
-        <ion-option value="Programming Fundamentals">Programming Fundamentals</ion-option>
-        <ion-option value="ST-I">ST-I</ion-option>
-        <ion-option value="DBMS-I">DBMS-I</ion-option>
-      </ion-select>
+  <ion-item [(ngSwitch)]="Years">
+    <ion-label>Subject<span style="color:#ff0000;">  *</span></ion-label>
+    <ion-select [(ngModel)]="Subjects" *ngSwitchCase="'1st year'">
+      <ion-option value="Computer Fundementals">Computer Fundementals</ion-option>
+      <ion-option value="DCCN-I">DCCN-I</ion-option>
+      <ion-option value="Introduction to Programming">Introduction to Programming</ion-option>
+      <ion-option value="Information System">Information System</ion-option>
+      <ion-option value="Programming Fundamentals">Programming Fundamentals</ion-option>
+      <ion-option value="ST-I">ST-I</ion-option>
+      <ion-option value="DBMS-I">DBMS-I</ion-option>
+    </ion-select>
 
-      <ion-select [(ngModel)]="Subjects" *ngSwitchCase="'2nd year'">
-        <ion-option value="DCCN-II">DCCN-II</ion-option>
-        <ion-option value="Java Programming">Java Programming</ion-option>
-        <ion-option value="SE-I">SE-I</ion-option>
-        <ion-option value="ST-II">ST-II</ion-option>
-        <ion-option value="DBMS-II">DBMS-II</ion-option>
-      </ion-select>
+    <ion-select [(ngModel)]="Subjects" *ngSwitchCase="'2nd year'">
+      <ion-option value="DCCN-II">DCCN-II</ion-option>
+      <ion-option value="Java Programming">Java Programming</ion-option>
+      <ion-option value="SE-I">SE-I</ion-option>
+      <ion-option value="ST-II">ST-II</ion-option>
+      <ion-option value="DBMS-II">DBMS-II</ion-option>
+    </ion-select>
 
-      <ion-select [(ngModel)]="Subjects" *ngSwitchCase="'3rd year'">
-        <ion-option value="PDM">PDM</ion-option>
-        <ion-option value="SE-III">SE-III</ion-option>
-        <ion-option value="PLDC">PLDC</ion-option>
-        <ion-option value="EM">EM</ion-option>
-        <ion-option value="OS">OS</ion-option>
-      </ion-select>
+    <ion-select [(ngModel)]="Subjects" *ngSwitchCase="'3rd year'">
+      <ion-option value="PDM">PDM</ion-option>
+      <ion-option value="SE-III">SE-III</ion-option>
+      <ion-option value="PLDC">PLDC</ion-option>
+      <ion-option value="EM">EM</ion-option>
+      <ion-option value="OS">OS</ion-option>
+    </ion-select>
 
-      <ion-select [(ngModel)]="Subjects" *ngSwitchCase="'4th year'">
-        <ion-option value="Research Project">Research Project</ion-option>
-        <ion-option value="Business Process Re-Engineering">Business Process Re-Engineering</ion-option>
-        <ion-option value="Enterprisse Network Security">Enterprisse Network Security</ion-option>
-        <ion-option value="HR Information Systems">HR Information Systems</ion-option>
-        <ion-option value="E-Commerce">E-Commerce</ion-option>
-      </ion-select>
-    </ion-item>
+    <ion-select [(ngModel)]="Subjects" *ngSwitchCase="'4th year'">
+      <ion-option value="Research Project">Research Project</ion-option>
+      <ion-option value="Business Process Re-Engineering">Business Process Re-Engineering</ion-option>
+      <ion-option value="Enterprisse Network Security">Enterprisse Network Security</ion-option>
+      <ion-option value="HR Information Systems">HR Information Systems</ion-option>
+      <ion-option value="E-Commerce">E-Commerce</ion-option>
+
+    </ion-select>
+  </ion-item>
 
 
+
+
+  <ion-item>
     <ion-row color="light" center text-center>
-    <ion-col>
-      <button ion-button icon-left color="secondary"  (click) = "Find()">
-        Find
+      <ion-col>
+        <button ion-button icon-left color="secondary" (click)="Find()">
+        Find Lecture Details
       </button>
-    </ion-col>
-    <ion-col>
-      <button ion-button icon-left  color="danger">
-        Cancel
-      </button>
-    </ion-col>
-  </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-item>
+
+  <ion-card floating>Lecture Name : {{lectureview}}</ion-card>
+
+
 
 </ion-content>

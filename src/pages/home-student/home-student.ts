@@ -50,6 +50,8 @@ export class HomeStudent {
   UserDataList = [];
   StaffSlotsList=[];
   UserData: any;
+  LectureUserName:any;
+  lectureusername:string;
 
   constructor(public navCtrl: NavController, public alerCtrl: AlertController, public navParams: NavParams, public platform: Platform,
     public actionsheetCtrl: ActionSheetController, public loadingCtrl: LoadingController, public angfire: AngularFire) {
@@ -61,9 +63,9 @@ export class HomeStudent {
     this.staffSlots = angfire.database.list('staffSlot/')
 
 
-    this.UserData = this.angfire.database.list('/login', {
+    this.UserData = this.angfire.database.list('/UserNameMaping', {
       query: {
-        orderByChild: 'type',
+        orderByChild: 'usertype',
         equalTo: 'Staff'
       },
       preserveSnapshot: true
@@ -76,16 +78,17 @@ export class HomeStudent {
 
 
       UserDataArray.forEach(element => {
-        this.UserDataList.push(element.uname);
+        this.UserDataList.push(element.name);
       });
     })
 
-
-
+    
   }
+
   FindLecture(){
     this.navCtrl.push(FindLecture);
   }
+
   getday(date) {
     var d = new Date(date);
     var weekday = new Array(7);
@@ -119,6 +122,7 @@ export class HomeStudent {
         {
           text: 'OK',
           handler: () => {
+            
             this.insertRequest();
             this.presentLoading();
             this.alertMessage("Succesful!", "Your Appointment Succesfully Send to the Lecture");
@@ -131,9 +135,37 @@ export class HomeStudent {
     confirm.present();
   }
 
+  FindUserName(){
+    console.log(this.LectureName);
+     this.LectureUserName = this.angfire.database.list('/UserNameMaping', {
+      query: {
+        orderByChild: 'name',
+        equalTo: this.LectureName
+      },
+      preserveSnapshot: true
+    }).subscribe(snapshots => {
+      let UserDataArray = [];
+      snapshots.forEach(snapshot => {
+        UserDataArray.push(snapshot.val());
+      });
+      console.log(UserDataArray.length);
+      if (UserDataArray.length > 0) {
+        this.lectureusername = UserDataArray[0].user;
+        
+
+      } else {
+        this.lectureusername = "";
+        
+
+      }
+    })
+  }
+  
   insertRequest() {
 
     this.checkdescription();
+    
+
 
     console.log(this.username);
 
@@ -148,6 +180,7 @@ export class HomeStudent {
       description: this.Description,
       responce: this.Responce,
       user: this.username,
+      lectureusername:this.lectureusername,
     });
   }
 
@@ -180,18 +213,6 @@ export class HomeStudent {
 
   initializeItems() {
 
-    /*  this.items = [
-        'Dr.(Mrs) Pradeepa Samarasinghe',
-        'Ms. Dinuka Wijendra',
-        'Ms. Yashodhya Wijesinghe',
-        'Ms. Dakshi Tharanga',
-        'Dr. Kosala Yapa Bandara',
-        'Ms. Dulani Perera',
-        'Ms. Namalie  Walgampaya',
-        'Mr. Jagath Wickramarathne',
-        'Mr. Isuru Kumarasiri '
-      ] */
-
     this.items = this.UserDataList
 
   }
@@ -214,6 +235,8 @@ export class HomeStudent {
 
   setitem(item) {
     this.LectureName = item;
+    console.log(this.LectureName);
+   
     this.items = [];
   }
 
@@ -240,6 +263,7 @@ export class HomeStudent {
     else {
 
       this.presentLoading();
+      this.FindUserName();
       this.btnDisable = false;
       console.log(this.LectureName);
       console.log(this.TimeSlots);

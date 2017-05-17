@@ -199,6 +199,7 @@ export class Profile {
 
           this.firelistMapping.update(data[0].$key, {
             user: window.localStorage.getItem('SessionName'),
+            usertype:window.localStorage.getItem('SessionType'),
             name: this.fname+" "+ this.lname,
             
           });
@@ -210,6 +211,7 @@ export class Profile {
 
           this.angfire.database.list('/UserNameMaping').push({
             user: window.localStorage.getItem('SessionName'),
+            usertype:window.localStorage.getItem('SessionType'),
             name: this.fname+" "+this.lname
           })
 
