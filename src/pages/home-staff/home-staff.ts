@@ -48,7 +48,7 @@ export class HomeStaff {
   slotList : FirebaseListObservable <any>;
   day: any;
   userId: any = window.localStorage.getItem('SessionName');
-  testval : string ="hello";
+  // testval : string ="hello";
 
   btnDisable: boolean=true;
 

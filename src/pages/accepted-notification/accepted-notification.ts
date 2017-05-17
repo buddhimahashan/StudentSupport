@@ -18,12 +18,12 @@ export class AcceptedNotification {
 
    StudentAppointment: FirebaseListObservable<any>;
    // add session user here
-  user : any = "IT17123456";
+  user : any = window.localStorage.getItem('SessionName');
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public angfire: AngularFire) {
     this.StudentAppointment = angfire.database.list('/StudentAppointment',{
         query: {
-          orderByChild: 'user',  
+          orderByChild: 'lectureusername',  
           equalTo: this.user
       },
       });
