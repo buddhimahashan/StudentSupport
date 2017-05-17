@@ -35,8 +35,9 @@ export class Newmessage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public angfire: AngularFire, public alertCtrl: AlertController) {
    
-   this.items = [];
    this.initializeItems();
+   this.items = [];
+   
    
    
     console.log(window.localStorage.getItem('SessionType'));

@@ -258,12 +258,55 @@ export class HomeStudent {
 
       firebase.database().ref('staffSlot/' + this.LectureName + '/' + this.day + '/' + this.slot + '/status').on('value', data => {
         console.log(data.val())
+
+        if(data.val() == true){
+          
+      firebase.database().ref('staffSlot/' + this.LectureName + '/' + this.day  ).on('value', data => {
+        console.log(data.val()['slot_1']['status'])
+        this.SlotData.push(data.val()['slot_1']['slotName'])
+        
+        if(data.val()['slot_1']['status'] == false){
+             this.SlotData.push(data.val()['slot_1']['slotName'])
+        }else if(data.val()['slot_2']['status'] == false){
+             this.SlotData.push(data.val()['slot_2']['slotName'])
+        }else if(data.val()['slot_3']['status'] == false){
+             this.SlotData.push(data.val()['slot_3']['slotName'])
+        }else if(data.val()['slot_4']['status'] == false){
+             this.SlotData.push(data.val()['slot_4']['slotName'])
+        }else if(data.val()['slot_5']['status'] == false){
+             this.SlotData.push(data.val()['slot_5']['slotName'])
+        }else if(data.val()['slot_6']['status'] == false){
+             this.SlotData.push(data.val()['slot_6']['slotName'])
+        }else if(data.val()['slot_7']['status'] == false){
+             this.SlotData.push(data.val()['slot_7']['slotName'])
+        }else if(data.val()['slot_8']['status'] == false){
+             this.SlotData.push(data.val()['slot_8']['slotName'])
+        }else if(data.val()['slot_9']['status'] == false){
+             this.SlotData.push(data.val()['slot_9']['slotName'])
+        }else if(data.val()['slot_10']['status'] == false){
+             this.SlotData.push(data.val()['slot_10']['slotName'])
+        }else if(data.val()['slot_11']['status'] == true){
+             this.SlotData.push(data.val()['slot_11']['slotName'])
+        }else if(data.val()['slot_12']['status'] == false){
+             this.SlotData.push(data.val()['slot_12']['slotName'])
+        }else if(data.val()['slot_13']['status'] == false){
+             this.SlotData.push(data.val()['slot_13']['slotName'])
+        }
+
+        console.log(this.SlotData)
+       
       });
+
+        }
+        //Else execution
+      });
+      }
+
 
      
 
 
-    }
+    
   }
 
 
