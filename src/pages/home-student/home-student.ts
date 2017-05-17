@@ -5,6 +5,7 @@ import { LoadingController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { FindLecture } from '../find-lecture/find-lecture';
+import firebase from 'firebase';
 
 
 /**
@@ -29,6 +30,8 @@ export class HomeStudent {
   Reasons: any;
   Description: any;
 
+  i: number;
+  freeSlotArray = [];
 
   TSlots: string;
   lName: string;
@@ -48,8 +51,11 @@ export class HomeStudent {
 
 
   UserDataList = [];
-  StaffSlotsList=[];
+  StaffSlotsList = [];
   UserData: any;
+
+  SlotData = [];
+  slotab: string;
 
   constructor(public navCtrl: NavController, public alerCtrl: AlertController, public navParams: NavParams, public platform: Platform,
     public actionsheetCtrl: ActionSheetController, public loadingCtrl: LoadingController, public angfire: AngularFire) {
@@ -59,7 +65,6 @@ export class HomeStudent {
 
     this.TodayDate = new Date().toISOString();
     this.staffSlots = angfire.database.list('staffSlot/')
-
 
     this.UserData = this.angfire.database.list('/login', {
       query: {
@@ -83,7 +88,7 @@ export class HomeStudent {
 
 
   }
-  FindLecture(){
+  FindLecture() {
     this.navCtrl.push(FindLecture);
   }
   getday(date) {
@@ -239,6 +244,7 @@ export class HomeStudent {
     }
     else {
 
+
       this.presentLoading();
       this.btnDisable = false;
       console.log(this.LectureName);
@@ -248,7 +254,15 @@ export class HomeStudent {
       console.log(this.day);
       console.log('staffSlot/' + this.userId + '/' + this.day + '/' + this.slot);
       console.log(this.staffSlots);
-      //console.log(this.staffSlots);
+
+
+      firebase.database().ref('staffSlot/' + this.LectureName + '/' + this.day + '/' + this.slot + '/status').on('value', data => {
+        console.log(data.val())
+      });
+
+     
+
+
     }
   }
 

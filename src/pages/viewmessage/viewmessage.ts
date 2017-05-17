@@ -21,9 +21,12 @@ export class Viewmessage {
   from:string;
   Title:string;
   Message:string;
+  MessageTable : string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public angfire: AngularFire) {
-      this.MyMessages = angfire.database.list('/Messages', {
+
+    this.MessageTable = "Messages"+window.localStorage.getItem('SessionName');
+      this.MyMessages = angfire.database.list('/'+this.MessageTable, {
      })
 
     this.viewMessages();
