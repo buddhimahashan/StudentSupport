@@ -23,12 +23,14 @@ RequestDetails:FirebaseListObservable<any>;
  // Requests : any;
   angfires:AngularFire;
   PublicNotices: FirebaseListObservable<any>;
-
+  
   notification: string = "Responce";
   noticeyear: any;
   noticedate: any;
   noticetitle: any;
   noticedescription: any;
+
+ Date: String = new Date().toISOString();
 
   today:any;
   dd:any;
@@ -39,17 +41,19 @@ RequestDetails:FirebaseListObservable<any>;
    year: string;
    username: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, platform: Platform, public angfire: AngularFire) {
+
+   this.Date = this.event.month
+   this.today = this.event.month.split("T")[0]
     this.username=window.localStorage.getItem('SessionName');
     this.PublicNotices = angfire.database.list('/Public_Notices', {
       query: {
-        orderByChild: 'date',
-        equalTo: this.Today()
+        orderByChild: 'dateView',
+        equalTo: this.Date.split("T")[0]
       }
       
     })
-    console.log(this.Today());
 
-    this.angfires = angfire;
+     this.angfires = angfire;
     this.RequestDetails = angfire.database.list('/StudentAppointment', {
       query: {
         orderByChild: 'user',
@@ -59,6 +63,7 @@ RequestDetails:FirebaseListObservable<any>;
     })
     console.log(this.username);
   }
+
   navigate() {
     this.navCtrl.push(Requests);
   }
@@ -71,7 +76,7 @@ RequestDetails:FirebaseListObservable<any>;
     this.noticedescription = notice;
     window.localStorage.setItem('Noticeyear', this.noticeyear);
     window.localStorage.setItem('Noticetitle', this.noticetitle);
-    window.localStorage.setItem('NoticeDate', this.noticedate);
+    window.localStorage.setItem('NoticeDate', this.noticedate.split("T")[0]);
     window.localStorage.setItem('NoticeDescription', this.noticedescription);
 
 
@@ -80,7 +85,7 @@ NewApointment(){
   this.navCtrl.push(HomeStudent);
 }
 
-Today() {
+/*Today() {
     this.today = new Date();
     this.dd = this.today.getDate();
     this.mm = this.today.getMonth()+1; 
@@ -97,6 +102,12 @@ Today() {
     this.today = this.yyyy+'-'+this.mm+'-'+this.dd;
       return this.today;
 }
+*/
 
+public event = {
+
+    month: new Date().toISOString(),
+    
+  }
 
 }

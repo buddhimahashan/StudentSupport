@@ -25,6 +25,7 @@ import { AngularFireModule } from 'angularfire2';
 import { Message } from '../pages/message/message';
 import { Viewmessage } from '../pages/viewmessage/viewmessage';
 
+
 import { FindLecture } from '../pages/find-lecture/find-lecture';
 
 import { Changepassword } from '../pages/changepassword/changepassword';
@@ -61,10 +62,9 @@ const config = {
     Newmessage,
     Message,
     Viewmessage,
-
     FindLecture,
-
     Changepassword
+    
 
 
 
@@ -96,9 +96,7 @@ const config = {
     Newmessage,
     Message,
     Viewmessage,
-
     FindLecture,
-
     Changepassword
 
 

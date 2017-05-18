@@ -43,6 +43,17 @@
     </ion-list>
 
     <ion-list>
+   <ion-item>
+      <ion-label>Batch<span style="color:#ff0000;">  *</span></ion-label>
+      <ion-select [(ngModel)]="Batch">
+        <ion-option value="Weekday">Weekday</ion-option>
+        <ion-option value="Weekend">Weekend</ion-option>
+        <ion-option value="All Batches">All Batches</ion-option>
+      </ion-select>
+    </ion-item>
+    </ion-list>
+
+    <ion-list>
     <ion-item>
       <ion-label>Date</ion-label>
       <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="Date"></ion-datetime>

@@ -23,9 +23,34 @@ export class Newnotification {
   Date: String = new Date().toISOString();
  //ionic  Date: any;
   Description: any;
+  NotificationData: any;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public angfire: AngularFire,
     public alertCtrl: AlertController) {
+
+      console.log(this.event.month);
+      
+      this.NotificationData = this.angfire.database.list('/Public_Notices', {
+                query: {
+                   
+                },
+               
+            })
+            
+            this.NotificationData.subscribe(data => {
+              if (data.length > 0) {
+                 data.forEach(element => {
+                   if(element.date < this.event.month){
+                  this.deleteMessage(element.$key);
+                   //console.log(element.$key)
+                }
+                });
+              }
+            })
+
+
+
   }
   alertMessage(title, message) {
     let alert = this.alertCtrl.create({
@@ -36,22 +61,28 @@ export class Newnotification {
     alert.present()
   }
 
+  Batch
+
   SubmitData() {
     if (this.Years == undefined || this.Years == '') {
       this.alertMessage("Warning!", "Check your notice details");
     } else if (this.Notice == undefined || this.Notice == '') {
       this.alertMessage("Warning!", "Check your notice details");
-    } else if (this.Years == undefined || this.Years == '') {
-      this.alertMessage("Warning!", "Check your notice details");
     } else if (this.Date == undefined || this.Date == '') {
+      this.alertMessage("Warning!", "Check your notice details");
+    } else if (this.event.month > this.Date) {
+      this.alertMessage("Warning!", "Check your notice details");
+    }else if (this.Batch == undefined || this.Batch == '') {
       this.alertMessage("Warning!", "Check your notice details");
     } else {
       if (this.Description == undefined || this.Description == '') {
         this.Description = '';
         this.MakeAppointment();
+        
       }
       else{
         this.MakeAppointment();
+        
       }
     }
 
@@ -80,7 +111,9 @@ export class Newnotification {
             this.angfire.database.list('/Public_Notices').push({
               notification: this.Notice,
               years: this.Years,
+              batch: this.Batch,
               date: this.Date,
+              dateView:this.Date.split("T")[0],
               Description: this.Description,
               User :  window.localStorage.getItem('SessionName'),
             });
@@ -98,9 +131,21 @@ export class Newnotification {
   }
 
 
-  public event = {
+ public event = {
 
-    month: '2017-01-01',
-    timeStarts: '08:30'
+    month: new Date().toISOString(),
+    
   }
+
+ 
+  deleteMessage(id) : Promise<any>
+   {
+      return new Promise((resolve) =>
+      {
+        this.NotificationData.remove(id).then(res=>{
+        });
+          
+         resolve(true);
+      });
+   }
 }

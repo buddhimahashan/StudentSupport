@@ -43,10 +43,19 @@
      </ion-card-content>
 </ion-card>
 
+<ion-list padding >
+<button ion-button block (click)="Reply()" *ngIf="ReplyMessage"  >Reply</button>
+</ion-list>
+
 
 <ion-list padding >
 <button ion-button block (click)="removeMessages()" >Delete</button>
 </ion-list>
+
+<ion-list padding >
+<button ion-button block *ngIf="RejectMessage" (click)="sendReject()">Reject Message</button>
+</ion-list>
+
 
 
 

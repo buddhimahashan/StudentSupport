@@ -47,9 +47,11 @@
     <ion-item *ngSwitchCase="'PublicNotifications'">
       <ion-item *ngFor="let notices of PublicNotices | async ">
         <h2>{{ notices.years }}</h2>
-        <p>{{ notices.date }}</p>
+        <h3>{{ notices.batch }}</h3>
+        <p>{{ notices.date.split("T")[0] }}</p>
         <p>{{ notices.notification }}</p>
         <button ion-button clear item-right (click)="navigate2(notices.years,notices.notification,notices.date,notices.Description)">View</button>
+        
       </ion-item>
     </ion-item>
       

@@ -4,6 +4,7 @@ import {AngularFire,FirebaseListObservable} from 'angularfire2';
 //import firebase from 'firebase';
 import { AcceptedNotification } from "../accepted-notification/accepted-notification";
 
+
 /**
  * Generated class for the NotificationStaff page.
  *
@@ -16,6 +17,9 @@ import { AcceptedNotification } from "../accepted-notification/accepted-notifica
   templateUrl: 'notification-staff.html',
 })
 export class NotificationStaff {
+
+  
+
   RemoveData: any;
   StudentAppointment: FirebaseListObservable<any>;
 

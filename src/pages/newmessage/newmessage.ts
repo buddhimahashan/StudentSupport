@@ -30,6 +30,9 @@ export class Newmessage {
 
   MessageTable : string;
 
+  Insert1:string;
+  Insert2:string;
+
  
 
 
@@ -38,6 +41,7 @@ export class Newmessage {
    this.initializeItems();
    this.items = [];
    
+   this.MessageUser =window.localStorage.getItem('MessageContact');
    
    
     console.log(window.localStorage.getItem('SessionType'));
@@ -47,7 +51,29 @@ export class Newmessage {
     } else if (window.localStorage.getItem('SessionType') == "Staff") {
       this.MessageUserType = "Student";
     }
-    this.UserData = this.angfire.database.list('/login', {
+
+
+    this.UserData = this.angfire.database.list('/UserNameMaping', {
+
+      query: {
+        orderByChild: 'usertype',
+        equalTo: this.MessageUserType,
+      },
+      preserveSnapshot: true
+
+    }).subscribe(snapshots => {
+      let UserDataArray = [];
+      snapshots.forEach(snapshot => {
+        UserDataArray.push(snapshot.val());
+      });
+
+
+      UserDataArray.forEach(element => {
+        this.UserDataList.push(element.name);
+      });
+    })
+   
+   /* this.UserData = this.angfire.database.list('/login', {
       query: {
         orderByChild: 'type',
         equalTo: this.MessageUserType
@@ -65,7 +91,7 @@ export class Newmessage {
          
       });
     })
-
+ */
     console.log(this.UserDataList)
 
 
@@ -80,30 +106,54 @@ export class Newmessage {
     alert.present()
   }
 
+  InsertTable1(){
+    this.angfire.database.list('/'+window.localStorage.getItem('SessionFullName')).push({
+        To: this.UserName,
+        From: window.localStorage.getItem('SessionFullName'),
+        Title: this.Title,
+        Message: this.Message
+      }); 
+      this.Insert1="Complete";
+  }
 
+  InsertTable2(){
+     this.angfire.database.list('/'+this.UserName).push({
+        To: this.UserName,
+        From: window.localStorage.getItem('SessionFullName'),
+        Title: this.Title,
+        Message: this.Message
+      });
+       this.Insert2="Complete";
+  }
 
   SendMessage() {
 
     if (this.Message == undefined || this.Message == '') {
       this.alertMessage("Warning!", "Check Message details");
-    } else if (this.UserName == undefined || this.UserName == '') {
+    } /*else if (this.UserName == undefined || this.UserName == '') {
       this.alertMessage("Warning!", "Check User details");
     } else if (this.Title == undefined || this.Title == '') {
       this.alertMessage("Warning!", "Check User details");
-    } else {
+    } */ else {
 
       this.MessageTable = "Messages"+window.localStorage.getItem('SessionName');
+       console.log(this.UserName);
 
+       this.Insert1 = "false";
+       this.Insert2 = "false";
+       if(this.Insert1 == "false" && this.Insert2=="false"){
+            this.InsertTable1();
+       }
 
-      this.angfire.database.list('/'+this.MessageTable).push({
-        To: this.UserName,
-        From: window.localStorage.getItem('SessionName'),
-        Title: this.Title,
-        Message: this.Message
-      });
+if(this.Insert1 == "Complete" && this.Insert2=="false"){
+            this.InsertTable2();
+       }
+     
+       window.location.reload();
+     
     }
  
-     window.location.reload();
+     
 
   }
 

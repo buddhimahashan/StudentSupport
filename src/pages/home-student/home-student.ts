@@ -8,6 +8,7 @@ import { FindLecture } from '../find-lecture/find-lecture';
 import firebase from 'firebase';
 
 
+
 /**
  * Generated class for the HomeStudent page.
  *
@@ -23,7 +24,7 @@ import firebase from 'firebase';
 export class HomeStudent {
 
 
-  TimeSlots: any;
+  TimeSlots :any;
   Years: any;
   Semester: any;
   Subjects: any;
@@ -88,6 +89,8 @@ export class HomeStudent {
         this.UserDataList.push(element.name);
       });
     })
+
+
 
 
   }
@@ -227,12 +230,14 @@ export class HomeStudent {
     alert.present()
   }
   AvailableSlots() {
-    let alert = this.alerCtrl.create();
+  let alert = this.alerCtrl.create();
     alert.setTitle('Not Available');
     alert.setMessage('Your lecture not available at selected time.You can make an appointment for following time slots');
 
     for(let i=0; i< this.SlotData.length; i++){
 
+      
+    
     alert.addInput({
         value: this.SlotData[i],
         type: 'radio',
@@ -248,6 +253,7 @@ export class HomeStudent {
         this.Time=data;
         this.btnDisable = false;
         console.log("If Part "+this.Time);
+         this.TimeSlots = "slot_1";
       }
     });
     

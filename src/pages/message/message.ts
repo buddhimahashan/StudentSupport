@@ -22,26 +22,30 @@ export class Message {
   from:string;
   Title:string;
   Message:string;
+  condition:string;
 
   MessageTable : string;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public angfire: AngularFire) {
 
+    window.localStorage.setItem('MessageContact', "");
+
     this.MessageTable = "Messages"+window.localStorage.getItem('SessionName');
 
-    this.InboxMessageData = this.angfire.database.list('/'+this.MessageTable, {
+    console.log(window.localStorage.getItem('SessionFullName'))
+
+    this.InboxMessageData = this.angfire.database.list('/'+window.localStorage.getItem('SessionFullName'), {
       query: {
         orderByChild: 'To',
-        equalTo: window.localStorage.getItem('SessionName')
+        equalTo: window.localStorage.getItem('SessionFullName')
       },})
 
-       this.SentMessageData = this.angfire.database.list('/'+this.MessageTable, {
+      this.SentMessageData = this.angfire.database.list('/'+window.localStorage.getItem('SessionFullName'), {
       query: {
         orderByChild: 'From',
-        equalTo: window.localStorage.getItem('SessionName'),
+        equalTo: window.localStorage.getItem('SessionFullName'),
       },})
-
 
   }
 
@@ -50,7 +54,8 @@ export class Message {
     this.navCtrl.push(Newmessage);
   }
 
-  SetMessageDetails(fromData, titleData, messageData, messageKey) {
+  SetMessageDetailsInbox(fromData, titleData, messageData, messageKey) {
+    window.localStorage.setItem('MessageInOut', "InBox");
     this.navCtrl.push(Viewmessage);
     this.from = fromData;
     this.Title = titleData;
@@ -59,6 +64,21 @@ export class Message {
     window.localStorage.setItem('Title', this.Title);
     window.localStorage.setItem('Message', this.Message);
     window.localStorage.setItem('MessageKey', messageKey);
+    
+    
+}
+
+ SetMessageDetailsOutbox(fromData, titleData, messageData, messageKey) {
+   window.localStorage.setItem('MessageInOut', "OutBox");
+    this.navCtrl.push(Viewmessage);
+    this.from = fromData;
+    this.Title = titleData;
+    this.Message = messageData;
+    window.localStorage.setItem('From', this.from);
+    window.localStorage.setItem('Title', this.Title);
+    window.localStorage.setItem('Message', this.Message);
+    window.localStorage.setItem('MessageKey', messageKey);
+    console.log(this.condition);
     
 }
  
