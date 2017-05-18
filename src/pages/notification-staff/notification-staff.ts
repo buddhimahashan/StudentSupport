@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {NavController, NavParams } from 'ionic-angular';
 import {AngularFire,FirebaseListObservable} from 'angularfire2';
-import firebase from 'firebase';
+//import firebase from 'firebase';
 import { AcceptedNotification } from "../accepted-notification/accepted-notification";
 
 /**
@@ -20,14 +20,14 @@ export class NotificationStaff {
   StudentAppointment: FirebaseListObservable<any>;
 
   // add session user here
-  user : any = "IT17123456";
+  user : any = window.localStorage.getItem('SessionName');
   CompareData : any;
   AssignData : FirebaseListObservable<any>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public angfire: AngularFire) {
       this.StudentAppointment = angfire.database.list('/StudentAppointment',{
         query: {
-          orderByChild: 'user',  
+          orderByChild: 'lectureusername',  
           equalTo: this.user
       },
       });

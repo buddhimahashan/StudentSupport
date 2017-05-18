@@ -5,6 +5,7 @@ import { LoadingController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { FindLecture } from '../find-lecture/find-lecture';
+import firebase from 'firebase';
 
 
 /**
@@ -29,6 +30,8 @@ export class HomeStudent {
   Reasons: any;
   Description: any;
 
+  i: number;
+  freeSlotArray = [];
 
   TSlots: string;
   lName: string;
@@ -45,13 +48,18 @@ export class HomeStudent {
   slot: any = "slot_1";
   status: any;
   id: any;
+  Time: string;
 
 
   UserDataList = [];
-  StaffSlotsList=[];
+  StaffSlotsList = [];
   UserData: any;
-  LectureUserName:any;
-  lectureusername:string;
+  LectureUserName: any;
+  lectureusername: string;
+  inputs = [];
+
+  SlotData = [];
+  slotab: string;
 
   constructor(public navCtrl: NavController, public alerCtrl: AlertController, public navParams: NavParams, public platform: Platform,
     public actionsheetCtrl: ActionSheetController, public loadingCtrl: LoadingController, public angfire: AngularFire) {
@@ -60,10 +68,9 @@ export class HomeStudent {
     this.items = [];
 
     this.TodayDate = new Date().toISOString();
-    this.staffSlots = angfire.database.list('staffSlot/')
-
 
     this.UserData = this.angfire.database.list('/UserNameMaping', {
+
       query: {
         orderByChild: 'usertype',
         equalTo: 'Staff'
@@ -82,10 +89,11 @@ export class HomeStudent {
       });
     })
 
-    
+
   }
 
-  FindLecture(){
+  FindLecture() {
+
     this.navCtrl.push(FindLecture);
   }
 
@@ -98,7 +106,8 @@ export class HomeStudent {
     weekday[3] = "Wednesday";
     weekday[4] = "Thursday";
     weekday[5] = "Friday";
-    weekday[5] = "Saturday";
+    weekday[6] = "Saturday";
+    console.log(d.getDay());
     var n = weekday[d.getDay()];
     this.day = n;
   }
@@ -122,7 +131,7 @@ export class HomeStudent {
         {
           text: 'OK',
           handler: () => {
-            
+
             this.insertRequest();
             this.presentLoading();
             this.alertMessage("Succesful!", "Your Appointment Succesfully Send to the Lecture");
@@ -135,9 +144,9 @@ export class HomeStudent {
     confirm.present();
   }
 
-  FindUserName(){
+  FindUserName() {
     console.log(this.LectureName);
-     this.LectureUserName = this.angfire.database.list('/UserNameMaping', {
+    this.LectureUserName = this.angfire.database.list('/UserNameMaping', {
       query: {
         orderByChild: 'name',
         equalTo: this.LectureName
@@ -151,28 +160,35 @@ export class HomeStudent {
       console.log(UserDataArray.length);
       if (UserDataArray.length > 0) {
         this.lectureusername = UserDataArray[0].user;
-        
+
 
       } else {
         this.lectureusername = "";
-        
+
 
       }
     })
   }
-  
+
+  FindSlotName(){
+
+    firebase.database().ref('staffSlot/' + this.lectureusername + '/' + this.day + '/' + this.TimeSlots + '/slotName').on('value', data => {
+        console.log(data.val())
+        this.Time=data.val();
+    
+    });
+  }
+
   insertRequest() {
 
     this.checkdescription();
-    
-
 
     console.log(this.username);
 
     this.angfire.database.list('/StudentAppointment').push({
       lecture: this.LectureName,
       date: this.event.month.split("T")[0],
-      time: this.TimeSlots,
+      time: this.Time,
       year: this.Years,
       semester: this.Semester,
       subject: this.Subjects,
@@ -180,7 +196,7 @@ export class HomeStudent {
       description: this.Description,
       responce: this.Responce,
       user: this.username,
-      lectureusername:this.lectureusername,
+      lectureusername: this.lectureusername,
     });
   }
 
@@ -210,6 +226,34 @@ export class HomeStudent {
     });
     alert.present()
   }
+  AvailableSlots() {
+    let alert = this.alerCtrl.create();
+    alert.setTitle('Not Available');
+    alert.setMessage('Your lecture not available at selected time.You can make an appointment for following time slots');
+
+    for(let i=0; i< this.SlotData.length; i++){
+
+    alert.addInput({
+        value: this.SlotData[i],
+        type: 'radio',
+        label: this.SlotData[i]
+    });
+    }
+
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'Ok',
+      handler: data => {
+        console.log('Radio data:', data);
+        this.Time=data;
+        this.btnDisable = false;
+        console.log("If Part "+this.Time);
+      }
+    });
+    
+     alert.present()
+    
+  }
 
   initializeItems() {
 
@@ -235,9 +279,8 @@ export class HomeStudent {
 
   setitem(item) {
     this.LectureName = item;
-    console.log(this.LectureName);
-   
     this.items = [];
+    this.FindUserName();
   }
 
   public event = {
@@ -261,19 +304,93 @@ export class HomeStudent {
       this.alertMessage("Warning!", "You can't make appointment for past dates");
     }
     else {
-
       this.presentLoading();
-      this.FindUserName();
-      this.btnDisable = false;
+ 
       console.log(this.LectureName);
       console.log(this.TimeSlots);
       console.log(this.event.month.split("T")[0]);
       this.getday(this.event.month);
       console.log(this.day);
-      console.log('staffSlot/' + this.userId + '/' + this.day + '/' + this.slot);
-      console.log(this.staffSlots);
-      //console.log(this.staffSlots);
+      console.log('staffSlot/' + this.lectureusername + '/' + this.day + '/' + this.TimeSlots + '/status');
+      
+     
+
+
+
+      firebase.database().ref('staffSlot/' + this.lectureusername + '/' + this.day + '/' + this.TimeSlots + '/status').on('value', data => {
+        console.log(data.val())
+
+        if (data.val() == true) {
+
+          firebase.database().ref('staffSlot/' + this.lectureusername + '/' + this.day).on('value', data => {
+          console.log((data.val()['slot_1']['status'])==true)
+
+            if ((data.val()['slot_1']['status']) == false) {
+              this.SlotData.push(data.val()['slot_1']['slotName'])
+            } if (data.val()['slot_2']['status'] == false) {
+              this.SlotData.push(data.val()['slot_2']['slotName'])
+            } if (data.val()['slot_3']['status'] == false) {
+              this.SlotData.push(data.val()['slot_3']['slotName'])
+            } if (data.val()['slot_4']['status'] == false) {
+              this.SlotData.push(data.val()['slot_4']['slotName'])
+            } if (data.val()['slot_5']['status'] == false) {
+              this.SlotData.push(data.val()['slot_5']['slotName'])
+            } if (data.val()['slot_6']['status'] == false) {
+              this.SlotData.push(data.val()['slot_6']['slotName'])
+            } if (data.val()['slot_7']['status'] == false) {
+              this.SlotData.push(data.val()['slot_7']['slotName'])
+            } if (data.val()['slot_8']['status'] == false) {
+              this.SlotData.push(data.val()['slot_8']['slotName'])
+            } if (data.val()['slot_9']['status'] == false) {
+              this.SlotData.push(data.val()['slot_9']['slotName'])
+            } if (data.val()['slot_10']['status'] == false) {
+              this.SlotData.push(data.val()['slot_10']['slotName'])
+            } if (data.val()['slot_11']['status'] == false) {
+              this.SlotData.push(data.val()['slot_11']['slotName'])
+            }if (data.val()['slot_12']['status'] == false) {
+              this.SlotData.push(data.val()['slot_12']['slotName'])
+            } if (data.val()['slot_13']['status'] == false) {
+              this.SlotData.push(data.val()['slot_13']['slotName'])
+            }if (data.val()['slot_14']['status'] == false) {
+              this.SlotData.push(data.val()['slot_7']['slotName'])
+            }  if (data.val()['slot_15']['status'] == false) {
+              this.SlotData.push(data.val()['slot_8']['slotName'])
+            } if (data.val()['slot_16']['status'] == false) {
+              this.SlotData.push(data.val()['slot_9']['slotName'])
+            } if (data.val()['slot_17']['status'] == false) {
+              this.SlotData.push(data.val()['slot_10']['slotName'])
+            } if (data.val()['slot_18']['status'] == false) {
+              this.SlotData.push(data.val()['slot_11']['slotName'])
+            } if (data.val()['slot_19']['status'] == false) {
+              this.SlotData.push(data.val()['slot_12']['slotName'])
+            } if (data.val()['slot_20']['status'] == false) {
+              this.SlotData.push(data.val()['slot_13']['slotName'])
+            }
+
+console.log(this.SlotData.length)
+          for(let i=0; i< this.SlotData.length; i++) {
+              console.log(this.SlotData[i])    
+          }
+          this.AvailableSlots();
+          
+          });
+          
+
+        }
+        else{
+          this.alertMessage("Available", "Your Lecture Available at selected time. You can Make your Appointment");
+          this.FindSlotName();
+          this.btnDisable = false;
+          console.log("Else Part "+this.Time);
+        }
+      });
     }
+
+
+
+
+
+
   }
 
 

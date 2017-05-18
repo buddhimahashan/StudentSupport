@@ -22,7 +22,7 @@
 
   <ion-list>
     <ion-list-header color="light">
-      <p>You can Find your <strong>Lecture in here :</strong></p>
+      <p>You can Find your <strong>Lecture</strong> Details in here :</p>
     </ion-list-header>
   </ion-list>
 
@@ -92,7 +92,42 @@
     </ion-row>
   </ion-item>
 
-  <ion-card floating>Lecture Name : {{lectureview}}</ion-card>
+ 
+
+  <ion-card >
+
+  <ion-item color="light">
+     <ion-avatar item-centre>
+      <h3><strong>Lecture Name : {{lectureview}}</strong></h3>
+    </ion-avatar>
+    <h3 style>Subject : {{ SubjectView }}</h3>
+  </ion-item>
+</ion-card>
+
+<ion-card>
+  <ion-card-content >
+    
+    <ion-row >    
+      
+          <p>Year : {{ YearView }}</p>
+      
+      <ion-col>
+           <p></p>   
+      </ion-col>
+     </ion-row>
+     </ion-card-content>
+</ion-card>
+
+<ion-card>
+  <ion-card-content>
+     <ion-row > 
+      
+      <ion-col>
+           <p>Semester : {{ SemesterView }}</p>   
+      </ion-col>
+     </ion-row>
+  </ion-card-content>
+</ion-card>
 
 
 

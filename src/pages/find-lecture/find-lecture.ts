@@ -21,6 +21,9 @@ Subjects: any;
 Years:any;
 angfires:AngularFire;
 lectureview:string;
+YearView:string;
+SemesterView:string;
+SubjectView:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public angfire: AngularFire,public alerCtrl: AlertController) {
 
@@ -55,10 +58,13 @@ if (this.Years == undefined || this.Years == '') {
       console.log(UserDataArray.length);
       if (UserDataArray.length > 0) {
         this.lectureview = UserDataArray[0].lecture;
+        this.YearView = UserDataArray[0].year;
+        this.SemesterView = UserDataArray[0].semester;
+        this.SubjectView=UserDataArray[0].subject;
         
 
       } else {
-        this.lectureview = "";
+       console.log("Not Available");
         
 
       }
