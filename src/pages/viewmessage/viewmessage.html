@@ -13,6 +13,12 @@
       <h1 style="text-align: center">View Messages</h1>
     </ion-avatar>
            </ion-item>
+
+      <ion-buttons end  >
+      <button  clear icon-only outline ion-button icon-only (click)="MenuConditions()" >
+      <ion-icon name='more'></ion-icon>    
+    </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -42,7 +48,7 @@
      </ion-row>
      </ion-card-content>
 </ion-card>
-
+<!--
 <ion-list padding >
 <button ion-button block (click)="Reply()" *ngIf="ReplyMessage"  >Reply</button>
 </ion-list>
@@ -55,6 +61,7 @@
 <ion-list padding >
 <button ion-button block *ngIf="RejectMessage" (click)="sendReject()">Reject Message</button>
 </ion-list>
+-->
 
 
 

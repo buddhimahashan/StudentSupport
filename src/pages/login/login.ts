@@ -32,6 +32,7 @@ export class Login {
 
     UserData: any;
     UserDataList = [];
+    localloginflag:string="false";
 
      UserDataFullName: any;
 
@@ -41,6 +42,15 @@ export class Login {
     alertMessage(message) {
         let alert = this.alertCtrl.create({
             title: 'Login Error!',
+            subTitle: message,
+            buttons: ['OK']
+        });
+        alert.present();
+    }
+
+    alertMessageLoged(message) {
+        let alert = this.alertCtrl.create({
+            title: 'Notification',
             subTitle: message,
             buttons: ['OK']
         });
@@ -107,7 +117,7 @@ export class Login {
                                     console.log(element.name);
                                 });
                             })
-
+                             this.alertMessageLoged("You are sucessfully loged in.");
                              this.navCtrl.push(TabsPage);
                         } else {
                             this.alertMessage("Invalide User Type");
@@ -160,8 +170,8 @@ export class Login {
 
                     console.log(window.localStorage.getItem('LoginFlag'));
                     console.log(UserDataArray.length);
-                    if ((UserDataArray.length < 1) && (window.localStorage.getItem('LoginFlag') == "false")) {
-
+                    if ((UserDataArray.length < 1) ) {
+                        if((window.localStorage.getItem('LoginFlag') == "false" || this.localloginflag == "false")){
                         window.localStorage.setItem('LoginFlag', "true");
 
                         console.log("Login Error Else Part");
@@ -171,7 +181,10 @@ export class Login {
                         window.localStorage.setItem('SessionType', "");
 
                         this.alertMessage("Invalide User");
-
+                        this.localloginflag = "false";
+                        window.localStorage.setItem('LoginFlag', "false");
+                                         
+                    }
                     } else if ((UserDataArray.length > 0) && (window.localStorage.getItem('LoginFlag') == "false")) {
 
 
@@ -192,7 +205,7 @@ export class Login {
                             }
 
                         } else {
-                            this.alertMessage("Invalide First Time Login Password");
+                            this.alertMessage("Invalide First Time Login Password. Enter Your Default Password");
                         }
 
                     }

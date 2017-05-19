@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AngularFire } from 'angularfire2';
 import { AlertController } from 'ionic-angular';
+import { Message } from '../message/message';
 
 /**
  * Generated class for the Newmessage page.
@@ -97,6 +98,29 @@ export class Newmessage {
 
   }
 
+   ConfirmingSend() {
+   let confirm = this.alertCtrl.create({
+      title: 'Confirmation',
+      message: 'Are You Sure You Want to Sent Message',
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+              this.SendingMessage();
+          }
+        },
+        
+        {
+          text: 'Cancel',
+          handler: () => {
+              
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
   alertMessage(title, message) {
     let alert = this.alertCtrl.create({
       title: title,
@@ -130,13 +154,22 @@ export class Newmessage {
 
     if (this.Message == undefined || this.Message == '') {
       this.alertMessage("Warning!", "Check Message details");
-    } /*else if (this.UserName == undefined || this.UserName == '') {
+    } else if (this.UserName == undefined || this.UserName == '') {
       this.alertMessage("Warning!", "Check User details");
     } else if (this.Title == undefined || this.Title == '') {
       this.alertMessage("Warning!", "Check User details");
-    } */ else {
+    }  else {
 
-      this.MessageTable = "Messages"+window.localStorage.getItem('SessionName');
+      this. ConfirmingSend();
+     
+    }
+ 
+    
+
+  }
+
+ SendingMessage(){
+       this.MessageTable = "Messages"+window.localStorage.getItem('SessionName');
        console.log(this.UserName);
 
        this.Insert1 = "false";
@@ -148,14 +181,10 @@ export class Newmessage {
 if(this.Insert1 == "Complete" && this.Insert2=="false"){
             this.InsertTable2();
        }
-     
-       window.location.reload();
-     
-    }
- 
-     
+      this.navCtrl.push(Message);
+       //window.location.reload();
+     }
 
-  }
 
   initializeItems() {
     this.items = this.UserDataList;

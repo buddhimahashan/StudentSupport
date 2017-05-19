@@ -33,6 +33,46 @@ export class Changepassword {
     alert.present();
   }
 
+  ConfirmingPasswordChange() {
+   let confirm = this.alertCtrl.create({
+      title: 'Confirmation',
+      message: 'Your Password Successfully Changed',
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+              window.location.reload();
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+
+  UpdatePasswordOption() {
+    let confirm = this.alertCtrl.create({
+      title: 'Change Password',
+      message: 'Are you sure you want to Change Password?',
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'OK',
+          handler: () => {
+            this.updatingPassword();
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+
 
 UpdatePassword() {
 
@@ -42,7 +82,28 @@ UpdatePassword() {
 
             if (this.NewPassword == this.ReEnterNewPassword) {
 
-                this.firelist = this.angfire.database.list('/login', {
+              this.UpdatePasswordOption();
+
+                
+            } else {
+                this.alertMessage("New Password is Not Matched");
+            }
+
+        } else {
+            this.alertMessage("Old Password is Incorrect");
+        }
+    } else {
+        this.alertMessage("Please fill all fields.");
+    }
+
+
+}
+ 
+
+
+
+updatingPassword(){
+  this.firelist = this.angfire.database.list('/login', {
         query: {
           orderByChild: 'uname',
           equalTo: window.localStorage.getItem('SessionName'),
@@ -63,7 +124,10 @@ UpdatePassword() {
           });
           
           window.localStorage.setItem('SessionPassword', this.NewPassword);
-          window.location.reload();
+          this.ConfirmingPasswordChange();
+       
+
+          
           
 
 
@@ -72,19 +136,6 @@ UpdatePassword() {
 
 
       })
-            } else {
-                this.alertMessage("New Password is Not Matched");
-            }
-
-        } else {
-            this.alertMessage("Old Password is Incorrect");
-        }
-    } else {
-        this.alertMessage("Please fill all fields.");
-    }
-
-
 }
- 
 
 }

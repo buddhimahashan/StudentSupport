@@ -253,7 +253,35 @@ export class HomeStudent {
         this.Time=data;
         this.btnDisable = false;
         console.log("If Part "+this.Time);
-         this.TimeSlots = "slot_1";
+
+        if(this.Time=="09.00 - 09.30"){
+          this.TimeSlots="slot_1";
+        }else if(this.Time=="09.30 - 10.00"){
+           this.TimeSlots="slot_2";
+        }else if(this.Time=="10.00 - 10.30"){
+          this.TimeSlots="slot_3";
+        }else if(this.Time=="10.30 - 11.00"){
+           this.TimeSlots="slot_4"
+        }else if(this.Time=="11.00 - 11.30"){
+           this.TimeSlots="slot_5"
+        }else if(this.Time=="11.30 - 12.00"){
+           this.TimeSlots="slot_6"
+        }else if(this.Time=="13.00 - 13.30"){
+           this.TimeSlots="slot_7"
+        }else if(this.Time=="13.30 - 14.00"){
+           this.TimeSlots="slot_8"
+        }else if(this.Time=="14.00 - 14.30"){
+           this.TimeSlots="slot_9"
+        }else if(this.Time=="14.30 - 15.00"){
+           this.TimeSlots="slot_10"
+        }else if(this.Time=="15.00 - 15.30"){
+           this.TimeSlots="slot_11"
+        }else if(this.Time=="15.30 - 16.00"){
+           this.TimeSlots="slot_12"
+        }else if(this.Time=="16.00 - 16.30"){
+           this.TimeSlots="slot_13"
+        }
+
       }
     });
     
@@ -388,6 +416,8 @@ console.log(this.SlotData.length)
           this.FindSlotName();
           this.btnDisable = false;
           console.log("Else Part "+this.Time);
+
+
         }
       });
     }

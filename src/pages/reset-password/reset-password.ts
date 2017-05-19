@@ -49,6 +49,7 @@ UpdatePassword() {
                     password: this.NewPassword,
                     type: window.localStorage.getItem('SessionType'),
                 });
+                window.localStorage.setItem('SessionPassword', this.NewPassword);
                 console.log(window.localStorage.getItem('SessionName'));
                 this.firelist = this.angfire.database.list('/MainUsers', {
                     query: {

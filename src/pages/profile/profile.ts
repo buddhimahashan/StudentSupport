@@ -82,6 +82,15 @@ export class Profile {
     alert.present();
   }
 
+  alertMessageNotification(message) {
+    let alert = this.alertCtrl.create({
+      title: 'Notification',
+      subTitle: message,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
 
 
   openMenu() {
@@ -91,7 +100,7 @@ export class Profile {
       buttons: [
         {
           text: 'Change Password',
-          icon: 'settings',
+          icon: 'about',
           handler: () => {
             console.log('Change Password');
             this.navCtrl.push(Changepassword);
@@ -111,7 +120,6 @@ export class Profile {
           icon: 'logout',
           handler: () => {
             this.logout()
-            window.localStorage.setItem('LoginFlag', "false");
             console.log("Logout Clicked");
           }
         }
@@ -138,6 +146,7 @@ export class Profile {
             console.log('OK clicked');
             window.localStorage.removeItem('SessionType');
             window.localStorage.removeItem('SessionUser');
+            window.localStorage.setItem('LoginFlag', "false");
             window.location.reload();
           }
         }
@@ -204,7 +213,9 @@ export class Profile {
             
           });
           console.log(this.fname+" "+ this.lname)
-          window.location.reload();
+          //window.location.reload();
+          this.navCtrl.push(Profile);
+          this.alertMessageNotification("Your Profile Updated");
 
 
         } else {
@@ -217,7 +228,9 @@ export class Profile {
 
           
           console.log(this.fname+" "+ this.lname)
-          window.location.reload();
+          //window.location.reload();
+          this.navCtrl.push(Profile);
+          this.alertMessageNotification("Your Profile Updated");
         }
 
 
@@ -259,8 +272,9 @@ export class Profile {
           });
           console.log(this.fname+" "+ this.lname)
 
-          window.location.reload();
-
+          //window.location.reload();
+          this.navCtrl.push(Profile);
+          this.alertMessageNotification("Your Profile Updated");
 
         } else {
 
