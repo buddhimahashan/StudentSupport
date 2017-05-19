@@ -4,6 +4,7 @@ import { Platform, ActionSheetController } from 'ionic-angular';
 import { FirebaseListObservable, AngularFire } from 'angularfire2'
 import { AlertController } from 'ionic-angular';
 import { Changepassword } from '../changepassword/changepassword';
+//import { TabsPage } from '../tabs/tabs';
 
 /**
  * Generated class for the Profile page.
@@ -21,6 +22,7 @@ export class Profile {
   firelist: FirebaseListObservable<any>;
   firelistMapping: FirebaseListObservable<any>;
 
+ buttonDissabled : boolean = true;
 
   fname: string;
   lname: string;
@@ -59,6 +61,12 @@ export class Profile {
         this.bdateView = UserDataArray[0].bdate;
         this.emailView = UserDataArray[0].email;
         this.contactView = UserDataArray[0].contact;
+
+        this.fname = UserDataArray[0].fname;
+        this.lname = UserDataArray[0].lname;
+        this.bdate = UserDataArray[0].bdate;
+        this.email = UserDataArray[0].email;
+        this.contact = UserDataArray[0].contact;
 
       } else {
         this.fnameView = "";
@@ -229,8 +237,10 @@ export class Profile {
           
           console.log(this.fname+" "+ this.lname)
           //window.location.reload();
-          this.navCtrl.push(Profile);
+          
           this.alertMessageNotification("Your Profile Updated");
+          //wthis.navCtrl.push(Profile);
+          //this.navCtrl.push(TabsPage);
         }
 
 
@@ -302,5 +312,9 @@ export class Profile {
    }
   }
 
+enableItem(){
+  console.log("Click enable")
+    this.buttonDissabled=false;
+}
 
 }

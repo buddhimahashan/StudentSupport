@@ -43,9 +43,9 @@ export class Viewmessage {
         this.ReplyMessage = true;
     }
 
-  /*  this.MessageTable = "Messages"+window.localStorage.getItem('SessionFullName');
+   this.MessageTable = "Messages"+window.localStorage.getItem('SessionFullName');
       this.MyMessages = angfire.database.list('/'+window.localStorage.getItem('SessionFullName'), {
-     }) */
+     }) 
 
     
   }
@@ -59,7 +59,7 @@ export class Viewmessage {
   }
 
   removeMessages(){
-
+    console.log(window.localStorage.getItem('MessageKey'))
     this.deleteMessage(window.localStorage.getItem('MessageKey'));
     this.navCtrl.push(Message);
 

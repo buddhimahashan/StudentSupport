@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {AngularFire,FirebaseListObservable} from 'angularfire2';
+import { Newmessage } from '../newmessage/newmessage';
+import {  ActionSheetController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 //import firebase from 'firebase';
 
 /**
@@ -25,7 +28,7 @@ export class AcceptedNotification {
    // add session user here
   user : any = window.localStorage.getItem('SessionName');
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public angfire: AngularFire) {
+  constructor(public alertCtrl: AlertController, public actionsheetCtrl: ActionSheetController,  public navCtrl: NavController, public navParams: NavParams,public angfire: AngularFire) {
     this.StudentAppointment = angfire.database.list('/StudentAppointment',{
         query: {
           orderByChild: 'lectureusername',  
@@ -34,7 +37,9 @@ export class AcceptedNotification {
       });
   }
 
-  RejectEvent(Appointment){
+  RejectEvent(Appointment){ 
+    console.log(Appointment)
+    
 
     this.StudentAppointment.update(Appointment.$key,{
       responce : "Reject"
@@ -113,9 +118,15 @@ export class AcceptedNotification {
                        
     });    
 
+
+    console.log(Appointment)
+     window.localStorage.setItem('MessageContact', Appointment.studentname);
+    this.navCtrl.push(Newmessage);
+
   }
 
- 
+
+  
 
   
 }

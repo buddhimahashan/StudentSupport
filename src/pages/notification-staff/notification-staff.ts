@@ -127,11 +127,11 @@ export class NotificationStaff {
   }
 
   RejectEvent(Appointment){
+    console.log(Appointment.$key);
 
-    this.StudentAppointment.update(Appointment.$key,{
+   this.StudentAppointment.update(Appointment.$key,{
       responce : "Reject"
     })
-
   }
    
   Open2(){

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import {  NavController, NavParams } from 'ionic-angular';
 import {FirebaseListObservable,AngularFire} from 'angularfire2';
-//import { TabsPage } from '../tabs/tabs';
-import { Profile } from '../profile/profile';
+import { TabsPage } from '../tabs/tabs';
+//import { Profile } from '../profile/profile';
 import { AlertController } from 'ionic-angular';
 
 /**
@@ -65,8 +65,13 @@ UpdatePassword() {
 
                     });
                 });
-                window.localStorage.setItem('LoginFlag', "true");
-                this.navCtrl.push(Profile);
+                //window.localStorage.setItem('LoginFlag', "true");
+
+                window.localStorage.setItem('SessionName', "");
+                window.localStorage.setItem('SessionPassword', "");
+                window.localStorage.setItem('SessionType', "");
+                //this.navCtrl.push(Profile);
+                this.navCtrl.push(TabsPage);
             } else {
                 this.alertMessage("New Password is Not Matched");
             }

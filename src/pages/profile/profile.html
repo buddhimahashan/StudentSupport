@@ -24,41 +24,41 @@
 <ion-content>
   <ion-list>
   <ion-list-header color="light">
-      <p>Edit your <strong>Profile :</strong></p>
+      <p>Edit your <strong>Profile :</strong> <button ion-button (click)="enableItem()">Update</button> </p>
    </ion-list-header> 
    <label>
      
-   <h4 ion-text color="positive" style="text-align: center" >{{UserProfileName}}</h4>
+   <h4 ion-text color="positive" style="text-align: center" >{{UserProfileName}}</h4> 
    </label>
    <ion-item no-lines >
     <ion-avatar item-left>
       <img src="assets/img/user_av2.png">
     </ion-avatar>
-    <h4 ion-text color="positive" style="text-align: center" >{{UserProfileName}}</h4>
+   <!-- <h4 ion-text color="positive" style="text-align: center" >{{UserProfileName}}</h4> -->
   </ion-item>
    <ion-item>
      <ion-label floating>First name : {{fnameView}}</ion-label>
-     <ion-input [(ngModel)]="fname" type="text" value=""></ion-input>
+     <ion-input [(ngModel)]="fname" type="text" value="" [disabled]="buttonDissabled"></ion-input>
    </ion-item> 
    <ion-item>
      <ion-label floating>Last name : {{lnameView}}</ion-label>
-     <ion-input [(ngModel)]="lname" type="text" value=""></ion-input>
+     <ion-input [(ngModel)]="lname" type="text" value="" [disabled]="buttonDissabled"></ion-input>
    </ion-item>
    <ion-item>
      <ion-label floating>Birth date : {{bdateView}}</ion-label>
-     <<ion-datetime [(ngModel)]="bdate" displayFormat="MMM DD YYYY" ></ion-datetime>
+     <<ion-datetime [(ngModel)]="bdate" displayFormat="MMM DD YYYY" [disabled]="buttonDissabled"></ion-datetime>
    </ion-item>
    <ion-item>
      <ion-label floating>Email : {{emailView}}</ion-label>
-     <ion-input [(ngModel)]="email" type="email" value=""></ion-input>
+     <ion-input [(ngModel)]="email" type="email" value="" [disabled]="buttonDissabled"></ion-input>
    </ion-item>
    <ion-item>
      <ion-label floating>Contact no : {{contactView}}</ion-label>
-     <ion-input [(ngModel)]="contact" type="tel" value=""></ion-input>
+     <ion-input [(ngModel)]="contact" type="tel" value="" [disabled]="buttonDissabled"></ion-input>
    </ion-item>
    </ion-list>
 
-   <button ion-button full (click)="AddDetails()">Set Details</button>  
+   <button ion-button full (click)="AddDetails()" [disabled]="buttonDissabled">Set Details</button>  
 
  
 </ion-content>

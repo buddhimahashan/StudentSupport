@@ -78,7 +78,7 @@ export class Message {
     window.localStorage.setItem('Title', this.Title);
     window.localStorage.setItem('Message', this.Message);
     window.localStorage.setItem('MessageKey', messageKey);
-    console.log(this.condition);
+    
     
 }
  

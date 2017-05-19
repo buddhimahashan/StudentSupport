@@ -376,50 +376,50 @@ export class HomeStudent {
       firebase.database().ref('staffSlot/' + this.lectureusername + '/' + this.day + '/' + this.TimeSlots + '/status').on('value', data => {
         console.log(data.val())
 
-        if (data.val() == true) {
+        if (data.val() == false) {
 
           firebase.database().ref('staffSlot/' + this.lectureusername + '/' + this.day).on('value', data => {
-            console.log((data.val()['slot_1']['status']) == true)
+            
 
-            if ((data.val()['slot_1']['status']) == false) {
+            if ((data.val()['slot_1']['status']) == true) {
               this.SlotData.push(data.val()['slot_1']['slotName'])
-            } if (data.val()['slot_2']['status'] == false) {
+            } if (data.val()['slot_2']['status'] == true) {
               this.SlotData.push(data.val()['slot_2']['slotName'])
-            } if (data.val()['slot_3']['status'] == false) {
+            } if (data.val()['slot_3']['status'] == true) {
               this.SlotData.push(data.val()['slot_3']['slotName'])
-            } if (data.val()['slot_4']['status'] == false) {
+            } if (data.val()['slot_4']['status'] == true) {
               this.SlotData.push(data.val()['slot_4']['slotName'])
-            } if (data.val()['slot_5']['status'] == false) {
+            } if (data.val()['slot_5']['status'] == true) {
               this.SlotData.push(data.val()['slot_5']['slotName'])
-            } if (data.val()['slot_6']['status'] == false) {
+            } if (data.val()['slot_6']['status'] == true) {
               this.SlotData.push(data.val()['slot_6']['slotName'])
-            } if (data.val()['slot_7']['status'] == false) {
+            } if (data.val()['slot_7']['status'] == true) {
               this.SlotData.push(data.val()['slot_7']['slotName'])
-            } if (data.val()['slot_8']['status'] == false) {
+            } if (data.val()['slot_8']['status'] == true) {
               this.SlotData.push(data.val()['slot_8']['slotName'])
-            } if (data.val()['slot_9']['status'] == false) {
+            } if (data.val()['slot_9']['status'] == true) {
               this.SlotData.push(data.val()['slot_9']['slotName'])
-            } if (data.val()['slot_10']['status'] == false) {
+            } if (data.val()['slot_10']['status'] == true) {
               this.SlotData.push(data.val()['slot_10']['slotName'])
-            } if (data.val()['slot_11']['status'] == false) {
+            } if (data.val()['slot_11']['status'] == true) {
               this.SlotData.push(data.val()['slot_11']['slotName'])
-            } if (data.val()['slot_12']['status'] == false) {
+            } if (data.val()['slot_12']['status'] == true) {
               this.SlotData.push(data.val()['slot_12']['slotName'])
-            } if (data.val()['slot_13']['status'] == false) {
+            } if (data.val()['slot_13']['status'] == true) {
               this.SlotData.push(data.val()['slot_13']['slotName'])
-            } if (data.val()['slot_14']['status'] == false) {
+            } if (data.val()['slot_14']['status'] == true) {
               this.SlotData.push(data.val()['slot_14']['slotName'])
-            } if (data.val()['slot_15']['status'] == false) {
+            } if (data.val()['slot_15']['status'] == true) {
               this.SlotData.push(data.val()['slot_15']['slotName'])
-            } if (data.val()['slot_16']['status'] == false) {
+            } if (data.val()['slot_16']['status'] == true) {
               this.SlotData.push(data.val()['slot_16']['slotName'])
-            } if (data.val()['slot_17']['status'] == false) {
+            } if (data.val()['slot_17']['status'] == true) {
               this.SlotData.push(data.val()['slot_17']['slotName'])
-            } if (data.val()['slot_18']['status'] == false) {
+            } if (data.val()['slot_18']['status'] == true) {
               this.SlotData.push(data.val()['slot_18']['slotName'])
-            } if (data.val()['slot_19']['status'] == false) {
+            } if (data.val()['slot_19']['status'] == true) {
               this.SlotData.push(data.val()['slot_19']['slotName'])
-            } if (data.val()['slot_20']['status'] == false) {
+            } if (data.val()['slot_20']['status'] == true) {
               this.SlotData.push(data.val()['slot_20']['slotName'])
             }
 
