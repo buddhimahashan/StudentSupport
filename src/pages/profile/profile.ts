@@ -90,6 +90,15 @@ export class Profile {
     alert.present();
   }
 
+   alertAboutMessage() {
+    let alert = this.alertCtrl.create({
+      title: 'About',
+      subTitle: '<h4>SLIIT Student Support Assistant</h4><br><p>This application was developed and published partial fulfillment of mobile application development project of 3rd year students at Sri Lanka Institute of Information Technology (SLIIT) 2017.</p> <br><p>All right reserved.</p><br><p>Developers:</p><p>•Buddhima Hashan</p><p>•Yoshani Kavindya</p><p>•Udam Arosha</p><p>•Mathisha Kaluaratchi</p><br><p>Version: 1.0.0.0</p>',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
   alertMessageNotification(message) {
     let alert = this.alertCtrl.create({
       title: 'Notification',
@@ -119,6 +128,7 @@ export class Profile {
           text: 'About',
           icon: 'about',
           handler: () => {
+            this.alertAboutMessage();
             console.log('About clicked');
           }
         },
@@ -165,152 +175,145 @@ export class Profile {
 
   AddDetails() {
     if (this.fname == "" || this.fname == undefined) {
-      this.alertMessage("First Name cannot be Empty");
+        this.alertMessage("First Name cannot be Empty");
     } else if (this.lname == "" || this.lname == undefined) {
-      this.alertMessage("Last Name cannot be Empty");
+        this.alertMessage("Last Name cannot be Empty");
     } else if (this.bdate == "" || this.bdate == undefined) {
-      this.alertMessage("Birthday cannot be Empty");
+        this.alertMessage("Birthday cannot be Empty");
     } else if (this.email == "" || this.email == undefined) {
-      this.alertMessage("Email cannot be Empty");
+        this.alertMessage("Email cannot be Empty");
     } else if (this.contact == "" || this.contact == undefined) {
-      this.alertMessage("Contact cannot be Empty");
+        this.alertMessage("Contact cannot be Empty");
     } else {
 
-      this.firelist = this.angfire.database.list('/UserProfiles', {
-        query: {
-          orderByChild: 'user',
-          equalTo: window.localStorage.getItem('SessionName'),
-        }
-      })
+        this.firelist = this.angfire.database.list('/UserProfiles', {
+            query: {
+                orderByChild: 'user',
+                equalTo: window.localStorage.getItem('SessionName'),
+            }
+        })
+
+        this.firelist.subscribe(data => {
+
+            if (data.length > 0) {
+
+                this.firelist.update(data[0].$key, {
+                    user: window.localStorage.getItem('SessionName'),
+                    usertype: window.localStorage.getItem('SessionType'),
+                    fname: this.fname,
+                    lname: this.lname,
+                    bdate: this.bdate,
+                    email: this.email,
+                    contact: this.contact,
+                });
+
+                this.firelistMapping = this.angfire.database.list('/UserNameMaping', {
+                    query: {
+                        orderByChild: 'user',
+                        equalTo: window.localStorage.getItem('SessionName'),
+                    }
+                })
+
+                this.firelistMapping.subscribe(data => {
+
+                    console.log(data.length)
+
+                    if (data.length > 0) {
+
+                        this.firelistMapping.update(data[0].$key, {
+                            user: window.localStorage.getItem('SessionName'),
+                            usertype: window.localStorage.getItem('SessionType'),
+                            name: this.fname + " " + this.lname,
+
+                        });
+                        console.log(this.fname + " " + this.lname)
+                        //window.location.reload();
+                        this.navCtrl.push(Profile);
+                        this.alertMessageNotification("Your Profile Updated");
+
+
+                    } else {
+
+                        this.angfire.database.list('/UserNameMaping').push({
+                            user: window.localStorage.getItem('SessionName'),
+                            usertype: window.localStorage.getItem('SessionType'),
+                            name: this.fname + " " + this.lname
+                        })
+
+
+                        console.log(this.fname + " " + this.lname)
+                        //window.location.reload();
+
+                        this.alertMessageNotification("Your Profile Updated");
+                        this.navCtrl.push(Profile);
+                        //this.navCtrl.push(TabsPage);
+                    }
+
+                })
+
+            } else {
+
+                this.angfire.database.list('/UserProfiles').push({
+                    user: window.localStorage.getItem('SessionName'),
+                    usertype: window.localStorage.getItem('SessionType'),
+                    fname: this.fname,
+                    lname: this.lname,
+                    bdate: this.bdate,
+                    email: this.email,
+                    contact: this.contact,
+
+                })
+                this.firelistMapping = this.angfire.database.list('/UserNameMaping', {
+                    query: {
+                        orderByChild: 'user',
+                        equalTo: window.localStorage.getItem('SessionName'),
+                    }
+                })
+
+                this.firelistMapping.subscribe(data => {
+
+                    console.log(data.length)
+
+                    if (data.length > 0) {
+
+                        this.firelistMapping.update(data[0].$key, {
+                            user: window.localStorage.getItem('SessionName'),
+                            name: this.fname + " " + this.lname,
+
+                        });
+                        console.log(this.fname + " " + this.lname)
+
+                        //window.location.reload();
+                        this.navCtrl.push(Profile);
+                        //this.alertMessageNotification("Your Profile Updated");
+
+                    } else {
+
+                        this.angfire.database.list('/UserNameMaping').push({
+                            user: window.localStorage.getItem('SessionName'),
+                            name: this.fname + " " + this.lname
+                        })
 
 
 
-      this.firelist.subscribe(data => {
+                        //window.location.reload();
+                        this.navCtrl.push(Profile);
+                        //this.alertMessageNotification("Your Profile Updated");
+                    }
 
-        if (data.length > 0) {
-
-          this.firelist.update(data[0].$key, {
-            user: window.localStorage.getItem('SessionName'),
-            usertype:window.localStorage.getItem('SessionType'),
-            fname: this.fname,
-            lname: this.lname,
-            bdate: this.bdate,
-            email: this.email,
-            contact: this.contact,
-          });
-
-          this.firelistMapping = this.angfire.database.list('/UserNameMaping', {
-        query: {
-          orderByChild: 'user',
-          equalTo: window.localStorage.getItem('SessionName'),
-        }
-      })
-
-
-
-      this.firelistMapping.subscribe(data => {
-
-        console.log(data.length)
-
-        if (data.length > 0) {
-
-          this.firelistMapping.update(data[0].$key, {
-            user: window.localStorage.getItem('SessionName'),
-            usertype:window.localStorage.getItem('SessionType'),
-            name: this.fname+" "+ this.lname,
-            
-          });
-          console.log(this.fname+" "+ this.lname)
-          //window.location.reload();
-          this.navCtrl.push(Profile);
-          this.alertMessageNotification("Your Profile Updated");
-
-
-        } else {
-
-          this.angfire.database.list('/UserNameMaping').push({
-            user: window.localStorage.getItem('SessionName'),
-            usertype:window.localStorage.getItem('SessionType'),
-            name: this.fname+" "+this.lname
-          })
-
-          
-          console.log(this.fname+" "+ this.lname)
-          //window.location.reload();
-          
-          this.alertMessageNotification("Your Profile Updated");
-          //wthis.navCtrl.push(Profile);
-          //this.navCtrl.push(TabsPage);
-        }
-
-
-
-
-      })
-
-      } else {
-
-          this.angfire.database.list('/UserProfiles').push({
-            user: window.localStorage.getItem('SessionName'),
-            usertype:window.localStorage.getItem('SessionType'), 
-            fname: this.fname,
-            lname: this.lname,
-            bdate: this.bdate,
-            email: this.email,
-            contact: this.contact,
-            
-          })
-          this.firelistMapping = this.angfire.database.list('/UserNameMaping', {
-        query: {
-          orderByChild: 'user',
-          equalTo: window.localStorage.getItem('SessionName'),
-        }
-      })
-
-
-
-      this.firelistMapping.subscribe(data => {
-
-        console.log(data.length)
-
-        if (data.length > 0) {
-
-          this.firelistMapping.update(data[0].$key, {
-            user: window.localStorage.getItem('SessionName'),
-            name: this.fname+" "+ this.lname,
-            
-          });
-          console.log(this.fname+" "+ this.lname)
-
-          //window.location.reload();
-          this.navCtrl.push(Profile);
-          this.alertMessageNotification("Your Profile Updated");
-
-        } else {
-
-          this.angfire.database.list('/UserNameMaping').push({
-            user: window.localStorage.getItem('SessionName'),
-            name: this.fname+" "+this.lname
-          })
-
-
-          
-          window.location.reload();
-        }
-
-      })
-        }
+                })
+            }
 
 
 
 
-      })
+        })
 
 
-       
 
-   }
-  }
+
+    }
+}
 
 enableItem(){
   console.log("Click enable")
