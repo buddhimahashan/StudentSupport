@@ -21,7 +21,6 @@ export class Newnotification {
   Notice: any;
   Years: any;
   Date: String = new Date().toISOString();
- //ionic  Date: any;
   Description: any;
   NotificationData: any;
 
@@ -71,7 +70,7 @@ export class Newnotification {
     } else if (this.Date == undefined || this.Date == '') {
       this.alertMessage("Warning!", "Check your notice details");
     } else if (this.event.month > this.Date) {
-      this.alertMessage("Warning!", "Check your notice details");
+      this.alertMessage("Warning!", "You can't make notice for past dates");
     }else if (this.Batch == undefined || this.Batch == '') {
       this.alertMessage("Warning!", "Check your notice details");
     } else {
