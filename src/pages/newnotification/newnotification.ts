@@ -63,16 +63,16 @@ export class Newnotification {
   Batch
 
   SubmitData() {
-    if (this.Years == undefined || this.Years == '') {
-      this.alertMessage("Warning!", "Check your notice details");
-    } else if (this.Notice == undefined || this.Notice == '') {
-      this.alertMessage("Warning!", "Check your notice details");
-    } else if (this.Date == undefined || this.Date == '') {
-      this.alertMessage("Warning!", "Check your notice details");
+     if (this.Notice == undefined || this.Notice == '') {
+      this.alertMessage("Warning!", "Check your title details");
+    }else if (this.Years == undefined || this.Years == '') {
+      this.alertMessage("Warning!", "Check your year details");
+    }else if (this.Date == undefined || this.Date == '') {
+      this.alertMessage("Warning!", "Check your date details");
     } else if (this.event.month > this.Date) {
       this.alertMessage("Warning!", "You can't make notice for past dates");
     }else if (this.Batch == undefined || this.Batch == '') {
-      this.alertMessage("Warning!", "Check your notice details");
+      this.alertMessage("Warning!", "Check your batdh details");
     } else {
       if (this.Description == undefined || this.Description == '') {
         this.Description = '';
@@ -90,7 +90,7 @@ export class Newnotification {
     console.log(this.Years);
     console.log(this.Date);
     console.log(this.Description);
-    this.navCtrl.push(Newnotification);
+    
   }
 
   MakeAppointment() {
@@ -117,6 +117,7 @@ export class Newnotification {
               User :  window.localStorage.getItem('SessionName'),
             });
             console.log('OK clicked');
+            this.navCtrl.push(Newnotification);
           }
         }
       ]
