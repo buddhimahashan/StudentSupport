@@ -24,7 +24,7 @@ import firebase from 'firebase';
 export class HomeStudent {
 
 
-  TimeSlots :any;
+  TimeSlots: any;
   Years: any;
   Semester: any;
   Subjects: any;
@@ -57,6 +57,7 @@ export class HomeStudent {
   UserData: any;
   LectureUserName: any;
   lectureusername: string;
+  WeekAfterDay: string;
   inputs = [];
 
   SlotData = [];
@@ -68,7 +69,15 @@ export class HomeStudent {
     this.initializeItems();
     this.items = [];
 
+    function addDays(theDate, days) {
+      return new Date(theDate.getTime() + days * 24 * 60 * 60 * 1000);
+    }
+
+    var newDate = addDays(new Date(), 7);
+
     this.TodayDate = new Date().toISOString();
+    this.WeekAfterDay = newDate.toISOString();
+    console.log(this.WeekAfterDay);
 
     this.UserData = this.angfire.database.list('/UserNameMaping', {
 
@@ -96,6 +105,7 @@ export class HomeStudent {
   }
 
   FindLecture() {
+    this.presentLoading();
 
     this.navCtrl.push(FindLecture);
   }
@@ -168,17 +178,16 @@ export class HomeStudent {
       } else {
         this.lectureusername = "";
 
-
       }
     })
   }
 
-  FindSlotName(){
+  FindSlotName() {
 
     firebase.database().ref('staffSlot/' + this.lectureusername + '/' + this.day + '/' + this.TimeSlots + '/slotName').on('value', data => {
-        console.log(data.val())
-        this.Time=data.val();
-    
+      console.log(data.val())
+      this.Time = data.val();
+
     });
   }
 
@@ -200,6 +209,7 @@ export class HomeStudent {
       responce: this.Responce,
       user: this.username,
       lectureusername: this.lectureusername,
+      studentname: window.localStorage.getItem('SessionFullName')
     });
   }
 
@@ -230,19 +240,19 @@ export class HomeStudent {
     alert.present()
   }
   AvailableSlots() {
-  let alert = this.alerCtrl.create();
+    let alert = this.alerCtrl.create();
     alert.setTitle('Not Available');
     alert.setMessage('Your lecture not available at selected time.You can make an appointment for following time slots');
 
-    for(let i=0; i< this.SlotData.length; i++){
+    for (let i = 0; i < this.SlotData.length; i++) {
 
-      
-    
-    alert.addInput({
+
+
+      alert.addInput({
         value: this.SlotData[i],
         type: 'radio',
         label: this.SlotData[i]
-    });
+      });
     }
 
     alert.addButton('Cancel');
@@ -250,43 +260,57 @@ export class HomeStudent {
       text: 'Ok',
       handler: data => {
         console.log('Radio data:', data);
-        this.Time=data;
+        this.Time = data;
         this.btnDisable = false;
-        console.log("If Part "+this.Time);
+        console.log("If Part " + this.Time);
 
-        if(this.Time=="09.00 - 09.30"){
-          this.TimeSlots="slot_1";
-        }else if(this.Time=="09.30 - 10.00"){
-           this.TimeSlots="slot_2";
-        }else if(this.Time=="10.00 - 10.30"){
-          this.TimeSlots="slot_3";
-        }else if(this.Time=="10.30 - 11.00"){
-           this.TimeSlots="slot_4"
-        }else if(this.Time=="11.00 - 11.30"){
-           this.TimeSlots="slot_5"
-        }else if(this.Time=="11.30 - 12.00"){
-           this.TimeSlots="slot_6"
-        }else if(this.Time=="13.00 - 13.30"){
-           this.TimeSlots="slot_7"
-        }else if(this.Time=="13.30 - 14.00"){
-           this.TimeSlots="slot_8"
-        }else if(this.Time=="14.00 - 14.30"){
-           this.TimeSlots="slot_9"
-        }else if(this.Time=="14.30 - 15.00"){
-           this.TimeSlots="slot_10"
-        }else if(this.Time=="15.00 - 15.30"){
-           this.TimeSlots="slot_11"
-        }else if(this.Time=="15.30 - 16.00"){
-           this.TimeSlots="slot_12"
-        }else if(this.Time=="16.00 - 16.30"){
-           this.TimeSlots="slot_13"
+        if (this.Time == "09.00 - 09.30") {
+          this.TimeSlots = "slot_1";
+        } else if (this.Time == "09.30 - 10.00") {
+          this.TimeSlots = "slot_2";
+        } else if (this.Time == "10.00 - 10.30") {
+          this.TimeSlots = "slot_3";
+        } else if (this.Time == "10.30 - 11.00") {
+          this.TimeSlots = "slot_4"
+        } else if (this.Time == "11.00 - 11.30") {
+          this.TimeSlots = "slot_5"
+        } else if (this.Time == "11.30 - 12.00") {
+          this.TimeSlots = "slot_6"
+        } else if (this.Time == "12.00 - 12.30") {
+          this.TimeSlots = "slot_7"
+        } else if (this.Time == "12.30 - 13.00") {
+          this.TimeSlots = "slot_8"
+        } else if (this.Time == "13.00 - 13.30") {
+          this.TimeSlots = "slot_9"
+        } else if (this.Time == "13.30 - 14.00") {
+          this.TimeSlots = "slot_10"
+        } else if (this.Time == "14.00 - 14.30") {
+          this.TimeSlots = "slot_11"
+        } else if (this.Time == "14.30 - 15.00") {
+          this.TimeSlots = "slot_12"
+        } else if (this.Time == "15.00 - 15.30") {
+          this.TimeSlots = "slot_13"
+        } else if (this.Time == "15.30 - 16.00") {
+          this.TimeSlots = "slot_14"
+        } else if (this.Time == "16.00 - 16.30") {
+          this.TimeSlots = "slot_15"
+        } else if (this.Time == "16.30 - 17.00") {
+          this.TimeSlots = "slot_16"
+        } else if (this.Time == "17.00 - 17.30") {
+          this.TimeSlots = "slot_17"
+        } else if (this.Time == "17.30 - 18.00") {
+          this.TimeSlots = "slot_18"
+        } else if (this.Time == "18.00 - 18.30") {
+          this.TimeSlots = "slot_19"
+        } else if (this.Time == "18.30 - 19.00") {
+          this.TimeSlots = "slot_20"
         }
 
       }
     });
-    
-     alert.present()
-    
+
+    alert.present()
+
   }
 
   initializeItems() {
@@ -336,20 +360,18 @@ export class HomeStudent {
       console.log(this.TodayDate);
       console.log(new Date());
       this.alertMessage("Warning!", "You can't make appointment for past dates");
+    } else if (this.event.month > this.WeekAfterDay) {
+      this.alertMessage("Warning!", "You can only make appointments with in a week");
     }
     else {
       this.presentLoading();
- 
+
       console.log(this.LectureName);
       console.log(this.TimeSlots);
       console.log(this.event.month.split("T")[0]);
       this.getday(this.event.month);
       console.log(this.day);
       console.log('staffSlot/' + this.lectureusername + '/' + this.day + '/' + this.TimeSlots + '/status');
-      
-     
-
-
 
       firebase.database().ref('staffSlot/' + this.lectureusername + '/' + this.day + '/' + this.TimeSlots + '/status').on('value', data => {
         console.log(data.val())
@@ -357,7 +379,7 @@ export class HomeStudent {
         if (data.val() == true) {
 
           firebase.database().ref('staffSlot/' + this.lectureusername + '/' + this.day).on('value', data => {
-          console.log((data.val()['slot_1']['status'])==true)
+            console.log((data.val()['slot_1']['status']) == true)
 
             if ((data.val()['slot_1']['status']) == false) {
               this.SlotData.push(data.val()['slot_1']['slotName'])
@@ -381,41 +403,41 @@ export class HomeStudent {
               this.SlotData.push(data.val()['slot_10']['slotName'])
             } if (data.val()['slot_11']['status'] == false) {
               this.SlotData.push(data.val()['slot_11']['slotName'])
-            }if (data.val()['slot_12']['status'] == false) {
+            } if (data.val()['slot_12']['status'] == false) {
               this.SlotData.push(data.val()['slot_12']['slotName'])
             } if (data.val()['slot_13']['status'] == false) {
               this.SlotData.push(data.val()['slot_13']['slotName'])
-            }if (data.val()['slot_14']['status'] == false) {
-              this.SlotData.push(data.val()['slot_7']['slotName'])
-            }  if (data.val()['slot_15']['status'] == false) {
-              this.SlotData.push(data.val()['slot_8']['slotName'])
+            } if (data.val()['slot_14']['status'] == false) {
+              this.SlotData.push(data.val()['slot_14']['slotName'])
+            } if (data.val()['slot_15']['status'] == false) {
+              this.SlotData.push(data.val()['slot_15']['slotName'])
             } if (data.val()['slot_16']['status'] == false) {
-              this.SlotData.push(data.val()['slot_9']['slotName'])
+              this.SlotData.push(data.val()['slot_16']['slotName'])
             } if (data.val()['slot_17']['status'] == false) {
-              this.SlotData.push(data.val()['slot_10']['slotName'])
+              this.SlotData.push(data.val()['slot_17']['slotName'])
             } if (data.val()['slot_18']['status'] == false) {
-              this.SlotData.push(data.val()['slot_11']['slotName'])
+              this.SlotData.push(data.val()['slot_18']['slotName'])
             } if (data.val()['slot_19']['status'] == false) {
-              this.SlotData.push(data.val()['slot_12']['slotName'])
+              this.SlotData.push(data.val()['slot_19']['slotName'])
             } if (data.val()['slot_20']['status'] == false) {
-              this.SlotData.push(data.val()['slot_13']['slotName'])
+              this.SlotData.push(data.val()['slot_20']['slotName'])
             }
 
-console.log(this.SlotData.length)
-          for(let i=0; i< this.SlotData.length; i++) {
-              console.log(this.SlotData[i])    
-          }
-          this.AvailableSlots();
-          
+            console.log(this.SlotData.length)
+            for (let i = 0; i < this.SlotData.length; i++) {
+              console.log(this.SlotData[i])
+            }
+            this.AvailableSlots();
+
           });
-          
+
 
         }
-        else{
+        else {
           this.alertMessage("Available", "Your Lecture Available at selected time. You can Make your Appointment");
           this.FindSlotName();
           this.btnDisable = false;
-          console.log("Else Part "+this.Time);
+          console.log("Else Part " + this.Time);
 
 
         }

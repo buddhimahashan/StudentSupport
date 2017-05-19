@@ -5,7 +5,7 @@ import { Requests } from '../requests/requests';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { Viewnotices } from '../viewnotices/viewnotices';
 import { HomeStudent } from '../home-student/home-student';
-
+import { LoadingController } from 'ionic-angular';
 /**
  * Generated class for the NotificationStudent page.
  *
@@ -19,56 +19,66 @@ import { HomeStudent } from '../home-student/home-student';
 })
 export class NotificationStudent {
 
-RequestDetails:FirebaseListObservable<any>;
- // Requests : any;
-  angfires:AngularFire;
+  RequestDetails: FirebaseListObservable<any>;
+  // Requests : any;
+  angfires: AngularFire;
   PublicNotices: FirebaseListObservable<any>;
-  
+
   notification: string = "Responce";
   noticeyear: any;
   noticedate: any;
   noticetitle: any;
   noticedescription: any;
 
- Date: String = new Date().toISOString();
+  Date: String = new Date().toISOString();
 
-  today:any;
-  dd:any;
-  mm:any;
-  yyyy:any;
+  today: any;
+  dd: any;
+  mm: any;
+  yyyy: any;
 
-  Years:any;
-   year: string;
-   username: string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, platform: Platform, public angfire: AngularFire) {
+  Years: any;
+  year: string;
+  username: string;
+  constructor(public navCtrl: NavController,public loadingCtrl: LoadingController, public navParams: NavParams, platform: Platform, public angfire: AngularFire) {
 
-   this.Date = this.event.month
-   this.today = this.event.month.split("T")[0]
-    this.username=window.localStorage.getItem('SessionName');
+    this.Date = this.event.month
+    this.today = this.event.month.split("T")[0]
+    this.username = window.localStorage.getItem('SessionName');
     this.PublicNotices = angfire.database.list('/Public_Notices', {
       query: {
         orderByChild: 'dateView',
         equalTo: this.Date.split("T")[0]
       }
-      
+
     })
 
-     this.angfires = angfire;
+    this.angfires = angfire;
     this.RequestDetails = angfire.database.list('/StudentAppointment', {
       query: {
         orderByChild: 'user',
         equalTo: this.username
       }
-      
+
     })
     console.log(this.username);
   }
 
+  presentLoading() {
+    this.loadingCtrl.create({
+      content: 'Please wait...',
+      duration: 3000,
+      dismissOnPageChange: true
+    }).present();
+  }
+
   navigate() {
+    this.presentLoading();
     this.navCtrl.push(Requests);
   }
 
   navigate2(year, title, date, notice) {
+    this.presentLoading();
     this.navCtrl.push(Viewnotices);
     this.noticeyear = year;
     this.noticedate = date;
@@ -81,33 +91,34 @@ RequestDetails:FirebaseListObservable<any>;
 
 
   }
-NewApointment(){
-  this.navCtrl.push(HomeStudent);
-}
+  NewApointment() {
+    this.presentLoading();
+    this.navCtrl.push(HomeStudent);
+  }
 
-/*Today() {
-    this.today = new Date();
-    this.dd = this.today.getDate();
-    this.mm = this.today.getMonth()+1; 
-    this.yyyy = this.today.getFullYear();
+  /*Today() {
+      this.today = new Date();
+      this.dd = this.today.getDate();
+      this.mm = this.today.getMonth()+1; 
+      this.yyyy = this.today.getFullYear();
+  
+      if(this.dd<10) {
+        this.dd='0'+this.dd
+      } 
+  
+      if(this.mm<10) {
+        this.mm='0'+this.mm
+      } 
+  
+      this.today = this.yyyy+'-'+this.mm+'-'+this.dd;
+        return this.today;
+  }
+  */
 
-    if(this.dd<10) {
-      this.dd='0'+this.dd
-    } 
-
-    if(this.mm<10) {
-      this.mm='0'+this.mm
-    } 
-
-    this.today = this.yyyy+'-'+this.mm+'-'+this.dd;
-      return this.today;
-}
-*/
-
-public event = {
+  public event = {
 
     month: new Date().toISOString(),
-    
+
   }
 
 }

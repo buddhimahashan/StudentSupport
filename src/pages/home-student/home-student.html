@@ -26,8 +26,7 @@
 
 
 <ion-content>
-
-
+  
   <ion-searchbar [(ngModel)]="Lecture" (ionInput)="getItems($event)"></ion-searchbar>
   <h5 ion-text color="positive" style="text-align: center"> {{ LectureName }}</h5>
   <ion-list>
@@ -47,7 +46,7 @@
     <ion-item>
       <ion-label>Time</ion-label>
       <!-- <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.timeStarts"></ion-datetime>-->
-      <ion-select  [(ngModel)]="TimeSlots">
+      <ion-select [(ngModel)]="TimeSlots">
         <ion-option value="slot_1" checked="true">09.00 - 09.30</ion-option>
         <ion-option value="slot_2">09.30 - 10.00</ion-option>
         <ion-option value="slot_3">10.00 - 10.30</ion-option>

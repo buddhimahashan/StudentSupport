@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AngularFire } from 'angularfire2';
 import { AlertController } from 'ionic-angular';
-
+import { LoadingController } from 'ionic-angular';
 /**
  * Generated class for the FindLecture page.
  *
@@ -25,11 +25,19 @@ YearView:string;
 SemesterView:string;
 SubjectView:string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public angfire: AngularFire,public alerCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController,public navParams: NavParams,public angfire: AngularFire,public alerCtrl: AlertController) {
 
   }
   
-alertMessage(title, message) {
+presentLoading() {
+    this.loadingCtrl.create({
+      content: 'Please wait...',
+      duration: 3000,
+      dismissOnPageChange: true
+    }).present();
+  }
+
+  alertMessage(title, message) {
     let alert = this.alerCtrl.create({
       title: title,
       message: message,
@@ -44,6 +52,7 @@ if (this.Years == undefined || this.Years == '') {
     } else if (this.Subjects == undefined || this.Subjects == '') {
       this.alertMessage("Warning!", "Please Select the Subject");
     } else{
+      this.presentLoading();
      this.LectureDetails = this.angfire.database.list('/Subjects', {
       query: {
         orderByChild: 'subject',
