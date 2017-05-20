@@ -93,7 +93,7 @@ export class Profile {
    alertAboutMessage() {
     let alert = this.alertCtrl.create({
       title: 'About',
-      subTitle: '<h4>SLIIT Student Support Assistant</h4><br><p>This application was developed and published partial fulfillment of mobile application development project of 3rd year students at Sri Lanka Institute of Information Technology (SLIIT) 2017.</p> <br><p>All right reserved.</p><br><p>Developers:</p><p>•Buddhima Hashan</p><p>•Yoshani Kavindya</p><p>•Udam Arosha</p><p>•Mathisha Kaluaratchi</p><br><p>Version: 1.0.0.0</p>',
+      subTitle: '<h4>SLIIT Student Assistant</h4><p>This application was developed and published partial fulfillment of mobile application development project of 3rd year students at Sri Lanka Institute of Information Technology (SLIIT) 2017.</p><p>All right reserved.</p><p>Developers:</p><p>•Buddhima Hashan</p><p>•Yoshani Kavindya</p><p>•Udam Arosha</p><p>•Mathisha Kaluaratchi</p><br><p>Version: 1.0.0.0</p>',
       buttons: ['OK']
     });
     alert.present();
